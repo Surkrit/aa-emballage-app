@@ -1,0 +1,33 @@
+.enhed {
+  width: 215px;
+  height: 60px;
+  background-color: #008935;
+  border: 0px;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.form-enhed {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 213px;
+  border: 1px solid black;
+  border-radius: 0px 0px 5px 5px;
+  padding: 10px 0px;
+}
+
+.form-input {
+  padding: 5px 10px;
+}
+
+.dropdown {
+  margin: 100px;
+}
+/*# sourceMappingURL=App.css.map */
