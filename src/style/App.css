@@ -1,7 +1,7 @@
 .enhed {
   width: 215px;
   height: 60px;
-  background-color: #008935;
+  background-color: #00904A;
   border: 0px;
   color: white;
   font-size: 20px;
@@ -26,5 +26,12 @@
 
 .form-input {
   padding: 5px 10px;
+}
+
+.comment {
+  resize: none;
+  padding: 10px;
+  border-radius: 5px 0px 5px 5px;
+  border: 1px solid black;
 }
 /*# sourceMappingURL=App.css.map */
