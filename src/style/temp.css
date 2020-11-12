@@ -40,12 +40,14 @@
 }
 
 .nav li a::after {
-    content: "/";    
+    content: ">";    
 }
   
 .content {
     width: calc(100% - 250px);
+    margin: 0 45px;
     display: flex;
     flex-direction: column;
+
 }
 
