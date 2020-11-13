@@ -3,13 +3,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 /* Stylesheets */
 import './index.css';
-import './style/temp.css'
 /* Components */
 import reportWebVitals from './reportWebVitals';
 import Nav from './components/Nav';
 import Button from './components/Button';
 import Emballage from './components/Emballage';
-import './style/temp.css'
 import Headline from './components/Headline';
 import Message from './components/Message';
 
