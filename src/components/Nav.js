@@ -1,4 +1,5 @@
 import "../style/App.css";
+import logo from '../images/aa-logo-big.png'; // with import
 import {
   Link
 } from "react-router-dom";
@@ -6,7 +7,7 @@ import {
 function Nav() {
   return (
     <div className="nav">
-      <img src="" className="App-logo" alt="logo" />
+      <img src={logo} className="app-logo" alt="logo" />
       <ul>
             <li>
                <Link to="/">Home</Link>

@@ -3,6 +3,12 @@
     display: flex;
 }
 
+.app-logo {
+    width: 100px;
+    margin: 15px 10px;
+    align-self: center;
+}
+
 .active {
     color: #00904A;
 }
