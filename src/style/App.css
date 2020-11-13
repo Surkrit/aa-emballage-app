@@ -49,6 +49,18 @@
   width: calc(100% - 250px);
 }
 
+.prices {
+  color: #1d1d1b;
+}
+
+.prices h1 {
+  font-weight: 100;
+}
+
+.prices p {
+  font-size: 16px;
+}
+
 ul, li {
   list-style-type: none;
 }
