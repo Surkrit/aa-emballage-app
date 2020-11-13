@@ -16,7 +16,6 @@ import {
 
 
 
-
 ReactDOM.render(
    <>
    <div className="main">
@@ -48,6 +47,7 @@ ReactDOM.render(
          </Switch>
          </div>
       </Router>
+
     </div>
     </>,
   document.getElementById('root')
