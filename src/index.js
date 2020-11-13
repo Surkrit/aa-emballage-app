@@ -34,13 +34,16 @@ ReactDOM.render(
             
             </Route>
             <Route path="/Message">
-               <h1></h1>
+               <h1>Dette er message siden</h1>
             </Route>
             <Route path="/Terms">
                
             </Route>
             <Route path="/Button">
-               <Button />
+               <Button buttonname="Send"/>
+               <Button buttonname="Indsend"/>
+               <Button buttonname="Bestil"/>
+               <Button buttonname="Login"/>
             </Route>
          </Switch>
          </div>
