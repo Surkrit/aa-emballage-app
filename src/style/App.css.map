@@ -12,7 +12,10 @@
         "components/_Nav.scss",
         "components/_Prices.scss",
         "_variables.scss",
+        "components/_Message.scss",
+        "components/_Button.scss",
         "components/_Emballage.scss",
+        "_variables.scss",
         "_variables.scss"
     ],
     "names": [],
