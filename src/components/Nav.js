@@ -7,7 +7,7 @@ import {
 function Nav() {
   return (
     <div className="nav">
-      <img src={logo} className="app-logo" alt="logo" />
+      <Link to="/"><img src={logo} className="app-logo" alt="logo" /> </Link>
       <ul>
             <li>
                <Link to="/">Home</Link>
