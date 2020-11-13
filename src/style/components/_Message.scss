@@ -1,0 +1,13 @@
+.message--wrapper {
+    border-bottom: solid 1px #cccccc;
+    margin: 10px 0;
+    &:nth-last-child(1) {
+        border-bottom: none;
+    }
+    &__headline {
+        display: flex;
+        place-content: space-between;
+        margin: 0;
+        padding: 0;
+    }
+}
