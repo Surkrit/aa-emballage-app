@@ -1,0 +1,11 @@
+@import '../variables';
+
+.prices {
+    color: $secondary-color--dark;
+    h1 {
+        font-weight: 100;
+    }
+    p {
+        font-size: 16px;
+    }
+}

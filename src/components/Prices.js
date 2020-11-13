@@ -6,7 +6,7 @@ class Prices extends React.Component {
    
     render() {
      return (
-      <div>
+      <div class="prices">
         <Headline title="Prisliste" />
        <p>Priser</p>  
       </div>
