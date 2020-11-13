@@ -30,6 +30,7 @@ ReactDOM.render(
      
          <Switch>
             <Route exact path="/">
+               <Headline title="Hej Katja" />
                <Emballage />
                
             
