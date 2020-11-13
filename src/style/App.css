@@ -50,6 +50,8 @@ table {
 
 h1 {
   font-size: 67px;
+  margin-top: 40px;
+  margin-bottom: 10px;
 }
 
 h3 {
@@ -143,5 +145,60 @@ p {
 .emballage-date input[type="date"] {
   border-radius: 5px;
   height: 25px;
+}
+
+.emballage-buttons {
+  margin-top: 20px;
+}
+
+.emballage-buttons button {
+  width: 250px;
+  height: 60px;
+  font-size: 20px;
+  border: 0px;
+  font-weight: 600;
+}
+
+.emballage-buttons button:first-of-type {
+  border-radius: 5px 0px 0px 0px;
+  background: #00904A;
+  color: white;
+}
+
+.emballage-buttons button:last-of-type {
+  border-radius: 0px 5px 0px 0px;
+  background: #e4e4e4;
+  color: #707070;
+}
+
+table {
+  width: 100%;
+}
+
+table tr th {
+  border: 1px solid #707070;
+  font-weight: 600;
+  padding: 5px;
+}
+
+table tr:nth-child(even) td {
+  border: 1px solid #707070;
+  padding: 5px;
+  border-bottom: 0px;
+}
+
+table tr:nth-child(odd) td {
+  border: 1px solid #707070;
+  padding: 5px;
+  border-top: 0px;
+}
+
+table tr .row--red {
+  background: #f8cdce;
+  border: 1px solid #707070 !important;
+}
+
+table tr .row--green {
+  background: #bfe1cc;
 }
 /*# sourceMappingURL=App.css.map */
