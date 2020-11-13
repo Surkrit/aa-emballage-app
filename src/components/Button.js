@@ -1,8 +1,9 @@
 import "../style/App.css";
 
-function Button() {
+function Button({buttonname}) {
   return (
-  <div></div>  
+    <input className="button--green" type="submit" name="Submit" value={buttonname} />
+
   );
 };
 
