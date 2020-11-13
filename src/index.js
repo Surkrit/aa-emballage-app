@@ -6,12 +6,13 @@ import DropDown from './components/DropDown';
 import Comment from './components/Comment';
 import Nav from './components/Nav';
 import Button from './components/Button';
+import Headline from './components/Headline';
+import Message from './components/Message';
 import './style/temp.css'
 import {
    BrowserRouter as Router,
    Switch,
    Route,
-   Link
  } from "react-router-dom";
 
 
@@ -33,10 +34,18 @@ ReactDOM.render(
             
             </Route>
             <Route path="/Message">
-               <h1>Dette er message siden</h1>
+               <Headline title="Beskeder" />
+               <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Spicy jalapeno bacon ipsum dolor amet cow shank buffalo pig shankle burgdoggen ribeye andouille bacon beef pork turducken kielbasa. Pork loin flank tenderloin porchetta brisket. Spare ribs pork chop corned beef tenderloin chislic pancetta alcatra pork belly rump meatloaf landjaeger doner strip steak." />
+               <Message messagetitle="Heading" messagedate="15/11/2020" message="Spicy jalapeno bacon ipsum dolor amet cow shank buffalo pig shankle burgdoggen ribeye andouille bacon beef pork turducken kielbasa. Pork loin flank tenderloin porchetta brisket. Spare ribs pork chop corned beef tenderloin chislic pancetta alcatra pork belly rump meatloaf landjaeger doner strip steak." />
+               <Message messagetitle="Titres" messagedate="14/11/2020" message="Spicy jalapeno bacon ipsum dolor amet cow shank buffalo pig shankle burgdoggen ribeye andouille bacon beef pork turducken kielbasa. Pork loin flank tenderloin porchetta brisket. Spare ribs pork chop corned beef tenderloin chislic pancetta alcatra pork belly rump meatloaf landjaeger doner strip steak." />
+               <Message messagetitle="Bóveda" messagedate="13/11/2020" message="Spicy jalapeno bacon ipsum dolor amet cow shank buffalo pig shankle burgdoggen ribeye andouille bacon beef pork turducken kielbasa. Pork loin flank tenderloin porchetta brisket. Spare ribs pork chop corned beef tenderloin chislic pancetta alcatra pork belly rump meatloaf landjaeger doner strip steak." />
             </Route>
             <Route path="/Terms">
-               
+            <Headline title="Vilkår" />
+               <Message messagetitle="Overskrift" messagedate="" message="Spicy jalapeno bacon ipsum dolor amet cow shank buffalo pig shankle burgdoggen ribeye andouille bacon beef pork turducken kielbasa. Pork loin flank tenderloin porchetta brisket. Spare ribs pork chop corned beef tenderloin chislic pancetta alcatra pork belly rump meatloaf landjaeger doner strip steak." />
+               <Message messagetitle="Heading" messagedate="" message="Spicy jalapeno bacon ipsum dolor amet cow shank buffalo pig shankle burgdoggen ribeye andouille bacon beef pork turducken kielbasa. Pork loin flank tenderloin porchetta brisket. Spare ribs pork chop corned beef tenderloin chislic pancetta alcatra pork belly rump meatloaf landjaeger doner strip steak." />
+               <Message messagetitle="Titres" messagedate="" message="Spicy jalapeno bacon ipsum dolor amet cow shank buffalo pig shankle burgdoggen ribeye andouille bacon beef pork turducken kielbasa. Pork loin flank tenderloin porchetta brisket. Spare ribs pork chop corned beef tenderloin chislic pancetta alcatra pork belly rump meatloaf landjaeger doner strip steak." />
+               <Message messagetitle="Bóveda" messagedate="" message="Spicy jalapeno bacon ipsum dolor amet cow shank buffalo pig shankle burgdoggen ribeye andouille bacon beef pork turducken kielbasa. Pork loin flank tenderloin porchetta brisket. Spare ribs pork chop corned beef tenderloin chislic pancetta alcatra pork belly rump meatloaf landjaeger doner strip steak." />
             </Route>
             <Route path="/Button">
                <Button buttonname="Send"/>
