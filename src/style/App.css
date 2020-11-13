@@ -34,4 +34,22 @@
   border-radius: 5px 0px 5px 5px;
   border: 1px solid black;
 }
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.nav {
+  width: 250px;
+}
+
+.content {
+  width: calc(100% - 250px);
+}
+
+ul, li {
+  list-style-type: none;
+}
 /*# sourceMappingURL=App.css.map */
