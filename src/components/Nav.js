@@ -14,6 +14,9 @@ function Nav() {
                <Link to="/Message">Message</Link>
                <Link to="/Terms">Terms</Link>
                <Link to="/Button">Button</Link>
+               <Link to="/Prices">Prisliste</Link>
+               <Link to="/Tomgods">Tomgods</Link>
+               <Link to="/Svind">Svindopgørelse</Link>
             </li>
          </ul>
     </div>

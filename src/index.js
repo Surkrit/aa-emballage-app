@@ -10,7 +10,9 @@ import Button from './components/Button';
 import Emballage from './components/Emballage';
 import Headline from './components/Headline';
 import Message from './components/Message';
-
+import Prices from './components/Prices';
+import Tomgods from './components/Tomgods';
+import Svind from './components/Svind';
 /* React Router */
 import {
    BrowserRouter as Router,
@@ -54,6 +56,15 @@ ReactDOM.render(
                <Button buttonname="Indsend"/>
                <Button buttonname="Bestil"/>
                <Button buttonname="Login"/>
+            </Route>
+            <Route path="/Prices">
+               <Prices />
+            </Route>
+            <Route path="/Tomgods">
+               <Tomgods />
+            </Route>
+            <Route path="/Svind">
+               <Svind />
             </Route>
          </Switch>
          </div>

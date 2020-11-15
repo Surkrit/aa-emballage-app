@@ -1,0 +1,15 @@
+@import '../variables';
+
+.tomgods {
+
+    table {
+        border: 1px solid $secondary-color;
+
+        input {
+            border-radius: 5px;
+            border: 1px solid $secondary-color;
+            padding: 5px 0;
+            text-align: center;
+        }
+    }
+}

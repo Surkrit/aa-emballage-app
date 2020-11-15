@@ -48,6 +48,10 @@ table {
   border-spacing: 0;
 }
 
+body {
+  color: #1d1d1b;
+}
+
 h1 {
   font-size: 67px;
   margin-top: 40px;
@@ -185,12 +189,33 @@ p {
   color: #1d1d1b;
 }
 
-.prices h1 {
-  font-weight: 100;
+.prices form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  /* Chrome, Safari, Edge, Opera */
+  /* Firefox */
 }
 
-.prices p {
-  font-size: 16px;
+.prices form input {
+  border: solid 1px #707070;
+  border-radius: 5px;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.prices form input::-webkit-outer-spin-button,
+.prices form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.prices form input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .message--wrapper {
@@ -293,5 +318,27 @@ table tr .row--red {
 
 table tr .row--green {
   background: #bfe1cc;
+}
+
+.tomgods table {
+  border: 1px solid #707070;
+}
+
+.tomgods table input {
+  border-radius: 5px;
+  border: 1px solid #707070;
+  padding: 5px 0;
+  text-align: center;
+}
+
+.svind table {
+  border: 1px solid #707070;
+}
+
+.svind table input {
+  border-radius: 5px;
+  border: 1px solid #707070;
+  padding: 5px 0;
+  text-align: center;
 }
 /*# sourceMappingURL=App.css.map */
