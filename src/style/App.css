@@ -48,6 +48,10 @@ table {
   border-spacing: 0;
 }
 
+body {
+  color: #1d1d1b;
+}
+
 h1 {
   font-size: 67px;
   margin-top: 40px;
@@ -185,12 +189,37 @@ p {
   color: #1d1d1b;
 }
 
-.prices h1 {
-  font-weight: 100;
+.prices table {
+  border: 0;
+  max-width: 350px;
+  /* Chrome, Safari, Edge, Opera */
+  /* Firefox */
 }
 
-.prices p {
-  font-size: 16px;
+.prices table tr, .prices table td {
+  border: 0 !important;
+}
+
+.prices table td:first-child {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.prices table input {
+  border: solid 1px #707070;
+  border-radius: 5px;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.prices table input::-webkit-outer-spin-button,
+.prices table input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.prices table input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .message--wrapper {
@@ -318,5 +347,43 @@ table tr .row--green {
 .login--wrapper a {
   margin: 20px;
   color: white;
+}
+
+.tomgods input {
+  border-radius: 5px;
+  border: 1px solid #707070;
+  padding: 5px 0;
+  text-align: center;
+}
+
+.tomgods table {
+  border: 1px solid #707070;
+}
+
+.tomgods table th {
+  padding: 5px 0px;
+}
+
+.tomgods table input {
+  width: 80px;
+}
+
+.svind input {
+  border-radius: 5px;
+  border: 1px solid #707070;
+  padding: 5px 0;
+  text-align: center;
+}
+
+.svind table {
+  border: 1px solid #707070;
+}
+
+.svind table th {
+  padding: 5px 0px;
+}
+
+.svind table input {
+  width: 80px;
 }
 /*# sourceMappingURL=App.css.map */

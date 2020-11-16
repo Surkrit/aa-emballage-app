@@ -1,3 +1,8 @@
+@import 'variables';
+
+body {
+    color: $secondary-color--dark;
+}
 h1{
     font-size: 67px;
     margin-top: 40px;

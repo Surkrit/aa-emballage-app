@@ -1,0 +1,21 @@
+@import '../variables';
+
+.svind {
+
+    input {
+        border-radius: 5px;
+        border: 1px solid $secondary-color;
+        padding: 5px 0;
+        text-align: center;
+    }
+
+    table {
+        border: 1px solid $secondary-color;
+        th {
+            padding: 5px 0px;
+        }
+        input {
+            width: 80px;
+        }
+    }
+}
