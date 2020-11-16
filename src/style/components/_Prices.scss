@@ -3,10 +3,16 @@
 .prices {
     color: $secondary-color--dark;
 
-    form {
-        display: flex;
-        flex-direction: column;
-
+    table {
+        border: 0;
+        max-width: 350px;
+        tr, td {
+            border: 0 !important;
+        }
+        td:first-child {
+            text-transform: uppercase;
+            font-weight: 600;
+        }
         input {
             border: solid 1px $secondary-color;
             border-radius: 5px;

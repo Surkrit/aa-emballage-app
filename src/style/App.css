@@ -189,32 +189,36 @@ p {
   color: #1d1d1b;
 }
 
-.prices form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+.prices table {
+  border: 0;
+  max-width: 350px;
   /* Chrome, Safari, Edge, Opera */
   /* Firefox */
 }
 
-.prices form input {
+.prices table tr, .prices table td {
+  border: 0 !important;
+}
+
+.prices table td:first-child {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.prices table input {
   border: solid 1px #707070;
   border-radius: 5px;
   padding: 5px 10px;
   text-align: center;
 }
 
-.prices form input::-webkit-outer-spin-button,
-.prices form input::-webkit-inner-spin-button {
+.prices table input::-webkit-outer-spin-button,
+.prices table input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-.prices form input[type=number] {
+.prices table input[type=number] {
   -moz-appearance: textfield;
 }
 
@@ -320,11 +324,26 @@ table tr .row--green {
   background: #bfe1cc;
 }
 
+.tomgods input {
+  border-radius: 5px;
+  border: 1px solid #707070;
+  padding: 5px 0;
+  text-align: center;
+}
+
 .tomgods table {
   border: 1px solid #707070;
 }
 
+.tomgods table th {
+  padding: 5px 0px;
+}
+
 .tomgods table input {
+  width: 80px;
+}
+
+.svind input {
   border-radius: 5px;
   border: 1px solid #707070;
   padding: 5px 0;
@@ -335,10 +354,11 @@ table tr .row--green {
   border: 1px solid #707070;
 }
 
+.svind table th {
+  padding: 5px 0px;
+}
+
 .svind table input {
-  border-radius: 5px;
-  border: 1px solid #707070;
-  padding: 5px 0;
-  text-align: center;
+  width: 80px;
 }
 /*# sourceMappingURL=App.css.map */
