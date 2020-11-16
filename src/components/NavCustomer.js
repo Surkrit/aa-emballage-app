@@ -14,6 +14,9 @@ function NavCustomer() {
                <Link to="/Customer/Message">Message</Link>
                <Link to="/Customer/Terms">Terms</Link>
                <Link to="/Customer/Button">Button</Link>
+               <Link to="/Prices">Prisliste</Link>
+               <Link to="/Tomgods">Tomgods</Link>
+               <Link to="/Svind">Svindopgørelse</Link>
                <Link to="/">Logout</Link>
             </li>
          </ul>

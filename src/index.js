@@ -13,6 +13,7 @@ import Headline from './components/Headline';
 import Message from './components/Message';
 import Comment from './components/Comment';
 import Login from './pages/login';
+import Admin from './pages/admin';
 
 import Prices from './components/Prices';
 import Tomgods from './components/Tomgods';
@@ -73,27 +74,29 @@ ReactDOM.render(
                </div>
             </Route>
 
-
-            <Route exact path="/Admin/Home">
-               <NavAdmin />
+            <Route path="/Prices">
+            <NavCustomer />
                <div className="content">
-                  <Headline title="Beskeder" />
-                  <Comment comment=""/>
-                  <div className="flex--end"><Button buttonname="Send" /></div>
-                  <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
-                  <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
-                  <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
-                  <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
+               <Prices />
                </div>
             </Route>
-            <Route path="/Prices">
-               <Prices />
-            </Route>
             <Route path="/Tomgods">
+            <NavCustomer />
+               <div className="content">
                <Tomgods />
+               </div>
             </Route>
             <Route path="/Svind">
+            <NavCustomer />
+               <div className="content">
                <Svind />
+               </div>
+            </Route>
+
+
+            <Route exact path="/Admin/Home">
+             <NavAdmin />   
+               <Admin />
             </Route>
          </Switch>
          
