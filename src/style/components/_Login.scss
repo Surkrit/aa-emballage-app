@@ -1,0 +1,11 @@
+.login--wrapper {
+   background-color: $primary-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    a {
+        margin: 20px;
+        color: white;
+    }
+}
