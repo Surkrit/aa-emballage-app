@@ -1,11 +1,42 @@
 .login--wrapper {
-   background-color: $primary-color;
+    background-color: $secondary-color;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     width: 100%;
-    a {
-        margin: 20px;
-        color: white;
+    height: 100vh;
+    .app-logo {
+            width: 100px;
+            margin: 15px;
+            align-self: auto;
     }
-}
+    .login--wrapper__content {
+        text-align: -webkit-center;
+        align-self: center;
+        width: 66%;
+        a {
+            margin: 20px;
+            color: white;
+        }
+        .login--form {
+            display: flex;
+            flex-direction: column;
+            margin-top: 15px;
+            width: 300px;
+            align-items: flex-end;
+            .login--form__wrapper {
+                display: flex;
+                flex-direction: column;
+                align-self: center;
+                margin-bottom: 15px;
+                width: 100%;
+                label {
+                    text-align: initial;
+                    font-weight: bold;
+                }
+                input {
+                    height: 25px;
+                }
+            }
+        }
+    }
+}  
