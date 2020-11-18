@@ -10,9 +10,6 @@ class Svind extends React.Component {
      return (
       <div className="svind">
         <Headline title="Svindopgørelse" />
-        <div>
-        <Pagination totalRecords={100} pageLimit={5} pageNeighbours={1} onPageChanged={this.onPageChanged} />
-        </div>
         <form>
            <label className="svind-date">Dato <input type="date"/></label>
            <table>
@@ -50,7 +47,10 @@ class Svind extends React.Component {
              </tr>
            </table>
            <Button buttonname="Indsend"/>
-         </form> 
+         </form>
+         <div>
+          <Pagination totalRecords={100} pageLimit={5} pageNeighbours={1} onPageChanged={this.onPageChanged} />
+        </div>
       </div>
      );
     }
