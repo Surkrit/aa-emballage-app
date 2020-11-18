@@ -23,9 +23,9 @@ const range = (from, to, step = 1) => {
 class Pagination extends Component {
   constructor(props) {
     super(props);
-    const { totalRecords = null, pageLimit = 30, pageNeighbours = 0 } = props;
+    const { totalRecords = null, pageLimit = 10, pageNeighbours = 0 } = props;
 
-    this.pageLimit = typeof pageLimit === 'number' ? pageLimit : 30;
+    this.pageLimit = typeof pageLimit === 'number' ? pageLimit : 10;
     this.totalRecords = typeof totalRecords === 'number' ? totalRecords : 0;
 
     // pageNeighbours can be: 0, 1 or 2
@@ -37,6 +37,7 @@ class Pagination extends Component {
 
     this.state = { currentPage: 1 };
   }
+
   /**
    * Let's say we have 10 pages and we set pageNeighbours to 2
    * Given that the current page is 6
@@ -102,6 +103,7 @@ class Pagination extends Component {
 
     return range(1, totalPages);
   }
+
   render() {
     if (!this.totalRecords || this.totalPages === 1) return null;
 
@@ -110,7 +112,7 @@ class Pagination extends Component {
 
     return (
       <Fragment>
-        <nav aria-label="Countries Pagination">
+        <nav aria-label="Pagination">
           <ul className="pagination">
             { pages.map((page, index) => {
 
@@ -170,12 +172,12 @@ class Pagination extends Component {
 
   handleMoveLeft = evt => {
     evt.preventDefault();
-    this.gotoPage(this.state.currentPage - (this.pageNeighbours * 2) - 1);
+    this.gotoPage(this.state.currentPage - (this.pageNeighbours * 0) - 1);
   }
 
   handleMoveRight = evt => {
     evt.preventDefault();
-    this.gotoPage(this.state.currentPage + (this.pageNeighbours * 2) + 1);
+    this.gotoPage(this.state.currentPage + (this.pageNeighbours * 0) + 1);
   }
 }
 

@@ -1,7 +1,7 @@
 @import '../variables';
+@import '../mixins';
 
 .prices {
-    color: $secondary-color--dark;
 
     table {
         border: 0;
@@ -14,10 +14,7 @@
             font-weight: 600;
         }
         input {
-            border: solid 1px $secondary-color;
-            border-radius: 5px;
-            padding: 5px 10px;
-            text-align: center;
+            @include input-number;
         }
 
         /* Chrome, Safari, Edge, Opera */

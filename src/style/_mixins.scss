@@ -1,0 +1,6 @@
+@mixin input-number {
+    border: solid 1px $secondary-color;
+            border-radius: 5px;
+            padding: 5px 10px;
+            text-align: center;
+}

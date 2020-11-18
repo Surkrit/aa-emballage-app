@@ -1,6 +1,7 @@
 import React from 'react';
 import Headline from './Headline';
 import Button from './Button';
+import Pagination from './Pagination';
 import '../style/App.css';
 
 class Svind extends React.Component {
@@ -9,6 +10,9 @@ class Svind extends React.Component {
      return (
       <div className="svind">
         <Headline title="Svindopgørelse" />
+        <div>
+        <Pagination totalRecords={100} pageLimit={5} pageNeighbours={1} onPageChanged={this.onPageChanged} />
+        </div>
         <form>
            <label className="svind-date">Dato <input type="date"/></label>
            <table>
