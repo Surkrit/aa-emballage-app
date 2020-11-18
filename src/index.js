@@ -11,7 +11,6 @@ import Button from './components/Button';
 import Emballage from './components/Emballage';
 import Headline from './components/Headline';
 import Message from './components/Message';
-import Comment from './components/Comment';
 import Login from './pages/login';
 import Admin from './pages/admin';
 

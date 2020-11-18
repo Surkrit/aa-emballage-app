@@ -83,9 +83,7 @@ p {
 }
 
 .form-enhed {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -105,6 +103,7 @@ p {
   padding: 10px;
   border-radius: 5px 0px 5px 5px;
   border: 1px solid black;
+  display: none;
 }
 
 .main {
@@ -274,28 +273,34 @@ p {
   height: 25px;
 }
 
-.emballage-buttons {
-  margin-top: 20px;
-}
-
 .emballage-buttons button {
   width: 250px;
   height: 60px;
   font-size: 20px;
   border: 0px;
   font-weight: 600;
+  background: #e4e4e4;
+}
+
+.emballage-buttons button a {
+  color: #707070;
+  text-decoration: none;
 }
 
 .emballage-buttons button:first-of-type {
   border-radius: 5px 0px 0px 0px;
-  background: #00904A;
-  color: white;
 }
 
 .emballage-buttons button:last-of-type {
   border-radius: 0px 5px 0px 0px;
-  background: #e4e4e4;
-  color: #707070;
+}
+
+.emballage-buttons .button--active {
+  background: #00904A;
+}
+
+.emballage-buttons .button--active a {
+  color: white;
 }
 
 table {
@@ -327,6 +332,20 @@ table tr .row--red {
 
 table tr .row--green {
   background: #bfe1cc;
+}
+
+table tr .empty {
+  color: white;
+}
+
+.table-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 20px;
 }
 
 .login--wrapper {
