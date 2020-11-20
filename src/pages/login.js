@@ -10,6 +10,7 @@ import {
 function Login() {
   return (
     <div className="login--wrapper">
+      <div className="login--wrapper__image"></div>
       <img src={logo} className="app-logo" alt="logo" />
       <div className="login--wrapper__content">
         <Headline title="Velkommen" />
