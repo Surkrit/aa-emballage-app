@@ -21,10 +21,10 @@ function Emballage() {
 
             <div className="table-buttons">
               <div className="emballage-buttons">
-                <button>
+                <button className="button--active">
                   <Link to="Home">Afleveret/returneret</Link>
                 </button>
-                <button className="button--active">
+                <button>
                   <Link to="Balance">Balance</Link>
                 </button>
               </div>
@@ -76,6 +76,82 @@ function Emballage() {
                   <h4>PDF</h4>
                 </th>
               </tr>
+              <RowAfleveret
+                Id="1"
+                AccepAA="yes"
+                AccepKunde="yes"
+                Kvittering="123698"
+                Tur="90684"
+                Dato="10-11-2020"
+                T5RfidCCInn="12"
+                HylderInn="2"
+                ForlInn="4"
+                RFIDccInn="3"
+                halfRFIDccInn="45"
+                halfHyldeInn="4"
+                halfCCInn="11"
+                DSHalfCCInn="13"
+                DSHalfHyldeInn="1"
+                EuplInn="5"
+                HalfPllInn=""
+                quartPllInn="4"
+                CCInn="11"
+                SojleInn="32"
+                T5RfidCCOut="1"
+                HylderOut=" "
+                ForlOut="4"
+                RFIDccOut="3"
+                halfRFIDccOut="15"
+                halfHyldeOut=""
+                halfCCOut="4"
+                DSHalfCCOut="33"
+                DSHalfHyldeOut="1"
+                EuplOut="5"
+                HalfPllOut="3"
+                quartPllOut="1"
+                CCOut="1"
+                SojleOut=""
+                Signed="no"
+                Kommentar="Det her en kommentar"
+              />
+              <RowAfleveret
+                Id="1"
+                AccepAA="yes"
+                AccepKunde="yes"
+                Kvittering="123698"
+                Tur="90684"
+                Dato="10-11-2020"
+                T5RfidCCInn="12"
+                HylderInn="2"
+                ForlInn="4"
+                RFIDccInn="3"
+                halfRFIDccInn="45"
+                halfHyldeInn="4"
+                halfCCInn="11"
+                DSHalfCCInn="13"
+                DSHalfHyldeInn="1"
+                EuplInn="5"
+                HalfPllInn=""
+                quartPllInn="4"
+                CCInn="11"
+                SojleInn="32"
+                T5RfidCCOut="1"
+                HylderOut=" "
+                ForlOut="4"
+                RFIDccOut="3"
+                halfRFIDccOut="15"
+                halfHyldeOut=""
+                halfCCOut="4"
+                DSHalfCCOut="33"
+                DSHalfHyldeOut="1"
+                EuplOut="5"
+                HalfPllOut="3"
+                quartPllOut="1"
+                CCOut="1"
+                SojleOut=""
+                Signed="no"
+                Kommentar="Det her en kommentar"
+              />
               <RowAfleveret
                 Id="1"
                 AccepAA="yes"
@@ -183,6 +259,54 @@ function Emballage() {
                   <h4>PDF</h4>
                 </th>
               </tr>
+              <RowBalance
+                Id="1"
+                AccepAA="yes"
+                AccepKunde="yes"
+                Kvittering="123698"
+                Tur="90684"
+                Dato="10-11-2020"
+                T5RfidCC="1"
+                Hylder="2"
+                Forl="4"
+                RFIDcc="3"
+                halfRFIDcc="45"
+                halfHylde=""
+                halfCC="4"
+                DSHalfCC="13"
+                DSHalfHylde="1"
+                Eupl="5"
+                HalfPll=""
+                quartPll="1"
+                CC="1"
+                Sojle=""
+                signed="no"
+                Kommentar="Det her en kommentar"
+              />
+              <RowBalance
+                Id="1"
+                AccepAA="yes"
+                AccepKunde="yes"
+                Kvittering="123698"
+                Tur="90684"
+                Dato="10-11-2020"
+                T5RfidCC="1"
+                Hylder="2"
+                Forl="4"
+                RFIDcc="3"
+                halfRFIDcc="45"
+                halfHylde=""
+                halfCC="4"
+                DSHalfCC="13"
+                DSHalfHylde="1"
+                Eupl="5"
+                HalfPll=""
+                quartPll="1"
+                CC="1"
+                Sojle=""
+                signed="no"
+                Kommentar="Det her en kommentar"
+              />
               <RowBalance
                 Id="1"
                 AccepAA="yes"
@@ -333,9 +457,9 @@ function RowAfleveret({
             <input type="checkbox" />
           </h4>
         </td>
-        <td>
-          <button>Indsæt</button>
-          <Comment Kommentar="hfsjljlk" />
+        <td className="comment--row">
+          <button className="showComment" onClick={showComment}>Indsæt</button>
+          <Comment Kommentar={Kommentar} />
         </td>
         <td>
           <h4>♥</h4>
@@ -498,7 +622,7 @@ function RowBalance({
             <input type="checkbox" />
           </h4>
         </td>
-        <td>
+        <td className="comment--row">
           <button>Indsæt</button>
           <Comment Comment={Kommentar} />
         </td>
@@ -537,6 +661,15 @@ function RowBalance({
       </tr>
     </>
   );
+}
+
+function showComment(e){
+  // var comment = document.getElementsByClassName(".comment");
+  // // var showComment = document.getElementsByClassName(".showComment");
+
+  // comment.style.display = "block";
+
+  e.preventDefault();    console.log('The link was clicked.');
 }
 
 export default Emballage;

@@ -80,3 +80,9 @@ table {
   justify-content: space-between;
   margin-top: 20px;
 }
+
+.comment--row{
+  display: flex;
+  justify-content: end;
+  border: 0px solid black !important
+}

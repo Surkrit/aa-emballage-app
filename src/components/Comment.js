@@ -2,7 +2,7 @@ import '../style/App.css';
 
 function Comment({comment}) {
     return (
-      <textarea cols="30" rows="10" className="comment">{comment}</textarea>
+      <textarea className="comment" cols="30" rows="10">{comment}</textarea>
     );
     }
 

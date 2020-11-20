@@ -92,6 +92,8 @@ p {
   border: 1px solid black;
   border-radius: 0px 0px 5px 5px;
   padding: 10px 0px;
+  position: absolute;
+  background: white;
 }
 
 .form-enhed .form-input {
@@ -104,6 +106,8 @@ p {
   border-radius: 5px 0px 5px 5px;
   border: 1px solid black;
   display: none;
+  position: absolute;
+  margin-top: 25px;
 }
 
 .main {
@@ -343,6 +347,16 @@ table tr .empty {
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-top: 20px;
+}
+
+.comment--row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  border: 0px solid black !important;
 }
 
 .login--wrapper {

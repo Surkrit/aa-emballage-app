@@ -3,8 +3,8 @@ import "../style/App.css";
 function DropDown() {
   return (
     <div className="dropdown">
-      <button className="enhed">+ Enhed</button>
-      <form className="form-enhed" action="/action_page.php">
+      <button className="enhed" onClick={showEnheder}>+ Enhed</button>
+      <form className="form-enhed">
         <Input name="t5rfidcc" FullName="T5 RFID CC"/>
         <Input name="hylder" FullName="HYLDER"/>
         <Input name="forl" FullName="FORL."/>
@@ -28,9 +28,19 @@ function Input({name, FullName}) {
   return (
     <div className="form-input">
       <input type="checkbox" name={name} />
-      <label for={name}> {FullName}</label>
+      <label htmlFor={name}> {FullName}</label>
     </div>
   );
+}
+
+function showEnheder(e){
+  e.preventDefault();
+
+  var dropDown = document.getElementsByClassName(".form-enhed");
+
+  dropDown.style.display = "block";
+
+  console.log('The link was clicked.');
 }
 
 export default DropDown;
