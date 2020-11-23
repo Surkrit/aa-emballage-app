@@ -50,12 +50,17 @@ table {
 
 body {
   color: #1d1d1b;
+  overflow-y: scroll;
 }
 
 h1 {
   font-size: 67px;
   margin-top: 40px;
   margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 26px;
 }
 
 h3 {
@@ -98,6 +103,15 @@ p {
 
 .form-enhed .form-input {
   padding: 5px 10px;
+}
+
+.form-enhed h3 {
+  font-weight: 600;
+  margin: 0px 10px;
+}
+
+.form-enhed h3:last-of-type {
+  margin-top: 15px;
 }
 
 .comment {

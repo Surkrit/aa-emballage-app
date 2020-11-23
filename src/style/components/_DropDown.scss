@@ -23,4 +23,11 @@
   .form-input {
     padding: 5px 10px;
   }
+  h3{
+    font-weight: 600;
+    margin: 0px 10px;
+    &:last-of-type{
+      margin-top: 15px;
+    }
+  }
 }

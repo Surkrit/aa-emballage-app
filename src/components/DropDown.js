@@ -1,50 +1,59 @@
+import React from "react";
+
 import "../style/App.css";
 
 function DropDown() {
   return (
     <div className="dropdown">
-      <button className="enhed" onClick={showEnheder}>+ Enhed</button>
-      <form className="form-enhed">
-        <Input name="t5rfidcc" FullName="T5 RFID CC"/>
-        <Input name="hylder" FullName="HYLDER"/>
-        <Input name="forl" FullName="FORL."/>
-        <Input name="rfidcc" FullName="RFID CC"/>
-        <Input name="halfrfidcc" FullName="½ RFID CC"/>
-        <Input name="halfhylde" FullName="½ hylde"/>
-        <Input name="halfcc" FullName="½ CC"/>
-        <Input name="dshalfcc" FullName="DS ½CC"/>
-        <Input name="dshalfhylde" FullName="DS ½HYLDE"/>
-        <Input name="eupl" FullName="EUPL"/>
-        <Input name="halfpll" FullName="½ PLL"/>
-        <Input name="quartpll" FullName="¼ PLL"/>
-        <Input name="cc" FullName="CC"/>
-        <Input name="sojleror" FullName="SØJLERØR"/>
-      </form>
+      <DropDownButton />
     </div>
   );
 }
 
-function Input({name, FullName}) {
+//Filtrer knappen med funktionalitet
+const DropDownButton = () => {
+  const [showFilter, setShowFilter] = React.useState(false);
+  const onClick = () => setShowFilter(true);
+  return (
+    <div>
+      <button className="enhed" onClick={onClick}>
+        Filtrer
+      </button>
+      {showFilter ? <Filter /> : null}
+    </div>
+  );
+};
+
+//Dropdown der vises når filtrerknappen bliver klikket på
+const Filter = () => (
+  <form className="form-enhed">
+    <h3>Enhed</h3>
+    <Input name="cc" FullName="Container" />
+    <Input name="eupl" FullName="Europalle" />
+
+    <h3>Emballage</h3>
+    <Input name="t5rfidcc" FullName="T5 RFID container" />
+    <Input name="rfidcc" FullName="RFID container" />
+    <Input name="halfcc" FullName="½ container" />
+    <Input name="halfrfidcc" FullName="½ RFID container" />
+    <Input name="dshalfcc" FullName="DS ½ container" />
+    <Input name="hylder" FullName="Hylder" />
+    <Input name="halfhylde" FullName="½ hylde" />
+    <Input name="dshalfhylde" FullName="DS ½ hylde" />
+    <Input name="halfpll" FullName="½ palle" />
+    <Input name="quartpll" FullName="¼ palle" />
+    <Input name="forl" FullName="Forlænger" />
+    <Input name="sojleror" FullName="Søjlerør" />
+  </form>
+);
+
+function Input({ name, FullName }) {
   return (
     <div className="form-input">
       <input type="checkbox" name={name} />
       <label htmlFor={name}> {FullName}</label>
     </div>
   );
-}
-
-function showEnheder(){
-
-
-  var enhed = document.getElementsByClassName(".enhed");
-  var dropDown = document.getElementsByClassName(".form-enhed");
-
-  enhed.addEventListener("click", function(event){
-    dropDown.style.display = "block";
-  }); 
-  // dropDown.style.display = "block";
-
-  console.log('The link was clicked.');
 }
 
 export default DropDown;
