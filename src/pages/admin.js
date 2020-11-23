@@ -2,11 +2,7 @@ import "../style/App.css";
 import Headline from '../components/Headline';
 import Message from '../components/Message';
 import MessageField from '../components/MessageField';
-import NavAdmin from '../components/NavAdmin';
 import Button from '../components/Button';
-import {
-  Link
-} from "react-router-dom";
 
 function Admin() {
   return (
