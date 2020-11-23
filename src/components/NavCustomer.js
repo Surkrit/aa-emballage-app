@@ -10,14 +10,11 @@ function NavCustomer() {
       <Link to="/Customer/Home"><img src={logo} className="app-logo" alt="logo" /> </Link>
       <ul>
             <li>
-               <Link to="/Customer/Home">Home</Link>
-               <Link to="/Customer/Message">Message</Link>
-               <Link to="/Customer/Terms">Terms</Link>
-               <Link to="/Customer/Button">Button</Link>
-               <Link to="/Prices">Prisliste</Link>
-               <Link to="/Tomgods">Tomgods</Link>
-               <Link to="/Svind">Svindopgørelse</Link>
-               <Link to="/">Logout</Link>
+               <Link to="/Customer/Home">Emballageoversigt</Link>
+               <Link to="/Customer/Message">Beskeder</Link>
+               <Link to="/Customer/Tomgods">Tomgods</Link>
+               <Link to="/Customer/Svind">Svindopgørelse</Link>
+               <Link to="/">Log ud</Link>
             </li>
          </ul>
     </div>

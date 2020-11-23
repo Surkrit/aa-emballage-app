@@ -8,9 +8,11 @@ function NavAdmin() {
   return (
     <div className="nav">
       <Link to="/Admin/Home"><img src={logo} className="app-logo" alt="logo" /> </Link>
-      <ul>
+        <ul>
             <li>
-               <Link to="/Admin/Home">Home</Link>
+               <Link to="/Admin/Home">Beskeder</Link>
+               <Link to="/Admin/Terms">Vilkår</Link>
+               <Link to="/Admin/Prices">Prisliste</Link>
                <Link to="/">Logout</Link>
             </li>
          </ul>
