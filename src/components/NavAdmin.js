@@ -11,6 +11,8 @@ function NavAdmin() {
       <ul>
             <li>
                <Link to="/Admin/Home">Home</Link>
+               <Link to="/Admin/Terms">Vilkår</Link>
+               <Link to="/Admin/Prices">Prisliste</Link>
                <Link to="/">Logout</Link>
             </li>
          </ul>
