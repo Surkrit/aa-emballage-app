@@ -83,7 +83,7 @@ p {
 }
 
 .form-enhed {
-  display: none;
+  display: block;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
