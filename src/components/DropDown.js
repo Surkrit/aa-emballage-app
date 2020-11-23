@@ -33,12 +33,16 @@ function Input({name, FullName}) {
   );
 }
 
-function showEnheder(e){
-  e.preventDefault();
+function showEnheder(){
 
+
+  var enhed = document.getElementsByClassName(".enhed");
   var dropDown = document.getElementsByClassName(".form-enhed");
 
-  dropDown.style.display = "block";
+  enhed.addEventListener("click", function(event){
+    dropDown.style.display = "block";
+  }); 
+  // dropDown.style.display = "block";
 
   console.log('The link was clicked.');
 }
