@@ -392,6 +392,7 @@ table tr .empty {
 
 .login--wrapper .login--wrapper__content {
   text-align: -webkit-center;
+  text-align: center;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
