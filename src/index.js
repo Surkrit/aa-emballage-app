@@ -11,6 +11,7 @@ import Button from './components/Button';
 import Emballage from './components/Emballage';
 import Headline from './components/Headline';
 import Message from './components/Message';
+import Terms from './components/Terms';
 import Login from './pages/login';
 import Admin from './pages/admin';
 import Prices from './components/Prices';
@@ -76,10 +77,11 @@ ReactDOM.render(
                <NavAdmin />
                <div className="content">
                   <Headline title="Vilkår" />
-                  <Message messagetitle="Overskrift" messagedate="" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
-                  <Message messagetitle="Overskrift" messagedate="" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
-                  <Message messagetitle="Overskrift" messagedate="" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
-                  <Message messagetitle="Overskrift" messagedate="" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
+                  <Terms />
+                  <Terms />
+                  <Terms />
+                  <Terms />
+                  <Button buttonname="Opdater" />  
                </div>
             </Route>
 
