@@ -77,12 +77,14 @@ ReactDOM.render(
                <NavAdmin />
                <div className="content">
                   <Headline title="Vilkår" />
-                  <Terms />
-                  <Terms />
-                  <Terms />
-                  <Terms />
-                  <Button buttonname="Opdater" />  
-               </div>
+                  <form>
+                     <Terms />
+                     <Terms />
+                     <Terms />
+                     <Terms />
+                     <Button buttonname="Opdater" />  
+                  </form>
+                  </div>
             </Route>
 
             <Route path="/Admin/Prices">
