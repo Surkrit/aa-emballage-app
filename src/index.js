@@ -13,7 +13,6 @@ import Headline from './components/Headline';
 import Message from './components/Message';
 import Login from './pages/login';
 import Admin from './pages/admin';
-
 import Prices from './components/Prices';
 import Tomgods from './components/Tomgods';
 import Svind from './components/Svind';
