@@ -1,72 +1,140 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Headline from './Headline';
 import Button from './Button';
+import Comment from "./Comment";
 import '../style/App.css';
 
-class Tomgods extends React.Component {
+const initialTomgods = Object.freeze({
+  id: Math.floor(Math.random() * 10000),
+  tomgodsDate: '',
+  t5RfidCc: '',
+  hylder: '',
+  forl: '',
+  rfidCc: '',
+  halfRfidCc: '',
+  halfHylde: '',
+  halfCc: '',
+  dsHalfCc: '',
+  dsHalfHylde: '',
+  eupl: '',
+  halfPll: '',
+  quartPll: '',
+  cc: '',
+  sojleror: ''
+});
 
-  constructor(props) {
-    super(props);
-    this.state = {value: ''};
+const Tomgods = () => {
+  const [formData, updateFormData] = useState(initialTomgods);
+  
+  const handleChange = (e) => {
+      updateFormData({
+          ...formData,
+          // Trimming any whitespace
+          [e.target.name]: e.target.value.trim()
+      });
+  };
+  
+  const handleSubmit = (e) => {
+      e.preventDefault()
+      console.log(formData);
+      // ... submit to API or something
+  };
+  
+  return (
+    <div className="tomgods">
+      <Headline title="Tomgods" />
+      <>
+      <form >
+        <label className="tomgods-date">Dato <input type="date" name="tomgodsDate" onChange={handleChange}/></label>
+        <table>
+          <thead>
+            <tr>
+              <th>T5 Rfid CC</th>
+              <th>Hylder</th>
+              <th>Forl.</th>
+              <th>Rfid CC</th>
+              <th>½ Rfid CC</th>
+              <th>½ Hylde</th>
+              <th>½ CC</th>
+              <th>DS ½CC</th>
+              <th>DS ½Hylde</th>
+              <th>Eupl</th>
+              <th>½ Pll</th>
+              <th>¼ Pll</th>
+              <th>CC</th>
+              <th>Søjlerør</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="number" name="t5RfidCc" onChange={handleChange}/></td>
+              <td><input type="number" name="hylder" onChange={handleChange}/></td>
+              <td><input type="number" name="forl" onChange={handleChange}/></td>
+              <td><input type="number" name="rfidCc" onChange={handleChange}/></td>
+              <td><input type="number" name="halfRfidCc" onChange={handleChange}/></td>
+              <td><input type="number" name="halfHylde" onChange={handleChange}/></td>
+              <td><input type="number" name="halfCc" onChange={handleChange}/></td>
+              <td><input type="number" name="dsHalfCc" onChange={handleChange}/></td>
+              <td><input type="number" name="dsHalfHylde" onChange={handleChange}/></td>
+              <td><input type="number" name="eupl" onChange={handleChange}/></td>
+              <td><input type="number" name="halfPll" onChange={handleChange}/></td>
+              <td><input type="number" name="quartPll" onChange={handleChange}/></td>
+              <td><input type="number" name="cc" onChange={handleChange}/></td>
+              <td><input type="number" name="sojleror" onChange={handleChange}/></td>
+            </tr>
+          </tbody>
+        </table>
+        <button onClick={handleSubmit}>Submit</button>
+        {/* <Button buttonname="Bestil"/> */}
+      </form>
+      </>   
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
-  }
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Dato</th>
+            <th>T5 Rfid CC</th>
+            <th>Hylder</th>
+            <th>Forl.</th>
+            <th>Rfid CC</th>
+            <th>½ Rfid CC</th>
+            <th>½ Hylde</th>
+            <th>½ CC</th>
+            <th>DS ½CC</th>
+            <th>DS ½Hylde</th>
+            <th>Eupl</th>
+            <th>½ Pll</th>
+            <th>¼ Pll</th>
+            <th>CC</th>
+            <th>Søjlerør</th>
+            <th>Kommentar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{<input type="number" name=""/>}</td>
+            <td><input type="number" name=""/></td>
+            <td><input type="number" name="t5RfidCc"/></td>
+            <td><input type="number" name="hylder"/></td>
+            <td><input type="number" name="forl"/></td>
+            <td><input type="number" name="rfidcc"/></td>
+            <td><input type="number" name="½rfidcc"/></td>
+            <td><input type="number" name="½hylde"/></td>
+            <td><input type="number" name="½cc"/></td>
+            <td><input type="number" name="ds½cc"/></td>
+            <td><input type="number" name="ds½hylde"/></td>
+            <td><input type="number" name="eupl"/></td>
+            <td><input type="number" name="½pll"/></td>
+            <td><input type="number" name="¼pll"/></td>
+            <td><input type="number" name="cc"/></td>
+            <td><input type="number" name="sojleror"/></td>
+            <td><Comment/></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
    
-    render() {
-     return (
-      <div className="tomgods">
-        <Headline title="Tomgods" />
-         <form  onSubmit={this.handleSubmit}>
-           <label className="tomgods-date">Dato <input type="date"/></label>
-           <table>
-             <tr>
-               <th>T5 RFID CC</th>
-               <th>HYLDER</th>
-               <th>FORL.</th>
-               <th>RFID CC</th>
-               <th>½ RFID CC</th>
-               <th>½ hylde</th>
-               <th>½ CC</th>
-               <th>DS ½CC</th>
-               <th>DS ½HYLDE</th>
-               <th>EUPL</th>
-               <th>½ PLL</th>
-               <th>¼ PLL</th>
-               <th>CC</th>
-               <th>SØJLERØR</th>
-             </tr>
-             <tr>
-               <td><input type="number" name="t5rfidcc" value={this.state.value} onChange={this.handleChange}/></td>
-               <td><input type="number" name="hylder" value={this.state.value} onChange={this.handleChange}/></td>
-               <td><input type="number" name="forl"/></td>
-               <td><input type="number" name="rfidcc"/></td>
-               <td><input type="number" name="½rfidcc"/></td>
-               <td><input type="number" name="½hylde"/></td>
-               <td><input type="number" name="½cc"/></td>
-               <td><input type="number" name="ds½cc"/></td>
-               <td><input type="number" name="ds½hylde"/></td>
-               <td><input type="number" name="eupl"/></td>
-               <td><input type="number" name="½pll"/></td>
-               <td><input type="number" name="¼pll"/></td>
-               <td><input type="number" name="cc"/></td>
-               <td><input type="number" name="sojleror"/></td>
-             </tr>
-           </table>
-           <Button buttonname="Bestil"/>
-         </form>  
-      </div>
-     );
-    }
-   }
-   
-   export default Tomgods;
+export default Tomgods;

@@ -475,6 +475,7 @@ table tr .empty {
 }
 
 .tomgods table th {
+  text-transform: uppercase;
   padding: 5px 0px;
 }
 
@@ -494,6 +495,7 @@ table tr .empty {
 }
 
 .svind table th {
+  text-transform: uppercase;
   padding: 5px 0px;
 }
 
