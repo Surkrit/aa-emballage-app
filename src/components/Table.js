@@ -1,113 +1,132 @@
 import React from "react";
 import styled from "styled-components";
-import { useTable } from "react-table";
+import { useTable, usePagination } from "react-table";
 
 import makeData from "./Utils";
 
 const Styles = styled.div`
-@import "../variables";
-
-.emballage-date {
-  display: flex;
-  align-items: center;
-  width: 190px;
-  justify-content: space-between;
-  input[type="date"] {
-    border-radius: 5px;
-    height: 25px;
-  }
-}
-
-.emballage-buttons {
-  button {
-    width: 250px;
-    height: 60px;
-    font-size: 20px;
-    border: 0px;
-    font-weight: 600;
-    background: #e4e4e4;
-    a{
-      color: #707070;
-      text-decoration: none;
-    }
-    &:first-of-type {
-      border-radius: 5px 0px 0px 0px;
-    }
-    &:last-of-type {
-      border-radius: 0px 5px 0px 0px;
+  .emballage-date {
+    display: flex;
+    align-items: center;
+    width: 190px;
+    justify-content: space-between;
+    input[type="date"] {
+      border-radius: 5px;
+      height: 25px;
     }
   }
-  .button--active{
-    background: #00904A;
-    a{
-      color: white;
-    }
-  }
-}
 
-table {
-  width: 100%;
-  tr {
-    th {
-      border: 1px solid #707070;
+  .emballage-buttons {
+    button {
+      width: 250px;
+      height: 60px;
+      font-size: 20px;
+      border: 0px;
       font-weight: 600;
-      padding: 5px;
-    }
-
-    &:nth-child(even) {
-      td {
-        border: 1px solid #707070;
-        padding: 5px;
-        
-        background: white;
+      background: #e4e4e4;
+      a {
+        color: #707070;
+        text-decoration: none;
+      }
+      &:first-of-type {
+        border-radius: 5px 0px 0px 0px;
+      }
+      &:last-of-type {
+        border-radius: 0px 5px 0px 0px;
       }
     }
-    &:nth-child(odd) {
-      td {
-        border: 1px solid #707070;
-        padding: 5px;
-        
-        background: lightgrey;
+    .button--active {
+      background: #00904a;
+      a {
+        color: white;
       }
-    }
-
-    .row--red {
-      background: #f8cdce;
-      border: 1px solid #707070 !important;
-    }
-    .row--green {
-      background: #bfe1cc;
-    }
-    .empty{
-      color: white;
     }
   }
-}
 
-.table-buttons{
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
+  table {
+    width: 100%;
+    margin-bottom: 50px;
+    margin-top: 100px;
+    tr {
+      th {
+        border: 1px solid #707070;
+        font-weight: 600;
+        padding: 5px;
+      }
 
-.comment--row{
-  display: flex;
-  justify-content: end;
-  border: 0px solid black !important
-}
+      &:nth-child(even) {
+        td {
+          border: 1px solid #707070;
+          padding: 5px;
+
+          background: white;
+        }
+      }
+      &:nth-child(odd) {
+        td {
+          border: 1px solid #707070;
+          padding: 5px;
+
+          background: lightgrey;
+        }
+      }
+
+      .row--red {
+        background: #f8cdce;
+        border: 1px solid #707070 !important;
+      }
+      .row--green {
+        background: #bfe1cc;
+      }
+      .empty {
+        color: white;
+      }
+    }
+  }
+
+  .table-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .comment--row {
+    display: flex;
+    justify-content: end;
+    border: 0px solid black !important;
+  }
+
+  .dropdown--wrapper {
+    display: block;
+    flex-direction: column;
+    width: 213px;
+    border: 1px solid black;
+    border-top: 0px;
+    border-radius: 0px 0px 5px 5px;
+    padding: 10px 0px;
+    position: absolute;
+    background: white;
+  }
+
+  .dropdown {
+    &:nth-child(-n + 6),
+    &:nth-last-child(-n + 4) {
+      display: none;
+    }
+  }
+
+  .dropdown--button {
+    width: 215px;
+    height: 60px;
+    background-color: #00904a;
+    border: 0px;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 5px 5px 0px 0px;
+    cursor: pointer;
+  }
 `;
-const IndeterminateCheckbox = React.forwardRef(
-  ({ indeterminate, ...rest }, ref) => {
-    const defaultRef = React.useRef();
-    const resolvedRef = ref || defaultRef;
-
-    React.useEffect(() => {
-      resolvedRef.current.indeterminate = indeterminate;
-    }, [resolvedRef, indeterminate]);
-
-    return <input type="checkbox" ref={resolvedRef} {...rest} />;
-  }
-);
 
 function Table({ columns, data }) {
   // Use the state and functions returned from useTable to build your UI
@@ -115,22 +134,34 @@ function Table({ columns, data }) {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
+    page,
     prepareRow,
     allColumns,
-    getToggleHideAllColumnsProps,
-    state
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    nextPage,
+    previousPage,
+    state: { pageIndex },
+
+
+
+
   } = useTable({
     columns,
-    data
-  });
+    data,
+    initialState: { pageIndex: 0 },
+  },
+  usePagination
+  );
 
   // Render the UI for your table
   return (
     <>
-      <div>
+      <button class="dropdown--button">Filtrer</button>
+      <div class="dropdown--wrapper">
         {allColumns.map((column) => (
-          <div key={column.id}>
+          <div class="dropdown" key={column.id}>
             <label>
               <input type="checkbox" {...column.getToggleHiddenProps()} />{" "}
               {column.id}
@@ -150,7 +181,7 @@ function Table({ columns, data }) {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row, i) => {
+          {page.map((row, i) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
@@ -164,111 +195,128 @@ function Table({ columns, data }) {
           })}
         </tbody>
       </table>
-      <pre>{JSON.stringify(state, null, 2)}</pre>
+
+      <div className="pagination">
+        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+          {'<'}
+        </button>{' '}
+
+        <span>
+          Page{' '}
+          <strong>
+            {pageIndex + 1} of {pageOptions.length}
+          </strong>{' '}
+        </span>
+
+        <button onClick={() => nextPage()} disabled={!canNextPage}>
+          {'>'}
+        </button>{' '}
+      </div>
     </>
   );
 }
 
-function App() {
+//Her skabes kollonerne til tabellen
+function EmballageTable() {
   const columns = React.useMemo(
     () => [
       {
         Header: "#",
-        accessor: "id"
+        accessor: "id",
       },
       {
         Header: "Accep. af AA",
-        accessor: "accepAA"
+        accessor: "accepAA",
       },
       {
         Header: "Accep.",
-        accessor: "accepKunde"
+        accessor: "accepKunde",
       },
       {
         Header: "Kvittings nr. ",
-        accessor: "KvitteringNr"
+        accessor: "KvitteringNr",
       },
       {
         Header: "Tur nr",
-        accessor: "turNr"
+        accessor: "turNr",
       },
       {
         Header: "Dato",
-        accessor: "dato"
+        accessor: "dato",
       },
       {
         Header: "T5 RFID CC",
-        accessor: "t5RFIDcc"
+        accessor: "t5RFIDcc",
       },
       {
         Header: "Hylder",
-        accessor: "hylder"
+        accessor: "hylder",
       },
       {
         Header: "Forlænger",
-        accessor: "forlaenger"
+        accessor: "forlaenger",
       },
       {
         Header: "RFID CC",
-        accessor: "RFIDcc"
+        accessor: "RFIDcc",
       },
       {
         Header: "½ RFID CC",
-        accessor: "halvRFIDcc"
+        accessor: "halvRFIDcc",
       },
       {
         Header: "½ Hylde",
-        accessor: "halvHylde"
+        accessor: "halvHylde",
       },
       {
         Header: "½ CC",
-        accessor: "halvCC"
+        accessor: "halvCC",
       },
       {
         Header: "DS ½CC",
-        accessor: "dsHalvCC"
+        accessor: "dsHalvCC",
       },
       {
         Header: "DS ½ Hylde",
-        accessor: "dsHalvHylde"
+        accessor: "dsHalvHylde",
       },
       {
         Header: "Europalle",
-        accessor: "europalle"
+        accessor: "europalle",
       },
       {
         Header: "½ Palle",
-        accessor: "halvPalle"
+        accessor: "halvPalle",
       },
       {
         Header: "1⁄4 Palle",
-        accessor: "kvartPalle"
+        accessor: "kvartPalle",
       },
       {
         Header: "CC",
-        accessor: "cc"
+        accessor: "cc",
       },
       {
         Header: "Søjlerør",
-        accessor: "soejleroer"
+        accessor: "soejleroer",
       },
       {
         Header: "Signeret",
-        accessor: "signeret"
+        accessor: "signeret",
       },
       {
         Header: "Kommentar",
-        accessor: "kommentar"
+        accessor: "kommentar",
       },
       {
         Header: "PDF",
-        accessor: "pdf"
+        accessor: "pdf",
       },
     ],
     []
   );
 
-  const data = React.useMemo(() => makeData(10), []);
+  const data = React.useMemo(() => makeData(1000), []);
 
   return (
     <Styles>
@@ -277,4 +325,4 @@ function App() {
   );
 }
 
-export default App;
+export default EmballageTable;
