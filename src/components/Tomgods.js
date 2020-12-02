@@ -40,7 +40,7 @@ const initialTomgods = [
     halfPll: '14',
     quartPll: '17',
     cc: '1',
-    sojleror: '4,',
+    sojleror: '4',
     comment: 'Hvor er noget ØL!!'
   },
   {
@@ -59,25 +59,46 @@ const initialTomgods = [
     halfPll: '7',
     quartPll: '2',
     cc: '',
-    sojleror: '10,',
+    sojleror: '10',
     comment: 'Jeg vil have ØL!!'
   },
 ];
 
 const Tomgods = () => {
-  const [value, setValue] = useState('');
+  const [input, setInput] = useState({
+    id: "",
+    tomgodsDate: "",
+    t5RfidCc: "",
+    hylder: "",
+    forl: "",
+    rfidCc: "",
+    halfRfidCc: "",
+    halfHylde: "",
+    halfCc: "",
+    dsHalfCc: "",
+    dsHalfHylde: "",
+    eupl: "",
+    halfPll: "",
+    quartPll: "",
+    cc: "",
+    sojleror: ""
+});
   const [tomgods, setTomgods] = useState(initialTomgods);
  
   const handleChange = event => {
-    setValue(event.target.value);
-  };
+    const value = event.target.value;
+    setInput({
+        ...input,
+        [event.target.name]: value
+      });
+};
  
   const handleSubmit = event => {
-    if (value) {
-      setTomgods(tomgods.concat(value));
+    if (input) {
+      setTomgods(tomgods.concat(input));
     }
  
-    setValue('');
+    setInput('');
  
     event.preventDefault();
   };
@@ -126,20 +147,20 @@ const Tomgods = () => {
           </thead>
           <tbody>
             <tr>
-              <td><input type="number" value={value} onChange={handleChange} /></td>
-              <td><input type="number" value={value} onChange={handleChange} /></td>
-              <td><input type="number" value={value} onChange={handleChange} /></td>
-              <td><input type="number" value={value} onChange={handleChange} /></td>
-              <td><input type="number" value={value} onChange={handleChange} /></td>
-              <td><input type="number" value={value} onChange={handleChange} /></td>
-              <td><input type="number" value={value} onChange={handleChange} /></td>
-              <td><input type="number" value={value} onChange={handleChange} /></td>
-              <td><input type="number" value={value} onChange={handleChange} /></td>
-              <td><input type="number" value={value} onChange={handleChange} /></td>
-              <td><input type="number" value={value} onChange={handleChange} /></td>
-              <td><input type="number" value={value} onChange={handleChange} /></td>
-              <td><input type="number" value={value} onChange={handleChange} /></td>
-              <td><input type="number" value={value} onChange={handleChange} /></td>
+              <td><input type="number" name="t5RfidCc" value={input.t5RfidCc} onChange={handleChange} /></td>
+              <td><input type="number" name="hylder" value={input.hylder} onChange={handleChange} /></td>
+              <td><input type="number" name="forl" value={input.forl} onChange={handleChange} /></td>
+              <td><input type="number" name="rfidCc" value={input.rfidCc} onChange={handleChange} /></td>
+              <td><input type="number" name="halfRfidCc" value={input.halfRfidCc} onChange={handleChange} /></td>
+              <td><input type="number" name="halfHylde" value={input.halfHylde} onChange={handleChange} /></td>
+              <td><input type="number" name="halfCc" value={input.halfCc} onChange={handleChange} /></td>
+              <td><input type="number" name="dsHalfCc" value={input.dsHalfCc} onChange={handleChange} /></td>
+              <td><input type="number" name="dsHalfHylde" value={input.dsHalfHylde} onChange={handleChange} /></td>
+              <td><input type="number" name="eupl" value={input.eupl} onChange={handleChange} /></td>
+              <td><input type="number" name="halfPll" value={input.halfPll} onChange={handleChange} /></td>
+              <td><input type="number" name="quartPll" value={input.quartPll} onChange={handleChange} /></td>
+              <td><input type="number" name="cc" value={input.cc} onChange={handleChange} /></td>
+              <td><input type="number" name="sojleror" value={input.sojleror} onChange={handleChange} /></td>
               <td>{/* <Comment /> */}</td>
             </tr>
           </tbody>
@@ -196,61 +217,5 @@ const Tomgods = () => {
     </div>
   );
 };
-
-/*   return (
-
-          <tbody>
-            <tr>
-              <td><input type="number" name="t5RfidCc" onChange={handleChange}/></td>
-              <td><input type="number" name="hylder" onChange={handleChange}/></td>
-              <td><input type="number" name="forl" onChange={handleChange}/></td>
-              <td><input type="number" name="rfidCc" onChange={handleChange}/></td>
-              <td><input type="number" name="halfRfidCc" onChange={handleChange}/></td>
-              <td><input type="number" name="halfHylde" onChange={handleChange}/></td>
-              <td><input type="number" name="halfCc" onChange={handleChange}/></td>
-              <td><input type="number" name="dsHalfCc" onChange={handleChange}/></td>
-              <td><input type="number" name="dsHalfHylde" onChange={handleChange}/></td>
-              <td><input type="number" name="eupl" onChange={handleChange}/></td>
-              <td><input type="number" name="halfPll" onChange={handleChange}/></td>
-              <td><input type="number" name="quartPll" onChange={handleChange}/></td>
-              <td><input type="number" name="cc" onChange={handleChange}/></td>
-              <td><input type="number" name="sojleror" onChange={handleChange}/></td>
-            </tr>
-          </tbody>
-        </table>
-        <button onClick={handleSubmit}>Submit</button>
-        {/* <Button buttonname="Bestil"/> */
-/*         </> 
-      </form>
-        
-
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Dato</th>
-            <th>T5 Rfid CC</th>
-            <th>Hylder</th>
-            <th>Forl.</th>
-            <th>Rfid CC</th>
-            <th>½ Rfid CC</th>
-            <th>½ Hylde</th>
-            <th>½ CC</th>
-            <th>DS ½CC</th>
-            <th>DS ½Hylde</th>
-            <th>Eupl</th>
-            <th>½ Pll</th>
-            <th>¼ Pll</th>
-            <th>CC</th>
-            <th>Søjlerør</th>
-            <th>Kommentar</th>
-          </tr>
-        </thead>
-        <Gods/>
-      </table>
-    </div>
-  );
-}
- */
 
 export default Tomgods;
