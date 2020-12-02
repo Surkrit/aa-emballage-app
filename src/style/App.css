@@ -547,6 +547,11 @@ table tr .empty {
 
 .messagefield--wrapper input {
   width: 175px;
+  resize: none;
+  padding: 10px;
+  border-radius: 5px 0px 5px 5px;
+  border: 1px solid black;
+  margin-top: 25px;
 }
 
 .messagefield--wrapper .messagefield {

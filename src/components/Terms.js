@@ -1,6 +1,6 @@
 import "../style/App.css";
 
-function Terms({}) {
+function Terms() {
   return (
     <div className="terms--wrapper">
         <input name="header" />
