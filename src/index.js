@@ -11,6 +11,7 @@ import Button from './components/Button';
 import Emballage from './components/Emballage';
 import Headline from './components/Headline';
 import Message from './components/Message';
+import App from './components/Table';
 import Login from './pages/login';
 import Admin from './pages/admin';
 
@@ -27,7 +28,6 @@ import {
 
 
 ReactDOM.render(
-   <> 
    <div className="main">
 
       <Router>
@@ -39,7 +39,9 @@ ReactDOM.render(
             <Route exact path="/Customer/Home">
                <NavCustomer />
                <div className="content">
-                  <Emballage />
+                  <div id="table"></div>
+                  {/* <Emballage /> */}
+                  <App />
                </div>
             </Route>
 
@@ -94,8 +96,7 @@ ReactDOM.render(
          
       </Router>
 
-    </div>
-    </>,
+    </div>,
   document.getElementById('root')
 );
 

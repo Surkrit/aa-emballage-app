@@ -1,3 +1,4 @@
+import React from 'react';
 import "../style/App.css";
 import Headline from "./Headline";
 import Comment from "./Comment";
@@ -458,8 +459,9 @@ function RowAfleveret({
           </h4>
         </td>
         <td className="comment--row">
-          <button className="showComment" onClick={showComment}>Indsæt</button>
-          <Comment Kommentar={Kommentar} />
+          <Comment />
+          {/* <button className="showComment">Indsæt</button> */}
+          {/* <Comment Kommentar={Kommentar} /> */}
         </td>
         <td>
           <h4>♥</h4>
@@ -623,8 +625,9 @@ function RowBalance({
           </h4>
         </td>
         <td className="comment--row">
-          <button>Indsæt</button>
+          {/* <button>Indsæt</button> */}
           <Comment Comment={Kommentar} />
+          {/* <Comment Comment={Kommentar} /> */}
         </td>
         <td>
           <h4>♥</h4>
@@ -663,13 +666,8 @@ function RowBalance({
   );
 }
 
-function showComment(e){
-  // var comment = document.getElementsByClassName(".comment");
-  // // var showComment = document.getElementsByClassName(".showComment");
 
-  // comment.style.display = "block";
 
-  e.preventDefault();    console.log('The link was clicked.');
-}
+
 
 export default Emballage;
