@@ -128,6 +128,7 @@ const Tomgods = () => {
             <th>Kommentar</th>
           </tr>
         </thead>
+        <tbody>
         {tomgods.map(item => (
           <tr>
             <td key={item.id}>{item.id} </td>
@@ -149,12 +150,8 @@ const Tomgods = () => {
             <td key={item.comment}>{item.comment}</td>
           </tr>
         ))}
+        </tbody>
       </table>
-      {/* <ul>
-        {tomgods.map(item => (
-          <li key={item.id}>{item}</li>
-        ))}
-      </ul> */}
     </div>
   );
 };
@@ -237,62 +234,6 @@ const Tomgods = () => {
     </div>
   );
 }
-
-
-const gods = [
-  {
-    id: '1',
-    tomgodsDate: '2020-11-29',
-    t5RfidCc: '2',
-    hylder: '',
-    forl: '',
-    rfidCc: '',
-    halfRfidCc: '',
-    halfHylde: '',
-    halfCc: '',
-    dsHalfCc: '',
-    dsHalfHylde: '',
-    eupl: '32',
-    halfPll: '14',
-    quartPll: '17',
-    cc: '1',
-    sojleror: '4,'
-  },
-  {
-    id: '2',
-    tomgodsDate: '2020-12-01',
-    t5RfidCc: '4',
-    hylder: '2',
-    forl: '1',
-    rfidCc: '1',
-    halfRfidCc: '',
-    halfHylde: '2',
-    halfCc: '',
-    dsHalfCc: '5',
-    dsHalfHylde: '',
-    eupl: '18',
-    halfPll: '7',
-    quartPll: '2',
-    cc: '',
-    sojleror: '10,'
-  },
-];
-
-const TomgodsList = ({gods}) => (
-  <tr>
-    <td>{gods.id}</td>
-    <td>{gods.tomgodsDate}</td>
-    <td>{gods.t5RfidCc}</td>
-    <td>{gods.hylder}</td>
-  </tr>
-)
-
-const Gods = ({gods}) => (
-  <tbody>
-  {gods.map(item => (
-    <TomgodsList key={item.id} item={item} />
-    ))}
-  </tbody>
-  ); */
+ */
 
 export default Tomgods;
