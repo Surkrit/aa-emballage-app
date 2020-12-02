@@ -103,9 +103,50 @@ const Tomgods = () => {
     <div className="tomgods">
       <Headline title="Tomgods" />
       <form onSubmit={handleSubmit}>
-        <input type="text" value={value} onChange={handleChange} />
+        <label className="tomgods-date">Dato <input type="date" name="tomgodsDate" onChange={handleChange}/></label>
+        <table>
+          <thead>
+            <tr>
+              <th>T5 Rfid CC</th>
+              <th>Hylder</th>
+              <th>Forl.</th>
+              <th>Rfid CC</th>
+              <th>½ Rfid CC</th>
+              <th>½ Hylde</th>
+              <th>½ CC</th>
+              <th>DS ½CC</th>
+              <th>DS ½Hylde</th>
+              <th>Eupl</th>
+              <th>½ Pll</th>
+              <th>¼ Pll</th>
+              <th>CC</th>
+              <th>Søjlerør</th>
+              <th>Kommentar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="number" value={value} onChange={handleChange} /></td>
+              <td><input type="number" value={value} onChange={handleChange} /></td>
+              <td><input type="number" value={value} onChange={handleChange} /></td>
+              <td><input type="number" value={value} onChange={handleChange} /></td>
+              <td><input type="number" value={value} onChange={handleChange} /></td>
+              <td><input type="number" value={value} onChange={handleChange} /></td>
+              <td><input type="number" value={value} onChange={handleChange} /></td>
+              <td><input type="number" value={value} onChange={handleChange} /></td>
+              <td><input type="number" value={value} onChange={handleChange} /></td>
+              <td><input type="number" value={value} onChange={handleChange} /></td>
+              <td><input type="number" value={value} onChange={handleChange} /></td>
+              <td><input type="number" value={value} onChange={handleChange} /></td>
+              <td><input type="number" value={value} onChange={handleChange} /></td>
+              <td><input type="number" value={value} onChange={handleChange} /></td>
+              <td>{/* <Comment /> */}</td>
+            </tr>
+          </tbody>
+        </table>
         <Button buttonname="Bestil"/>
       </form>
+
       <table>
         <thead>
           <tr>
@@ -130,24 +171,24 @@ const Tomgods = () => {
         </thead>
         <tbody>
         {tomgods.map(item => (
-          <tr>
-            <td key={item.id}>{item.id} </td>
-            <td key={item.tomgodsDate}>{item.tomgodsDate}</td>
-            <td key={item.t5RfidCc}>{item.t5RfidCc}</td>
-            <td key={item.hylder}>{item.hylder}</td>
-            <td key={item.forl}>{item.forl}</td>
-            <td key={item.rfidCc}>{item.rfidCc}</td>
-            <td key={item.halfRfidCc}>{item.halfRfidCc}</td>
-            <td key={item.halfHylde}>{item.halfHylde}</td>
-            <td key={item.halfCc}>{item.halfCc}</td>
-            <td key={item.dsHalfCc}>{item.dsHalfCc}</td>
-            <td key={item.dsHalfHylde}>{item.dsHalfHylde}</td>
-            <td key={item.eupl}>{item.eupl}</td>
-            <td key={item.halfPll}>{item.halfPll}</td>
-            <td key={item.quartPll}>{item.quartPll}</td>
-            <td key={item.cc}>{item.cc}</td>
-            <td key={item.sojleror}>{item.sojleror}</td>
-            <td key={item.comment}>{item.comment}</td>
+          <tr key={item.id}>
+            <td>{item.id}</td>
+            <td>{item.tomgodsDate}</td>
+            <td>{item.t5RfidCc}</td>
+            <td>{item.hylder}</td>
+            <td>{item.forl}</td>
+            <td>{item.rfidCc}</td>
+            <td>{item.halfRfidCc}</td>
+            <td>{item.halfHylde}</td>
+            <td>{item.halfCc}</td>
+            <td>{item.dsHalfCc}</td>
+            <td>{item.dsHalfHylde}</td>
+            <td>{item.eupl}</td>
+            <td>{item.halfPll}</td>
+            <td>{item.quartPll}</td>
+            <td>{item.cc}</td>
+            <td>{item.sojleror}</td>
+            <td>{item.comment}</td>
           </tr>
         ))}
         </tbody>
@@ -157,31 +198,7 @@ const Tomgods = () => {
 };
 
 /*   return (
-    <div className="tomgods">
-      <Headline title="Tomgods" />
-      
-      <form>
-      <>
-        <label className="tomgods-date">Dato <input type="date" name="tomgodsDate" onChange={handleChange}/></label>
-        <table>
-          <thead>
-            <tr>
-              <th>T5 Rfid CC</th>
-              <th>Hylder</th>
-              <th>Forl.</th>
-              <th>Rfid CC</th>
-              <th>½ Rfid CC</th>
-              <th>½ Hylde</th>
-              <th>½ CC</th>
-              <th>DS ½CC</th>
-              <th>DS ½Hylde</th>
-              <th>Eupl</th>
-              <th>½ Pll</th>
-              <th>¼ Pll</th>
-              <th>CC</th>
-              <th>Søjlerør</th>
-            </tr>
-          </thead>
+
           <tbody>
             <tr>
               <td><input type="number" name="t5RfidCc" onChange={handleChange}/></td>

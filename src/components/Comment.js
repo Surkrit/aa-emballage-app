@@ -12,7 +12,7 @@ function Comment({comment}) {
       const onClick = () => setShowResults(true)
       const Kommentar = "hdaljakl";
       return (
-            <div class="comment--row">
+            <div className="comment--row">
               <Results Kommentar={Kommentar} />
           <input type="submit" value="Search" onClick={onClick} />
           { showResults ? <Results Kommentar={Kommentar}/> : null }
