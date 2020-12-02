@@ -45,7 +45,6 @@ const Styles = styled.div`
 
   table {
     width: 100%;
-    margin-bottom: 50px;
     margin-top: 100px;
     tr {
       th {
@@ -126,6 +125,23 @@ const Styles = styled.div`
     border-radius: 5px 5px 0px 0px;
     cursor: pointer;
   }
+
+  .pagination{
+    margin-top: 20px;
+    margin-bottom: 100px;
+    justify-content: end;
+    button{
+      background: none;
+      border: 0;
+      cursor: pointer;
+        &:first-of-type{
+          margin-right: 10px;
+      }
+        &:last-of-type{
+          margin-left: 10px;
+      }
+    }
+  }
 `;
 
 function Table({ columns, data }) {
@@ -198,19 +214,19 @@ function Table({ columns, data }) {
 
       <div className="pagination">
         <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {'<'}
-        </button>{' '}
+          {<i class="fas fa-chevron-left"></i>}
+        </button>
 
         <span>
-          Page{' '}
+          Side{' '}
           <strong>
-            {pageIndex + 1} of {pageOptions.length}
+            {pageIndex + 1} af {pageOptions.length}
           </strong>{' '}
         </span>
 
         <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {'>'}
-        </button>{' '}
+          {<i class="fas fa-chevron-right"></i>}
+        </button>
       </div>
     </>
   );
