@@ -12,9 +12,9 @@ import Emballage from './components/Emballage';
 import Headline from './components/Headline';
 import Message from './components/Message';
 import App from './components/Table';
+import Terms from './components/Terms';
 import Login from './pages/login';
 import Admin from './pages/admin';
-
 import Prices from './components/Prices';
 import Tomgods from './components/Tomgods';
 import Svind from './components/Svind';
@@ -79,11 +79,14 @@ ReactDOM.render(
                <NavAdmin />
                <div className="content">
                   <Headline title="Vilkår" />
-                  <Message messagetitle="Overskrift" messagedate="" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
-                  <Message messagetitle="Overskrift" messagedate="" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
-                  <Message messagetitle="Overskrift" messagedate="" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
-                  <Message messagetitle="Overskrift" messagedate="" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
-               </div>
+                  <form>
+                     <Terms />
+                     <Terms />
+                     <Terms />
+                     <Terms />
+                     <Button buttonname="Opdater" />  
+                  </form>
+                  </div>
             </Route>
 
             <Route path="/Admin/Prices">
@@ -100,7 +103,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

@@ -28,6 +28,8 @@
         "_mixins.scss",
         "components/_Pagination.scss",
         "_variables.scss",
+        "components/_MessageField.scss",
+        "components/_Terms.scss",
         "_variables.scss"
     ],
     "names": [],

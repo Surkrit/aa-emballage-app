@@ -1,72 +1,298 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Headline from './Headline';
 import Button from './Button';
+import Comment from "./Comment";
 import '../style/App.css';
 
-class Tomgods extends React.Component {
+/* const initialTomgods = Object.freeze({
+  id: Math.floor(Math.random() * 10000),
+  tomgodsDate: "",
+  t5RfidCc: "",
+  hylder: "",
+  forl: "",
+  rfidCc: "",
+  halfRfidCc: "",
+  halfHylde: "",
+  halfCc: "",
+  dsHalfCc: "",
+  dsHalfHylde: "",
+  eupl: "",
+  halfPll: "",
+  quartPll: "",
+  cc: "",
+  sojleror: ""
+}); */
 
-  constructor(props) {
-    super(props);
-    this.state = {value: ''};
+const initialTomgods = [
+  {
+    id: '1',
+    tomgodsDate: '2020-11-29',
+    t5RfidCc: '2',
+    hylder: '',
+    forl: '',
+    rfidCc: '',
+    halfRfidCc: '',
+    halfHylde: '',
+    halfCc: '',
+    dsHalfCc: '',
+    dsHalfHylde: '',
+    eupl: '32',
+    halfPll: '14',
+    quartPll: '17',
+    cc: '1',
+    sojleror: '4,',
+    comment: 'Hvor er noget ØL!!'
+  },
+  {
+    id: '2',
+    tomgodsDate: '2020-12-01',
+    t5RfidCc: '4',
+    hylder: '2',
+    forl: '1',
+    rfidCc: '1',
+    halfRfidCc: '',
+    halfHylde: '2',
+    halfCc: '',
+    dsHalfCc: '5',
+    dsHalfHylde: '',
+    eupl: '18',
+    halfPll: '7',
+    quartPll: '2',
+    cc: '',
+    sojleror: '10,',
+    comment: 'Jeg vil have ØL!!'
+  },
+];
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
-  }
-   
-    render() {
-     return (
-      <div className="tomgods">
-        <Headline title="Tomgods" />
-         <form  onSubmit={this.handleSubmit}>
-           <label className="tomgods-date">Dato <input type="date"/></label>
-           <table>
-             <tr>
-               <th>T5 RFID CC</th>
-               <th>HYLDER</th>
-               <th>FORL.</th>
-               <th>RFID CC</th>
-               <th>½ RFID CC</th>
-               <th>½ hylde</th>
-               <th>½ CC</th>
-               <th>DS ½CC</th>
-               <th>DS ½HYLDE</th>
-               <th>EUPL</th>
-               <th>½ PLL</th>
-               <th>¼ PLL</th>
-               <th>CC</th>
-               <th>SØJLERØR</th>
-             </tr>
-             <tr>
-               <td><input type="number" name="t5rfidcc" value={this.state.value} onChange={this.handleChange}/></td>
-               <td><input type="number" name="hylder" value={this.state.value} onChange={this.handleChange}/></td>
-               <td><input type="number" name="forl"/></td>
-               <td><input type="number" name="rfidcc"/></td>
-               <td><input type="number" name="½rfidcc"/></td>
-               <td><input type="number" name="½hylde"/></td>
-               <td><input type="number" name="½cc"/></td>
-               <td><input type="number" name="ds½cc"/></td>
-               <td><input type="number" name="ds½hylde"/></td>
-               <td><input type="number" name="eupl"/></td>
-               <td><input type="number" name="½pll"/></td>
-               <td><input type="number" name="¼pll"/></td>
-               <td><input type="number" name="cc"/></td>
-               <td><input type="number" name="sojleror"/></td>
-             </tr>
-           </table>
-           <Button buttonname="Bestil"/>
-         </form>  
-      </div>
-     );
+const Tomgods = () => {
+  const [value, setValue] = useState('');
+  const [tomgods, setTomgods] = useState(initialTomgods);
+ 
+  const handleChange = event => {
+    setValue(event.target.value);
+  };
+ 
+  const handleSubmit = event => {
+    if (value) {
+      setTomgods(tomgods.concat(value));
     }
-   }
-   
-   export default Tomgods;
+ 
+    setValue('');
+ 
+    event.preventDefault();
+  };
+
+/* const Tomgods = () => {
+  const [formData, updateFormData] = useState(initialTomgods);
+  
+  const handleChange = (e) => {
+      updateFormData({
+          ...formData,
+          // Trimming any whitespace
+          [e.target.name]: e.target.value.trim()
+      });
+  };
+  
+  const handleSubmit = (e) => {
+      e.preventDefault()
+      console.log(formData);
+      // ... submit to API or something
+  }; */
+  
+  return (
+    <div className="tomgods">
+      <Headline title="Tomgods" />
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={value} onChange={handleChange} />
+        <Button buttonname="Bestil"/>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Dato</th>
+            <th>T5 Rfid CC</th>
+            <th>Hylder</th>
+            <th>Forl.</th>
+            <th>Rfid CC</th>
+            <th>½ Rfid CC</th>
+            <th>½ Hylde</th>
+            <th>½ CC</th>
+            <th>DS ½CC</th>
+            <th>DS ½Hylde</th>
+            <th>Eupl</th>
+            <th>½ Pll</th>
+            <th>¼ Pll</th>
+            <th>CC</th>
+            <th>Søjlerør</th>
+            <th>Kommentar</th>
+          </tr>
+        </thead>
+        {tomgods.map(item => (
+          <tr>
+            <td key={item.id}>{item.id} </td>
+            <td key={item.tomgodsDate}>{item.tomgodsDate}</td>
+            <td key={item.t5RfidCc}>{item.t5RfidCc}</td>
+            <td key={item.hylder}>{item.hylder}</td>
+            <td key={item.forl}>{item.forl}</td>
+            <td key={item.rfidCc}>{item.rfidCc}</td>
+            <td key={item.halfRfidCc}>{item.halfRfidCc}</td>
+            <td key={item.halfHylde}>{item.halfHylde}</td>
+            <td key={item.halfCc}>{item.halfCc}</td>
+            <td key={item.dsHalfCc}>{item.dsHalfCc}</td>
+            <td key={item.dsHalfHylde}>{item.dsHalfHylde}</td>
+            <td key={item.eupl}>{item.eupl}</td>
+            <td key={item.halfPll}>{item.halfPll}</td>
+            <td key={item.quartPll}>{item.quartPll}</td>
+            <td key={item.cc}>{item.cc}</td>
+            <td key={item.sojleror}>{item.sojleror}</td>
+            <td key={item.comment}>{item.comment}</td>
+          </tr>
+        ))}
+      </table>
+      {/* <ul>
+        {tomgods.map(item => (
+          <li key={item.id}>{item}</li>
+        ))}
+      </ul> */}
+    </div>
+  );
+};
+
+/*   return (
+    <div className="tomgods">
+      <Headline title="Tomgods" />
+      
+      <form>
+      <>
+        <label className="tomgods-date">Dato <input type="date" name="tomgodsDate" onChange={handleChange}/></label>
+        <table>
+          <thead>
+            <tr>
+              <th>T5 Rfid CC</th>
+              <th>Hylder</th>
+              <th>Forl.</th>
+              <th>Rfid CC</th>
+              <th>½ Rfid CC</th>
+              <th>½ Hylde</th>
+              <th>½ CC</th>
+              <th>DS ½CC</th>
+              <th>DS ½Hylde</th>
+              <th>Eupl</th>
+              <th>½ Pll</th>
+              <th>¼ Pll</th>
+              <th>CC</th>
+              <th>Søjlerør</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="number" name="t5RfidCc" onChange={handleChange}/></td>
+              <td><input type="number" name="hylder" onChange={handleChange}/></td>
+              <td><input type="number" name="forl" onChange={handleChange}/></td>
+              <td><input type="number" name="rfidCc" onChange={handleChange}/></td>
+              <td><input type="number" name="halfRfidCc" onChange={handleChange}/></td>
+              <td><input type="number" name="halfHylde" onChange={handleChange}/></td>
+              <td><input type="number" name="halfCc" onChange={handleChange}/></td>
+              <td><input type="number" name="dsHalfCc" onChange={handleChange}/></td>
+              <td><input type="number" name="dsHalfHylde" onChange={handleChange}/></td>
+              <td><input type="number" name="eupl" onChange={handleChange}/></td>
+              <td><input type="number" name="halfPll" onChange={handleChange}/></td>
+              <td><input type="number" name="quartPll" onChange={handleChange}/></td>
+              <td><input type="number" name="cc" onChange={handleChange}/></td>
+              <td><input type="number" name="sojleror" onChange={handleChange}/></td>
+            </tr>
+          </tbody>
+        </table>
+        <button onClick={handleSubmit}>Submit</button>
+        {/* <Button buttonname="Bestil"/> */
+/*         </> 
+      </form>
+        
+
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Dato</th>
+            <th>T5 Rfid CC</th>
+            <th>Hylder</th>
+            <th>Forl.</th>
+            <th>Rfid CC</th>
+            <th>½ Rfid CC</th>
+            <th>½ Hylde</th>
+            <th>½ CC</th>
+            <th>DS ½CC</th>
+            <th>DS ½Hylde</th>
+            <th>Eupl</th>
+            <th>½ Pll</th>
+            <th>¼ Pll</th>
+            <th>CC</th>
+            <th>Søjlerør</th>
+            <th>Kommentar</th>
+          </tr>
+        </thead>
+        <Gods/>
+      </table>
+    </div>
+  );
+}
+
+
+const gods = [
+  {
+    id: '1',
+    tomgodsDate: '2020-11-29',
+    t5RfidCc: '2',
+    hylder: '',
+    forl: '',
+    rfidCc: '',
+    halfRfidCc: '',
+    halfHylde: '',
+    halfCc: '',
+    dsHalfCc: '',
+    dsHalfHylde: '',
+    eupl: '32',
+    halfPll: '14',
+    quartPll: '17',
+    cc: '1',
+    sojleror: '4,'
+  },
+  {
+    id: '2',
+    tomgodsDate: '2020-12-01',
+    t5RfidCc: '4',
+    hylder: '2',
+    forl: '1',
+    rfidCc: '1',
+    halfRfidCc: '',
+    halfHylde: '2',
+    halfCc: '',
+    dsHalfCc: '5',
+    dsHalfHylde: '',
+    eupl: '18',
+    halfPll: '7',
+    quartPll: '2',
+    cc: '',
+    sojleror: '10,'
+  },
+];
+
+const TomgodsList = ({gods}) => (
+  <tr>
+    <td>{gods.id}</td>
+    <td>{gods.tomgodsDate}</td>
+    <td>{gods.t5RfidCc}</td>
+    <td>{gods.hylder}</td>
+  </tr>
+)
+
+const Gods = ({gods}) => (
+  <tbody>
+  {gods.map(item => (
+    <TomgodsList key={item.id} item={item} />
+    ))}
+  </tbody>
+  ); */
+
+export default Tomgods;
