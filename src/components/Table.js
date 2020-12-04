@@ -4,6 +4,8 @@ import { useTable, usePagination } from "react-table";
 
 import makeData from "./Utils";
 
+import Headline from "./Headline";
+
 const Styles = styled.div`
   .emballage-date {
     display: flex;
@@ -43,9 +45,8 @@ const Styles = styled.div`
     }
   }
 
-  table {
+  .emballage-table {
     width: 100%;
-    margin-top: 100px;
     tr {
       th {
         border: 1px solid #707070;
@@ -86,7 +87,6 @@ const Styles = styled.div`
   .table-buttons {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
   }
 
   .comment--row {
@@ -95,8 +95,27 @@ const Styles = styled.div`
     border: 0px solid black !important;
   }
 
+.table-top--buttons{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+
+  .dropdown--button {
+    width: 215px;
+    height: 60px;
+    background-color: #00904a;
+    border: 0px;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 5px 5px 0px 0px;
+    cursor: pointer;
+  }
+
   .dropdown--wrapper {
-    display: block;
+    display: none;
     flex-direction: column;
     width: 213px;
     border: 1px solid black;
@@ -114,32 +133,54 @@ const Styles = styled.div`
     }
   }
 
-  .dropdown--button {
-    width: 215px;
-    height: 60px;
-    background-color: #00904a;
-    border: 0px;
-    color: white;
-    font-size: 20px;
-    font-weight: 600;
-    border-radius: 5px 5px 0px 0px;
-    cursor: pointer;
-  }
+  
 
-  .pagination{
+  .pagination {
     margin-top: 20px;
     margin-bottom: 100px;
     justify-content: end;
-    button{
+    button {
       background: none;
       border: 0;
       cursor: pointer;
-        &:first-of-type{
-          margin-right: 10px;
+      &:first-of-type {
+        margin-right: 10px;
       }
-        &:last-of-type{
-          margin-left: 10px;
+      &:last-of-type {
+        margin-left: 10px;
       }
+    }
+  }
+
+  .fa-file-download {
+    cursor: pointer;
+  }
+
+  .comment-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    .input-comment {
+      border: 1px solid black;
+      border-radius: 5px;
+      padding: 3px 10px;
+      align-self: start;
+      width: 100%;
+      max-width: 80px;
+      cursor: pointer;
+    }
+    .comment {
+      resize: none;
+      padding: 10px;
+      border-radius: 5px 0px 5px 5px;
+      border: 1px solid black;
+      display: none;
+      position: absolute;
+      margin-top: 30px;
+      align-self: end;
+    }
+    div {
+      margin-top: 5px;
     }
   }
 `;
@@ -159,34 +200,56 @@ function Table({ columns, data }) {
     nextPage,
     previousPage,
     state: { pageIndex },
-
-
-
-
-  } = useTable({
-    columns,
-    data,
-    initialState: { pageIndex: 0 },
-  },
-  usePagination
+  } = useTable(
+    {
+      columns,
+      data,
+      initialState: { pageIndex: 0 },
+    },
+    usePagination
   );
 
   // Render the UI for your table
   return (
     <>
-      <button class="dropdown--button">Filtrer</button>
-      <div class="dropdown--wrapper">
-        {allColumns.map((column) => (
-          <div class="dropdown" key={column.id}>
-            <label>
-              <input type="checkbox" {...column.getToggleHiddenProps()} />{" "}
-              {column.id}
-            </label>
-          </div>
-        ))}
-        <br />
+      <Headline title="Emballageoversigt" />
+
+      <div className="emballage-date">
+        <p>Fra dato:</p> <input type="date" />
       </div>
-      <table {...getTableProps()}>
+      <div className="emballage-date">
+        <p>Til dato:</p> <input type="date" />
+      </div>
+
+
+    <div className="table-top--buttons">
+      <div className="table-buttons">
+        <div className="emballage-buttons">
+          <button className="button--active">
+            <a href="Home">Afleveret/returneret</a>
+          </button>
+          <button>
+            <a href="Balance">Balance</a>
+          </button>
+        </div>
+      </div>
+
+    <div className="filter--wrapper">
+      <button class="dropdown--button">Filtrer</button>
+        <div class="dropdown--wrapper">
+          {allColumns.map((column) => (
+            <div class="dropdown" key={column.id}>
+              <label>
+                <input type="checkbox" {...column.getToggleHiddenProps()} />{" "}
+                {column.id}
+              </label>
+            </div>
+          ))}
+        </div>
+      </div>
+      </div>
+
+      <table className="emballage-table" {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -218,10 +281,10 @@ function Table({ columns, data }) {
         </button>
 
         <span>
-          Side{' '}
+          Side{" "}
           <strong>
             {pageIndex + 1} af {pageOptions.length}
-          </strong>{' '}
+          </strong>{" "}
         </span>
 
         <button onClick={() => nextPage()} disabled={!canNextPage}>

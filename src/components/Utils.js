@@ -1,5 +1,7 @@
 import namor from 'namor'
 
+import Comment from "./Comment";
+
 const range = len => {
   const arr = []
   for (let i = 0; i < len; i++) {
@@ -13,7 +15,27 @@ const newPerson = () => {
   const checkbox = <input type="checkbox" />;
   const checkbox1 = <input type="checkbox" checked/>;
   const checkboxChecked = Math.random()
-
+  const kommentaren = namor.generate({ words: 4, saltLength: 0, separator: " ", subset: "manly" });
+  const kommentar = 
+  <div className="comment-wrapper">
+    <button className="input-comment">Indsæt</button>
+    <textarea className="comment" cols="30" rows="10">{kommentaren}</textarea>
+    <div>{kommentaren}</div>
+  </div>;
+  const number = Math.random();
+  const number2 = Math.random();
+  const number3 = Math.random();
+  const number4 = Math.random();
+  const number5 = Math.random();
+  const number6 = Math.random();
+  const number7 = Math.random();
+  const number8 = Math.random();
+  const number9 = Math.random();
+  const number10 = Math.random();
+  const number11 = Math.random();
+  const number12 = Math.random();
+  const number13 = Math.random();
+  const number14 = Math.random();
   
   return {
     id: Math.floor(Math.random() * 9999),
@@ -22,22 +44,22 @@ const newPerson = () => {
     KvitteringNr: Math.floor(Math.random() * 999999),
     turNr: Math.floor(Math.random() * 99999),
     dato: dato,
-    t5RFIDcc: Math.floor(Math.random() * 100),
-    hylder: Math.floor(Math.random() * 100),
-    forlaenger: Math.floor(Math.random() * 100),
-    RFIDcc: Math.floor(Math.random() * 100),
-    halvRFIDcc: Math.floor(Math.random() * 100),
-    halvHylde: Math.floor(Math.random() * 100),
-    halvCC: Math.floor(Math.random() * 100),
-    dsHalvCC: Math.floor(Math.random() * 100),
-    dsHalvHylde: Math.floor(Math.random() * 100),
-    europalle: Math.floor(Math.random() * 100),
-    halvPalle: Math.floor(Math.random() * 100),
-    kvartPalle: Math.floor(Math.random() * 100),
-    cc: Math.floor(Math.random() * 100),
-    soejleroer: Math.floor(Math.random() * 100),
+    t5RFIDcc: number > 0.5 ? Math.floor(Math.random() * 100) + 1 : "",
+    hylder: number2 > 0.5 ? Math.floor(Math.random() * 100) + 1 : "",
+    forlaenger: number3 > 0.5 ? Math.floor(Math.random() * 100) + 1 : "",
+    RFIDcc: number4 > 0.5 ? Math.floor(Math.random() * 100) + 1 : "",
+    halvRFIDcc: number5 > 0.5 ? Math.floor(Math.random() * 100) + 1 : "",
+    halvHylde: number6 > 0.5 ? Math.floor(Math.random() * 100) + 1 : "",
+    halvCC: number7 > 0.5 ? Math.floor(Math.random() * 100) + 1 : "",
+    dsHalvCC: number8 > 0.5 ? Math.floor(Math.random() * 100) + 1 : "",
+    dsHalvHylde: number9 > 0.5 ? Math.floor(Math.random() * 100) + 1 : "",
+    europalle: number10 > 0.5 ? Math.floor(Math.random() * 100) + 1 : "",
+    halvPalle: number11 > 0.5 ? Math.floor(Math.random() * 100) + 1 : "",
+    kvartPalle: number12 > 0.5 ? Math.floor(Math.random() * 100) + 1 : "",
+    cc: number13 > 0.5 ? Math.floor(Math.random() * 100) + 1 : "",
+    soejleroer: number14 > 0.5 ? Math.floor(Math.random() * 100) + 1 : "",
     signeret: checkboxChecked > 0.5 ? checkbox : checkbox1,
-    kommentar: namor.generate({ words: 4, saltLength: 0, separator: " ", subset: "manly" }),
+    kommentar: kommentar,
     pdf: <i class="fas fa-file-download"></i>,
   }
 }
