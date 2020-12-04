@@ -4,3 +4,17 @@
             padding: 5px 0;
             text-align: center;
 }
+
+@mixin table {
+    border: 1px solid $secondary-color;
+    th {
+        text-transform: uppercase;
+        padding: 5px 0px;
+    }
+    td {
+        border: 1px solid $secondary-color;
+    }
+    input {
+        width: 80px;
+    }
+}

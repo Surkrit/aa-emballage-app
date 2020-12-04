@@ -101,6 +101,7 @@ const Tomgods = () => {
     setInput('');
  
     event.preventDefault();
+    event.target.reset();
   };
 
 /* const Tomgods = () => {

@@ -504,6 +504,10 @@ table tr .empty {
   padding: 5px 0px;
 }
 
+.svind table td {
+  border: 1px solid #707070;
+}
+
 .svind table input {
   width: 80px;
 }
