@@ -480,6 +480,10 @@ table tr .empty {
   padding: 5px 0px;
 }
 
+.tomgods table td {
+  border: 1px solid #707070;
+}
+
 .tomgods table input {
   width: 80px;
 }
