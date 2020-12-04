@@ -66,7 +66,7 @@ const initialTomgods = [
 
 const Tomgods = () => {
   const [input, setInput] = useState({
-    id: "",
+    
     tomgodsDate: "",
     t5RfidCc: "",
     hylder: "",
@@ -101,6 +101,7 @@ const Tomgods = () => {
     setInput('');
  
     event.preventDefault();
+    event.target.reset();
   };
 
 /* const Tomgods = () => {
@@ -191,9 +192,9 @@ const Tomgods = () => {
           </tr>
         </thead>
         <tbody>
-        {tomgods.map(item => (
-          <tr key={item.id}>
-            <td>{item.id}</td>
+        {tomgods.map((item, index) => (
+          <tr key={index}>
+            <td>{index+1}</td>
             <td>{item.tomgodsDate}</td>
             <td>{item.t5RfidCc}</td>
             <td>{item.hylder}</td>

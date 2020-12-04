@@ -8,13 +8,6 @@
     }
 
     table {
-        border: 1px solid $secondary-color;
-        th {
-            text-transform: uppercase;
-            padding: 5px 0px;
-        }
-        input {
-            width: 80px;
-        }
+        @include table;
     }
 }
