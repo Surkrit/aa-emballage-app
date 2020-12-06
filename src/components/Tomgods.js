@@ -4,25 +4,6 @@ import Button from './Button';
 import Comment from "./Comment";
 import '../style/App.css';
 
-/* const initialTomgods = Object.freeze({
-  id: Math.floor(Math.random() * 10000),
-  tomgodsDate: "",
-  t5RfidCc: "",
-  hylder: "",
-  forl: "",
-  rfidCc: "",
-  halfRfidCc: "",
-  halfHylde: "",
-  halfCc: "",
-  dsHalfCc: "",
-  dsHalfHylde: "",
-  eupl: "",
-  halfPll: "",
-  quartPll: "",
-  cc: "",
-  sojleror: ""
-}); */
-
 const initialTomgods = [
   {
     id: '1',
@@ -66,7 +47,7 @@ const initialTomgods = [
 
 const Tomgods = () => {
   const [input, setInput] = useState({
-    
+    id: "",
     tomgodsDate: "",
     t5RfidCc: "",
     hylder: "",
@@ -82,16 +63,16 @@ const Tomgods = () => {
     quartPll: "",
     cc: "",
     sojleror: ""
-});
+  });
   const [tomgods, setTomgods] = useState(initialTomgods);
  
   const handleChange = event => {
     const value = event.target.value;
     setInput({
-        ...input,
+        ...input, //uden dette, kan der kun tilføjes et input til listen
         [event.target.name]: value
       });
-};
+  };
  
   const handleSubmit = event => {
     if (input) {
@@ -103,23 +84,6 @@ const Tomgods = () => {
     event.preventDefault();
     event.target.reset();
   };
-
-/* const Tomgods = () => {
-  const [formData, updateFormData] = useState(initialTomgods);
-  
-  const handleChange = (e) => {
-      updateFormData({
-          ...formData,
-          // Trimming any whitespace
-          [e.target.name]: e.target.value.trim()
-      });
-  };
-  
-  const handleSubmit = (e) => {
-      e.preventDefault()
-      console.log(formData);
-      // ... submit to API or something
-  }; */
   
   return (
     <div className="tomgods">
