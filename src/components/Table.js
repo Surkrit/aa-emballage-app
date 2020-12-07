@@ -208,16 +208,19 @@ function Table({ columns, data }) {
     usePagination
   );
 
+  //Giver dags dato
+  const today = new Date().toISOString().substr(0, 10);
+
   // Render the UI for your table
   return (
     <>
       <Headline title="Emballageoversigt" />
 
       <div className="emballage-date">
-        <p>Fra dato:</p> <input type="date" />
+        <p>Fra dato:</p> <input type="date" value="2000-01-01"/>
       </div>
       <div className="emballage-date">
-        <p>Til dato:</p> <input type="date" />
+        <p>Til dato:</p> <input type="date" id="today" value={today}/>
       </div>
 
       <Router>
