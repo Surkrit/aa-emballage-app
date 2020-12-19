@@ -270,7 +270,7 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
     {
       columns: userColumns,
       data,
-      initialState: { pageIndex: 0 },
+      initialState: { pageIndex: 0, pageSize: 100 },
     },
     useExpanded,
     usePagination
@@ -294,7 +294,6 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
       <Router>
         <Switch>
           <Route exact path="/Customer/Home">
-            <h3>Afleveret/returneret</h3>
             <div className="table-top--buttons">
               <div className="table-buttons">
                 <div className="emballage-buttons">
@@ -367,10 +366,26 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
                 })}
               </tbody>
             </table>
+
+            <div className="pagination">
+            <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+              {<i class="fas fa-chevron-left"></i>}
+            </button>
+
+            <span>
+              Side{" "}
+              <strong>
+                {pageIndex + 1} af {pageOptions.length}
+              </strong>{" "}
+            </span>
+
+            <button onClick={() => nextPage()} disabled={!canNextPage}>
+              {<i class="fas fa-chevron-right"></i>}
+            </button>
+          </div>
           </Route>
 
           <Route exact path="/Customer/Balance">
-            <h3>Balance</h3>
             <div className="table-top--buttons">
               <div className="table-buttons">
                 <div className="emballage-buttons">
@@ -429,9 +444,8 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
                 })}
               </tbody>
             </table>
-          </Route>
 
-          <div className="pagination">
+            <div className="pagination">
             <button onClick={() => previousPage()} disabled={!canPreviousPage}>
               {<i class="fas fa-chevron-left"></i>}
             </button>
@@ -447,6 +461,7 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
               {<i class="fas fa-chevron-right"></i>}
             </button>
           </div>
+          </Route>
         </Switch>
       </Router>
     </>
@@ -576,7 +591,7 @@ function EmballageTable() {
     []
   );
 
-  const data = React.useMemo(() => makeData(3), []);
+  const data = React.useMemo(() => makeData(10000), []);
 
   const renderRowSubComponent = React.useCallback(
     ({ row, rowProps, visibleColumns }) => (
