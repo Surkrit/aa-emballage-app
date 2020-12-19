@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useTable, usePagination } from "react-table";
+import { useTable, usePagination, useExpanded } from "react-table";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -47,7 +47,35 @@ const Styles = styled.div`
     }
   }
 
-  .emballage-table {
+  .emballage-table--afleveret {
+    width: 100%;
+    tr {
+      th {
+        border: 1px solid #707070;
+        font-weight: 600;
+        padding: 5px;
+      }
+
+      &:nth-child(even) {
+        td {
+          border: 1px solid #707070;
+          padding: 5px;
+          background: #bfe1cc;
+        }
+      }
+      &:nth-child(odd) {
+        td {
+          border: 1px solid #707070;
+          padding: 5px;
+          background: #f8cdce;
+        }
+      }
+
+      
+    }
+  }
+
+  .emballage-table--balance {
     width: 100%;
     tr {
       th {
@@ -73,16 +101,6 @@ const Styles = styled.div`
         }
       }
 
-      .row--red {
-        background: #f8cdce;
-        border: 1px solid #707070 !important;
-      }
-      .row--green {
-        background: #bfe1cc;
-      }
-      .empty {
-        color: white;
-      }
     }
   }
 
@@ -116,7 +134,7 @@ const Styles = styled.div`
   }
 
   .dropdown--wrapper {
-    display: block;
+    display: none;
     flex-direction: column;
     width: 213px;
     border: 1px solid black;
@@ -184,8 +202,56 @@ const Styles = styled.div`
   }
 `;
 
-function Table({ columns, data }) {
-  // Use the state and functions returned from useTable to build your UI
+function SubRows({ row, rowProps, data }) {
+  return (
+    <>
+      {data.map((x, i) => {
+        return (
+          <tr {...rowProps} key={`${rowProps.key}-expanded-${i}`}>
+            {row.cells.map((cell) => {
+              return (
+                <td {...cell.getCellProps()}>
+                  {cell.render(cell.column.SubCell ? "SubCell" : "Cell", {
+                    value: cell.column.accessor && cell.column.accessor(x, i),
+                    row: { ...row, original: x },
+                  })}
+                </td>
+              );
+            })}
+          </tr>
+        );
+      })}
+    </>
+  );
+}
+
+function SubRowAsync({ row, rowProps, visibleColumns }) {
+  const [loading, setLoading] = React.useState(true);
+  const [data, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setData(makeData(1));
+      setLoading(false);
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
+  return (
+    <SubRows
+      row={row}
+      rowProps={rowProps}
+      visibleColumns={visibleColumns}
+      data={data}
+      loading={loading}
+    />
+  );
+}
+
+function Table({ columns: userColumns, data, renderRowSubComponent }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -198,13 +264,15 @@ function Table({ columns, data }) {
     pageOptions,
     nextPage,
     previousPage,
+    visibleColumns,
     state: { pageIndex },
   } = useTable(
     {
-      columns,
+      columns: userColumns,
       data,
       initialState: { pageIndex: 0 },
     },
+    useExpanded,
     usePagination
   );
 
@@ -217,16 +285,16 @@ function Table({ columns, data }) {
       <Headline title="Emballageoversigt" />
 
       <div className="emballage-date">
-        <p>Fra dato:</p> <input type="date" value="2000-01-01"/>
+        <p>Fra dato:</p> <input type="date" value="2000-01-01" />
       </div>
       <div className="emballage-date">
-        <p>Til dato:</p> <input type="date" id="today" value={today}/>
+        <p>Til dato:</p> <input type="date" value={today} />
       </div>
 
       <Router>
         <Switch>
           <Route exact path="/Customer/Home">
-            <h1>Afleveret</h1>
+            <h3>Afleveret/returneret</h3>
             <div className="table-top--buttons">
               <div className="table-buttons">
                 <div className="emballage-buttons">
@@ -257,8 +325,8 @@ function Table({ columns, data }) {
               </div>
             </div>
 
-            <table className="emballage-table" {...getTableProps()}>
-              <thead>
+            <table className="emballage-table--afleveret" {...getTableProps()}>
+            <thead>
                 {headerGroups.map((headerGroup) => (
                   <tr {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map((column) => (
@@ -272,16 +340,29 @@ function Table({ columns, data }) {
               <tbody {...getTableBodyProps()}>
                 {page.map((row, i) => {
                   prepareRow(row);
+                  const rowProps = row.getRowProps();
                   return (
-                    <tr {...row.getRowProps()}>
-                      {row.cells.map((cell) => {
-                        return (
-                          <td {...cell.getCellProps()}>
-                            {cell.render("Cell")}
-                          </td>
-                        );
-                      })}
-                    </tr>
+                    // Use a React.Fragment here so the table markup is still valid
+                    <React.Fragment key={rowProps.key}>
+                      <tr {...rowProps}>
+                        {row.cells.map((cell) => {
+                          return (
+                            <td {...cell.getCellProps()}>
+                              {cell.render("Cell")}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                      {
+                        (row.isExpanded =
+                          true &&
+                          renderRowSubComponent({
+                            row,
+                            rowProps,
+                            visibleColumns,
+                          }))
+                      }
+                    </React.Fragment>
                   );
                 })}
               </tbody>
@@ -289,7 +370,7 @@ function Table({ columns, data }) {
           </Route>
 
           <Route exact path="/Customer/Balance">
-            <h1>Balance</h1>
+            <h3>Balance</h3>
             <div className="table-top--buttons">
               <div className="table-buttons">
                 <div className="emballage-buttons">
@@ -319,7 +400,7 @@ function Table({ columns, data }) {
                 </div>
               </div>
             </div>
-            <table className="emballage-table" {...getTableProps()}>
+            <table className="emballage-table--balance" {...getTableProps()}>
               <thead>
                 {headerGroups.map((headerGroup) => (
                   <tr {...headerGroup.getHeaderGroupProps()}>
@@ -379,104 +460,142 @@ function EmballageTable() {
       {
         Header: "#",
         accessor: "id",
+        SubCell: () => null,
       },
       {
         Header: "Accep. af AA",
         accessor: "accepAA",
+        SubCell: () => null,
       },
       {
         Header: "Accep.",
         accessor: "accepKunde",
+        SubCell: () => null,
       },
       {
         Header: "Kvittings nr. ",
         accessor: "KvitteringNr",
+        SubCell: () => null,
       },
       {
         Header: "Tur nr",
         accessor: "turNr",
+        SubCell: () => null,
       },
       {
         Header: "Dato",
         accessor: "dato",
+        SubCell: () => null,
       },
       {
         Header: "T5 RFID CC",
         accessor: "t5RFIDcc",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
       },
       {
         Header: "Hylder",
         accessor: "hylder",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
       },
       {
         Header: "Forlænger",
         accessor: "forlaenger",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
       },
       {
         Header: "RFID CC",
         accessor: "RFIDcc",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
       },
       {
         Header: "½ RFID CC",
         accessor: "halvRFIDcc",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
       },
       {
         Header: "½ Hylde",
         accessor: "halvHylde",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
       },
       {
         Header: "½ CC",
         accessor: "halvCC",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
       },
       {
         Header: "DS ½CC",
         accessor: "dsHalvCC",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
       },
       {
         Header: "DS ½ Hylde",
         accessor: "dsHalvHylde",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
       },
       {
         Header: "Europalle",
         accessor: "europalle",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
       },
       {
         Header: "½ Palle",
         accessor: "halvPalle",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
       },
       {
         Header: "1⁄4 Palle",
         accessor: "kvartPalle",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
       },
       {
         Header: "CC",
         accessor: "cc",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
       },
       {
         Header: "Søjlerør",
         accessor: "soejleroer",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
       },
       {
         Header: "Signeret",
         accessor: "signeret",
+        SubCell: () => null,
       },
       {
         Header: "Kommentar",
         accessor: "kommentar",
+        SubCell: () => null,
       },
       {
         Header: "PDF",
         accessor: "pdf",
+        SubCell: () => null,
       },
     ],
     []
   );
 
-  const data = React.useMemo(() => makeData(1000), []);
+  const data = React.useMemo(() => makeData(3), []);
+
+  const renderRowSubComponent = React.useCallback(
+    ({ row, rowProps, visibleColumns }) => (
+      <SubRowAsync
+        row={row}
+        rowProps={rowProps}
+        visibleColumns={visibleColumns}
+      />
+    ),
+    []
+  );
 
   return (
     <Styles>
-      <Table columns={columns} data={data} />
+      <Table
+        columns={columns}
+        data={data}
+        renderRowSubComponent={renderRowSubComponent}
+      />
     </Styles>
   );
 }

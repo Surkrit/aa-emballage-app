@@ -14,7 +14,9 @@ const newPerson = () => {
   const dato = Math.floor(Math.random() * (1, 30)+1) + '-' + Math.floor(Math.random() * (1, 12)+1) + '-20' + Math.floor(Math.random() * (1, 11)+10);
   const checkbox = <input type="checkbox" />;
   const checkbox1 = <input type="checkbox" checked/>;
-  const checkboxChecked = Math.random()
+  const checkboxAccep = Math.random()
+  const checkboxAA = Math.random()
+  const checkboxSigned = Math.random()
   const kommentaren = namor.generate({ words: 4, saltLength: 0, separator: " ", subset: "manly" });
   const kommentar = 
   <div className="comment-wrapper">
@@ -39,8 +41,8 @@ const newPerson = () => {
   
   return {
     id: Math.floor(Math.random() * 9999),
-    accepAA: checkboxChecked > 0.5 ? checkbox : checkbox1,
-    accepKunde: checkboxChecked > 0.5 ? checkbox : checkbox1,
+    accepAA: checkboxAA > 0.5 ? checkbox : checkbox1,
+    accepKunde: checkboxAccep > 0.5 ? checkbox : checkbox1,
     KvitteringNr: Math.floor(Math.random() * 999999),
     turNr: Math.floor(Math.random() * 99999),
     dato: dato,
@@ -58,7 +60,7 @@ const newPerson = () => {
     kvartPalle: number12 > 0.5 ? Math.floor(Math.random() * 100) + 1 : "",
     cc: number13 > 0.5 ? Math.floor(Math.random() * 100) + 1 : "",
     soejleroer: number14 > 0.5 ? Math.floor(Math.random() * 100) + 1 : "",
-    signeret: checkboxChecked > 0.5 ? checkbox : checkbox1,
+    signeret: checkboxSigned > 0.5 ? checkbox : checkbox1,
     kommentar: kommentar,
     pdf: <i class="fas fa-file-download"></i>,
   }
