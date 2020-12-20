@@ -75,55 +75,6 @@ p {
   font-size: 16px;
 }
 
-.enhed {
-  width: 215px;
-  height: 60px;
-  background-color: #00904A;
-  border: 0px;
-  color: white;
-  font-size: 20px;
-  font-weight: 600;
-  border-radius: 5px 5px 0px 0px;
-  cursor: pointer;
-}
-
-.form-enhed {
-  display: block;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  width: 213px;
-  border: 1px solid black;
-  border-radius: 0px 0px 5px 5px;
-  padding: 10px 0px;
-  position: absolute;
-  background: white;
-}
-
-.form-enhed .form-input {
-  padding: 5px 10px;
-}
-
-.form-enhed h3 {
-  font-weight: 600;
-  margin: 0px 10px;
-}
-
-.form-enhed h3:last-of-type {
-  margin-top: 15px;
-}
-
-.comment {
-  resize: none;
-  padding: 10px;
-  border-radius: 5px 0px 5px 5px;
-  border: 1px solid black;
-  display: block;
-  position: absolute;
-  margin-top: 25px;
-}
-
 .main {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -221,6 +172,7 @@ p {
 .prices table input {
   border: solid 1px #707070;
   border-radius: 5px;
+  margin: 0 5px;
   padding: 5px 0;
   text-align: center;
   padding: 5px 10px;
@@ -269,108 +221,6 @@ p {
 .flex--end {
   -ms-flex-item-align: end;
       align-self: flex-end;
-}
-
-.emballage-date {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 190px;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.emballage-date input[type="date"] {
-  border-radius: 5px;
-  height: 25px;
-}
-
-.emballage-buttons button {
-  width: 250px;
-  height: 60px;
-  font-size: 20px;
-  border: 0px;
-  font-weight: 600;
-  background: #e4e4e4;
-}
-
-.emballage-buttons button a {
-  color: #707070;
-  text-decoration: none;
-}
-
-.emballage-buttons button:first-of-type {
-  border-radius: 5px 0px 0px 0px;
-}
-
-.emballage-buttons button:last-of-type {
-  border-radius: 0px 5px 0px 0px;
-}
-
-.emballage-buttons .button--active {
-  background: #00904A;
-}
-
-.emballage-buttons .button--active a {
-  color: white;
-}
-
-table {
-  width: 100%;
-}
-
-table tr th {
-  border: 1px solid #707070;
-  font-weight: 600;
-  padding: 5px;
-}
-
-table tr:nth-child(even) td {
-  border: 1px solid #707070;
-  padding: 5px;
-  border-bottom: 0px;
-}
-
-table tr:nth-child(odd) td {
-  border: 1px solid #707070;
-  padding: 5px;
-  border-top: 0px;
-}
-
-table tr .row--red {
-  background: #f8cdce;
-  border: 1px solid #707070 !important;
-}
-
-table tr .row--green {
-  background: #bfe1cc;
-}
-
-table tr .empty {
-  color: white;
-}
-
-.table-buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.comment--row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: end;
-  border: 0px solid black !important;
 }
 
 .login--wrapper {
@@ -463,52 +313,75 @@ table tr .empty {
   height: 25px;
 }
 
-.tomgods input {
+.add-row .add-row__date {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.add-row input {
   border: solid 1px #707070;
   border-radius: 5px;
+  margin: 0 5px;
   padding: 5px 0;
   text-align: center;
 }
 
-.tomgods table {
+.add-row table {
+  width: 100%;
   border: 1px solid #707070;
 }
 
-.tomgods table th {
+.add-row table th {
+  border: 1px solid #707070;
+  font-weight: 600;
   text-transform: uppercase;
-  padding: 5px 0px;
-}
-
-.tomgods table td {
-  border: 1px solid #707070;
-}
-
-.tomgods table input {
-  width: 80px;
-}
-
-.svind input {
-  border: solid 1px #707070;
-  border-radius: 5px;
-  padding: 5px 0;
+  padding: 5px;
   text-align: center;
 }
 
-.svind table {
+.add-row table td {
   border: 1px solid #707070;
-}
-
-.svind table th {
-  text-transform: uppercase;
   padding: 5px 0px;
+  text-align: center;
 }
 
-.svind table td {
+.add-row table input {
+  min-width: 40px;
+  width: calc(100% - 10px);
+}
+
+.enhanced-table {
+  width: 100%;
   border: 1px solid #707070;
 }
 
-.svind table input {
-  width: 80px;
+.enhanced-table th {
+  border: 1px solid #707070;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 5px;
+  text-align: center;
+}
+
+.enhanced-table td {
+  border: 1px solid #707070;
+  padding: 5px 0px;
+  text-align: center;
+}
+
+.enhanced-table input {
+  min-width: 40px;
+  width: calc(100% - 10px);
+}
+
+.pagination button {
+  background: none;
+  border: none;
+  color: #1d1d1b;
+}
+
+.pagination button:disabled {
+  color: #707070;
 }
 
 .pagination {

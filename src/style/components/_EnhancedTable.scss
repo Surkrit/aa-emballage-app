@@ -1,0 +1,17 @@
+@import '../variables';
+@import '../mixins';
+
+.enhanced-table {
+    @include table;
+}
+
+.pagination {
+    button {
+        background: none;
+        border: none;
+        color: $secondary-color--dark;
+    }
+    button:disabled {
+        color: $secondary-color;
+    }
+}

@@ -1,7 +1,12 @@
 @import '../variables';
 @import '../mixins';
 
-.tomgods {
+.add-row {
+
+    .add-row__date {
+        display: block;
+        margin-bottom: 10px;
+    }
 
     input {
         @include input-number;
