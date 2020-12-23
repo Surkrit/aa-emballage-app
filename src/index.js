@@ -41,7 +41,7 @@ ReactDOM.render(
                <div className="content">
                   <div id="table"></div>
                   {/* <Emballage /> */}
-                  <App />
+                  <App />npm
                </div>
             </Route>
 
