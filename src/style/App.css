@@ -313,6 +313,10 @@ p {
   height: 25px;
 }
 
+.add-row {
+  margin-bottom: 40px;
+}
+
 .add-row .add-row__date {
   display: block;
   margin-bottom: 10px;
@@ -341,7 +345,7 @@ p {
 
 .add-row table td {
   border: 1px solid #707070;
-  padding: 5px 0px;
+  padding: 5px;
   text-align: center;
 }
 
@@ -365,7 +369,7 @@ p {
 
 .enhanced-table td {
   border: 1px solid #707070;
-  padding: 5px 0px;
+  padding: 5px;
   text-align: center;
 }
 

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 // import Button from './Button';
-import Comment from "./Comment";
 import PropTypes from 'prop-types';
 import '../style/App.css';
 
@@ -21,13 +20,13 @@ const initialRow = {
   quartPll: 0,
   cc: 0,
   sojleror: 0,
-  comment: '',
+  // comment: '',
   subRows: undefined,
 }
 
 const AddRow = props => {
   const [input, setInput] = useState(initialRow)
-  const { addRowHandler } = props
+  const { addRowHandler, buttonName } = props
 
 
   const handleAdd = event => {
@@ -59,7 +58,7 @@ const AddRow = props => {
               <th>¼ Pll</th>
               <th>CC</th>
               <th>Søjlerør</th>
-              <th>Kommentar</th>
+              {/* <th>Kommentar</th> */}
             </tr>
           </thead>
           <tbody>
@@ -78,12 +77,12 @@ const AddRow = props => {
               <td><input type="number" name="quartPll" value={input.quartPll} onChange={handleChange('quartPll')} /></td>
               <td><input type="number" name="cc" value={input.cc} onChange={handleChange('cc')} /></td>
               <td><input type="number" name="sojleror" value={input.sojleror} onChange={handleChange('sojleror')} /></td>
-              <td>{/* <Comment /> */}</td>
+              {/* <td><Comment /></td> */}
             </tr>
           </tbody>
         </table>
         <button onClick={handleAdd} className="button--green">
-            Send
+            {buttonName}
         </button>
     </div>
   )

@@ -9,7 +9,7 @@ const range = len => {
 }
 
 const newPerson = () => {
-
+  const commentChance = Math.random()
   return {
     date: '2020-' + Math.floor(Math.random() * (1, 12)+1) + '-' + Math.floor(Math.random() * (1, 30)+1),
     t5RfidCc: Math.floor(Math.random() * 20),
@@ -26,7 +26,12 @@ const newPerson = () => {
     quartPll: Math.floor(Math.random() * 20),
     cc: Math.floor(Math.random() * 20),
     sojleror: Math.floor(Math.random() * 20),
-    comment: namor.generate({ words: 2, saltLength: 0, separator:' ' }),
+    comment:
+    commentChance > 0.66
+      ? 'Afvist'
+      : commentChance > 0.33
+      ? 'Godkendt'
+      : 'Afhentet',
   }
 }
 

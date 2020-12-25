@@ -63,6 +63,9 @@ const EnhancedTable = ({
   setData,
   updateMyData,
   skipPageReset,
+  beforeAddRow,
+  beforeTable,
+  buttonName,
 }) => {
   const {
     getTableProps,
@@ -110,7 +113,6 @@ const EnhancedTable = ({
     }
   )
 
-
   const addRowHandler = row => {
     const newData = data.concat([row])
     setData(newData)
@@ -119,7 +121,12 @@ const EnhancedTable = ({
   // Render the UI for your table
   return (
     <>
-      <AddRow addRowHandler={addRowHandler} />
+      <div><p>{beforeAddRow}</p></div>
+      <AddRow
+        addRowHandler={addRowHandler}
+        buttonName={buttonName}
+      />
+      <div><p>{beforeTable}</p></div>
       <table className="enhanced-table" {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (

@@ -104,6 +104,9 @@ const Svind = () => {
     <div className="svind">
       <Headline title="Svindopgørelse" />
       <EnhancedTable
+        beforeAddRow="Opgørelse af svind det sidste år"
+        buttonName="Indsend"
+        beforeTable="Tidligere svindopgørelser"
         columns={columns}
         data={data}
         setData={setData}

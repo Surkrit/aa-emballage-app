@@ -67,10 +67,10 @@ const Tomgods = () => {
         Header: 'Søjlerør',
         accessor: 'sojleror',
       },
-      {
+      /* {
         Header: 'Kommentar',
         accessor: 'comment',
-      },
+      }, */
     ],
     []
   )
@@ -104,6 +104,9 @@ const Tomgods = () => {
     <div className="tomgods">
       <Headline title="Tomgods" />
       <EnhancedTable
+        beforeAddRow="Bestil afhentning af tomgods"
+        buttonName="Bestil"
+        beforeTable="Bestilte afhentninger"
         columns={columns}
         data={data}
         setData={setData}
