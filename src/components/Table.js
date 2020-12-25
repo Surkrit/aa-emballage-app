@@ -49,29 +49,35 @@ const Styles = styled.div`
 
   .emballage-table--afleveret {
     width: 100%;
-    tr {
       th {
         border: 1px solid #707070;
         font-weight: 600;
         padding: 5px;
       }
-
-      &:nth-child(even) {
-        td {
-          border: 1px solid #707070;
-          padding: 5px;
-          background: #bfe1cc;
+    .extended-row {
+      td {
+        border: 1px solid #707070;
+        padding: 5px;
+        background: #bfe1cc;
+        height: 2px;
+        &:nth-child(-n + 6),
+        &:nth-last-child(-n + 3) {
+          background: white;
+          border-top: 0px;
         }
       }
-      &:nth-child(odd) {
-        td {
-          border: 1px solid #707070;
-          padding: 5px;
-          background: #f8cdce;
+    }
+    .table-row {
+      td {
+        border: 1px solid #707070;
+        padding: 5px;
+        background: #f8cdce;
+        &:nth-child(-n + 6),
+        &:nth-last-child(-n + 3) {
+          background: white;
+          border-bottom: 0px;
         }
       }
-
-      
     }
   }
 
@@ -88,18 +94,26 @@ const Styles = styled.div`
         td {
           border: 1px solid #707070;
           padding: 5px;
-
           background: white;
+          height: 2px;
+          border-top: 0px;
+          visibility: hidden;
+          h4:after{
+            content:' '; 
+            visibility: visible;
+            display: block;
+          }
         }
       }
       &:nth-child(odd) {
         td {
           border: 1px solid #707070;
           padding: 5px;
-
-          background: lightgrey;
+          background: #white;
+          border-bottom: 0px;
         }
       }
+
 
     }
   }
@@ -124,7 +138,7 @@ const Styles = styled.div`
   .dropdown--button {
     width: 215px;
     height: 60px;
-    background-color: #00904a;
+    background-color: #dc2f34;
     border: 0px;
     color: white;
     font-size: 20px;
@@ -134,7 +148,7 @@ const Styles = styled.div`
   }
 
   .dropdown--wrapper {
-    display: none;
+    display: block;
     flex-direction: column;
     width: 213px;
     border: 1px solid black;
@@ -207,14 +221,16 @@ function SubRows({ row, rowProps, data }) {
     <>
       {data.map((x, i) => {
         return (
-          <tr {...rowProps} key={`${rowProps.key}-expanded-${i}`}>
+          <tr class="extended-row" {...rowProps} key={`${rowProps.key}-expanded-${i}`}>
             {row.cells.map((cell) => {
               return (
                 <td {...cell.getCellProps()}>
+                  <h4>
                   {cell.render(cell.column.SubCell ? "SubCell" : "Cell", {
                     value: cell.column.accessor && cell.column.accessor(x, i),
                     row: { ...row, original: x },
                   })}
+                  </h4>
                 </td>
               );
             })}
@@ -270,7 +286,7 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
     {
       columns: userColumns,
       data,
-      initialState: { pageIndex: 0, pageSize: 100 },
+      initialState: { pageIndex: 0, pageSize: 10 },
     },
     useExpanded,
     usePagination
@@ -330,7 +346,7 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
                   <tr {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map((column) => (
                       <th {...column.getHeaderProps()}>
-                        {column.render("Header")}
+                        <h4>{column.render("Header")}</h4>
                       </th>
                     ))}
                   </tr>
@@ -343,11 +359,11 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
                   return (
                     // Use a React.Fragment here so the table markup is still valid
                     <React.Fragment key={rowProps.key}>
-                      <tr {...rowProps}>
+                      <tr class="table-row" {...rowProps}>
                         {row.cells.map((cell) => {
                           return (
                             <td {...cell.getCellProps()}>
-                              {cell.render("Cell")}
+                              <h4>{cell.render("Cell")}</h4>
                             </td>
                           );
                         })}
@@ -416,12 +432,12 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
               </div>
             </div>
             <table className="emballage-table--balance" {...getTableProps()}>
-              <thead>
+            <thead>
                 {headerGroups.map((headerGroup) => (
                   <tr {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map((column) => (
                       <th {...column.getHeaderProps()}>
-                        {column.render("Header")}
+                        <h4>{column.render("Header")}</h4>
                       </th>
                     ))}
                   </tr>
@@ -430,16 +446,29 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
               <tbody {...getTableBodyProps()}>
                 {page.map((row, i) => {
                   prepareRow(row);
+                  const rowProps = row.getRowProps();
                   return (
-                    <tr {...row.getRowProps()}>
-                      {row.cells.map((cell) => {
-                        return (
-                          <td {...cell.getCellProps()}>
-                            {cell.render("Cell")}
-                          </td>
-                        );
-                      })}
-                    </tr>
+                    // Use a React.Fragment here so the table markup is still valid
+                    <React.Fragment key={rowProps.key}>
+                      <tr {...rowProps}>
+                        {row.cells.map((cell) => {
+                          return (
+                            <td {...cell.getCellProps()}>
+                              <h4>{cell.render("Cell")}</h4>
+                            </td>
+                          );
+                        })}
+                      </tr>
+                      {
+                        (row.isExpanded =
+                          true &&
+                          renderRowSubComponent({
+                            row,
+                            rowProps,
+                            visibleColumns,
+                          }))
+                      }
+                    </React.Fragment>
                   );
                 })}
               </tbody>
