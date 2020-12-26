@@ -18,6 +18,7 @@ import Login from './pages/login';
 import Prices from './components/Prices';
 import Tomgods from './components/Tomgods';
 import Svind from './components/Svind';
+import Footer from './components/Footer';
 /* React Router */
 import {
    BrowserRouter as Router,
@@ -37,15 +38,20 @@ ReactDOM.render(
             </Route>
             
             <Route exact path="/Customer/Home">
-               <NavCustomer />
-               <div className="content">
-                  <div id="table"></div>
-                  {/* <Emballage /> */}
-                  <App />npm
+               <div className="flex">
+                  <NavCustomer />
+                  <div className="content">
+                     <div id="table"></div>
+                     {/* <Emballage /> */}
+                     <App />npm
+                  </div>
                </div>
+               <Footer />
+               
             </Route>
 
             <Route exact path="/Customer/Profile">
+            <div className="flex">
                <NavCustomer />
                <div className="content">
                   <Headline title="Profil" />
@@ -67,9 +73,12 @@ ReactDOM.render(
                   </div>
                   <Button buttonname="Rediger" />
                </div>
+               </div>
+               <Footer />
             </Route>
 
             <Route exact path="/Customer/Message">
+            <div className="flex">
                <NavCustomer />
                <div className="content">
                   <Headline title="Beskeder" />
@@ -78,23 +87,34 @@ ReactDOM.render(
                   <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
                   <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
                </div>
+            </div>
+            <Footer />
             </Route>
 
             <Route path="/Customer/Tomgods">
-            <NavCustomer />
-               <div className="content">
-               <Tomgods />
-               </div>
+            <div className="flex">
+               <NavCustomer />
+                  <div className="content">
+                  <Tomgods />
+                  </div>
+                  </div>
+                  <Footer />
             </Route>
+            
             <Route path="/Customer/Svind">
-            <NavCustomer />
-               <div className="content">
-               <Svind />
-               </div>
+            <div className="flex">
+               <NavCustomer />
+                  <div className="content">
+                  <Svind />
+                  </div>
+                  </div>
+            
+            <Footer />
             </Route>
 
 
             <Route exact path="/Admin/Home">
+            <div className="flex">
              <NavAdmin />   
              <div className="content">
                   <Headline title="Beskeder" />
@@ -105,9 +125,12 @@ ReactDOM.render(
                   <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
                   <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
                </div>
+            </div>
+            <Footer />
             </Route>
 
             <Route exact path="/Admin/Terms">
+            <div className="flex">
                <NavAdmin />
                <div className="content">
                   <Headline title="Vilkår" />
@@ -119,13 +142,18 @@ ReactDOM.render(
                      <Button buttonname="Opdater" />  
                   </form>
                   </div>
+            </div>
+            <Footer />
             </Route>
 
             <Route path="/Admin/Prices">
+            <div className="flex">
                <NavAdmin />
                <div className="content">
                   <Prices />
                </div>
+            </div>
+            <Footer />
             </Route>
          </Switch>
          
