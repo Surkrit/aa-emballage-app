@@ -20,6 +20,12 @@ const Styles = styled.div`
     }
   }
 
+.table-wrapper{
+  width: 100%;
+  overflow-x: auto;
+  background: rgba(256,256,256,0.6);
+}
+
   .emballage-buttons {
     button {
       width: 250px;
@@ -48,11 +54,11 @@ const Styles = styled.div`
   }
 
   .emballage-table--afleveret {
-    width: 100%;
       th {
         border: 1px solid #707070;
         font-weight: 600;
         padding: 5px;
+
       }
     .extended-row {
       td {
@@ -62,7 +68,7 @@ const Styles = styled.div`
         height: 2px;
         &:nth-child(-n + 6),
         &:nth-last-child(-n + 3) {
-          background: white;
+          background: rgba(256,256,256,0);
           border-top: 0px;
         }
       }
@@ -74,7 +80,7 @@ const Styles = styled.div`
         background: #f8cdce;
         &:nth-child(-n + 6),
         &:nth-last-child(-n + 3) {
-          background: white;
+          background: rgba(256,256,256,0);
           border-bottom: 0px;
         }
       }
@@ -82,7 +88,6 @@ const Styles = styled.div`
   }
 
   .emballage-table--balance {
-    width: 100%;
     tr {
       th {
         border: 1px solid #707070;
@@ -94,7 +99,6 @@ const Styles = styled.div`
         td {
           border: 1px solid #707070;
           padding: 5px;
-          background: white;
           height: 2px;
           border-top: 0px;
           visibility: hidden;
@@ -109,7 +113,6 @@ const Styles = styled.div`
         td {
           border: 1px solid #707070;
           padding: 5px;
-          background: #white;
           border-bottom: 0px;
         }
       }
@@ -136,7 +139,7 @@ const Styles = styled.div`
   }
 
   .dropdown--button {
-    width: 215px;
+    width: 150px;
     height: 60px;
     background-color: #dc2f34;
     border: 0px;
@@ -150,7 +153,7 @@ const Styles = styled.div`
   .dropdown--wrapper {
     display: block;
     flex-direction: column;
-    width: 213px;
+    width: 149px;
     border: 1px solid black;
     border-top: 0px;
     border-radius: 0px 0px 5px 5px;
@@ -221,7 +224,7 @@ function SubRows({ row, rowProps, data }) {
     <>
       {data.map((x, i) => {
         return (
-          <tr class="extended-row" {...rowProps} key={`${rowProps.key}-expanded-${i}`}>
+          <tr className="extended-row" {...rowProps} key={`${rowProps.key}-expanded-${i}`}>
             {row.cells.map((cell) => {
               return (
                 <td {...cell.getCellProps()}>
@@ -323,10 +326,10 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
               </div>
 
               <div className="filter--wrapper">
-                <button class="dropdown--button">Filtrer</button>
-                <div class="dropdown--wrapper">
+                <button className="dropdown--button">Filtrer</button>
+                <div className="dropdown--wrapper">
                   {allColumns.map((column) => (
-                    <div class="dropdown" key={column.id}>
+                    <div className="dropdown" key={column.id}>
                       <label>
                         <input
                           type="checkbox"
@@ -340,6 +343,7 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
               </div>
             </div>
 
+                    <div className="table-wrapper">
             <table className="emballage-table--afleveret" {...getTableProps()}>
             <thead>
                 {headerGroups.map((headerGroup) => (
@@ -359,7 +363,7 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
                   return (
                     // Use a React.Fragment here so the table markup is still valid
                     <React.Fragment key={rowProps.key}>
-                      <tr class="table-row" {...rowProps}>
+                      <tr className="table-row" {...rowProps}>
                         {row.cells.map((cell) => {
                           return (
                             <td {...cell.getCellProps()}>
@@ -382,10 +386,11 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
                 })}
               </tbody>
             </table>
+            </div>
 
             <div className="pagination">
             <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-              {<i class="fas fa-chevron-left"></i>}
+              {<i className="fas fa-chevron-left"></i>}
             </button>
 
             <span>
@@ -396,7 +401,7 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
             </span>
 
             <button onClick={() => nextPage()} disabled={!canNextPage}>
-              {<i class="fas fa-chevron-right"></i>}
+              {<i className="fas fa-chevron-right"></i>}
             </button>
           </div>
           </Route>
@@ -415,10 +420,10 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
               </div>
 
               <div className="filter--wrapper">
-                <button class="dropdown--button">Filtrer</button>
-                <div class="dropdown--wrapper">
+                <button className="dropdown--button">Filtrer</button>
+                <div className="dropdown--wrapper">
                   {allColumns.map((column) => (
-                    <div class="dropdown" key={column.id}>
+                    <div className="dropdown" key={column.id}>
                       <label>
                         <input
                           type="checkbox"
@@ -431,6 +436,8 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
                 </div>
               </div>
             </div>
+
+            <div className="table-wrapper">
             <table className="emballage-table--balance" {...getTableProps()}>
             <thead>
                 {headerGroups.map((headerGroup) => (
@@ -473,10 +480,11 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
                 })}
               </tbody>
             </table>
+            </div>
 
             <div className="pagination">
             <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-              {<i class="fas fa-chevron-left"></i>}
+              {<i className="fas fa-chevron-left"></i>}
             </button>
 
             <span>
@@ -487,7 +495,7 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
             </span>
 
             <button onClick={() => nextPage()} disabled={!canNextPage}>
-              {<i class="fas fa-chevron-right"></i>}
+              {<i className="fas fa-chevron-right"></i>}
             </button>
           </div>
           </Route>

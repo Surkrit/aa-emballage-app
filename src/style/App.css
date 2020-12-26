@@ -105,7 +105,7 @@ p {
 }
 
 .content {
-  width: calc(100% - 250px);
+  width: calc(100% - 340px);
   margin: 0 45px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -151,6 +151,7 @@ p {
           flex-direction: column;
   margin: 0;
   padding: 0;
+  width: 250px;
 }
 
 .nav li a {
