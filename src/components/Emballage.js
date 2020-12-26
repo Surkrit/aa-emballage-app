@@ -1,338 +1,495 @@
-import React from 'react';
-import "../style/App.css";
-import Headline from "./Headline";
-import Comment from "./Comment";
-import DropDown from "./DropDown";
+import React from "react";
+import styled from "styled-components";
+import { useTable, usePagination, useExpanded } from "react-table";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-function Emballage() {
+import makeData from "./Utils";
+
+import Headline from "./Headline";
+
+const Styles = styled.div`
+  .emballage-date {
+    display: flex;
+    align-items: center;
+    width: 190px;
+    justify-content: space-between;
+    input[type="date"] {
+      border-radius: 5px;
+      height: 25px;
+    }
+  }
+
+  .emballage-buttons {
+    button {
+      width: 250px;
+      height: 60px;
+      font-size: 20px;
+      border: 0px;
+      font-weight: 600;
+      background: #e4e4e4;
+      a {
+        color: #707070;
+        text-decoration: none;
+      }
+      &:first-of-type {
+        border-radius: 5px 0px 0px 0px;
+      }
+      &:last-of-type {
+        border-radius: 0px 5px 0px 0px;
+      }
+    }
+    .button--active {
+      background: #00904a;
+      a {
+        color: white;
+      }
+    }
+  }
+
+  .emballage-table--afleveret {
+    width: 100%;
+      th {
+        border: 1px solid #707070;
+        font-weight: 600;
+        padding: 5px;
+      }
+    .extended-row {
+      td {
+        border: 1px solid #707070;
+        padding: 5px;
+        background: #bfe1cc;
+        height: 2px;
+        &:nth-child(-n + 6),
+        &:nth-last-child(-n + 3) {
+          background: white;
+          border-top: 0px;
+        }
+      }
+    }
+    .table-row {
+      td {
+        border: 1px solid #707070;
+        padding: 5px;
+        background: #f8cdce;
+        &:nth-child(-n + 6),
+        &:nth-last-child(-n + 3) {
+          background: white;
+          border-bottom: 0px;
+        }
+      }
+    }
+  }
+
+  .emballage-table--balance {
+    width: 100%;
+    tr {
+      th {
+        border: 1px solid #707070;
+        font-weight: 600;
+        padding: 5px;
+      }
+
+      &:nth-child(even) {
+        td {
+          border: 1px solid #707070;
+          padding: 5px;
+          background: white;
+          height: 2px;
+          border-top: 0px;
+          visibility: hidden;
+          h4:after{
+            content:' '; 
+            visibility: visible;
+            display: block;
+          }
+        }
+      }
+      &:nth-child(odd) {
+        td {
+          border: 1px solid #707070;
+          padding: 5px;
+          background: #white;
+          border-bottom: 0px;
+        }
+      }
+
+
+    }
+  }
+
+  .table-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .comment--row {
+    display: flex;
+    justify-content: end;
+    border: 0px solid black !important;
+  }
+
+  .table-top--buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .dropdown--button {
+    width: 215px;
+    height: 60px;
+    background-color: #dc2f34;
+    border: 0px;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 5px 5px 0px 0px;
+    cursor: pointer;
+  }
+
+  .dropdown--wrapper {
+    display: block;
+    flex-direction: column;
+    width: 213px;
+    border: 1px solid black;
+    border-top: 0px;
+    border-radius: 0px 0px 5px 5px;
+    padding: 10px 0px;
+    position: absolute;
+    background: white;
+  }
+
+  .dropdown {
+    &:nth-child(-n + 6),
+    &:nth-last-child(-n + 3) {
+      display: none;
+    }
+  }
+
+  .pagination {
+    margin-top: 20px;
+    margin-bottom: 100px;
+    justify-content: end;
+    button {
+      background: none;
+      border: 0;
+      cursor: pointer;
+      &:first-of-type {
+        margin-right: 10px;
+      }
+      &:last-of-type {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .fa-file-download {
+    cursor: pointer;
+  }
+
+  .comment-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    .input-comment {
+      border: 1px solid black;
+      border-radius: 5px;
+      padding: 3px 10px;
+      align-self: start;
+      width: 100%;
+      max-width: 80px;
+      cursor: pointer;
+    }
+    .comment {
+      resize: none;
+      padding: 10px;
+      border-radius: 5px 0px 5px 5px;
+      border: 1px solid black;
+      display: none;
+      position: absolute;
+      margin-top: 30px;
+      align-self: end;
+    }
+    div {
+      margin-top: 5px;
+    }
+  }
+`;
+
+function SubRows({ row, rowProps, data }) {
   return (
     <>
+      {data.map((x, i) => {
+        return (
+          <tr class="extended-row" {...rowProps} key={`${rowProps.key}-expanded-${i}`}>
+            {row.cells.map((cell) => {
+              return (
+                <td {...cell.getCellProps()}>
+                  <h4>
+                  {cell.render(cell.column.SubCell ? "SubCell" : "Cell", {
+                    value: cell.column.accessor && cell.column.accessor(x, i),
+                    row: { ...row, original: x },
+                  })}
+                  </h4>
+                </td>
+              );
+            })}
+          </tr>
+        );
+      })}
+    </>
+  );
+}
+
+function SubRowAsync({ row, rowProps, visibleColumns }) {
+  const [loading, setLoading] = React.useState(true);
+  const [data, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setData(makeData(1));
+      setLoading(false);
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
+  return (
+    <SubRows
+      row={row}
+      rowProps={rowProps}
+      visibleColumns={visibleColumns}
+      data={data}
+      loading={loading}
+    />
+  );
+}
+
+function Table({ columns: userColumns, data, renderRowSubComponent }) {
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    page,
+    prepareRow,
+    allColumns,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    nextPage,
+    previousPage,
+    visibleColumns,
+    state: { pageIndex },
+  } = useTable(
+    {
+      columns: userColumns,
+      data,
+      initialState: { pageIndex: 0, pageSize: 10 },
+    },
+    useExpanded,
+    usePagination
+  );
+
+  //Giver dags dato
+  const today = new Date().toISOString().substr(0, 10);
+
+  // Render the UI for your table
+  return (
+    <>
+      <Headline title="Emballageoversigt" />
+
+      <div className="emballage-date">
+        <p>Fra dato:</p> <input type="date" value="2000-01-01" />
+      </div>
+      <div className="emballage-date">
+        <p>Til dato:</p> <input type="date" value={today} />
+      </div>
+
       <Router>
         <Switch>
           <Route exact path="/Customer/Home">
-            <Headline title="Emballageoversigt" />
-            <div className="emballage-date">
-              <p>Fra dato:</p> <input type="date" />
-            </div>
-            <div className="emballage-date">
-              <p>Til dato:</p> <input type="date" />
-            </div>
-
-            <div className="table-buttons">
-              <div className="emballage-buttons">
-                <button className="button--active">
-                  <Link to="Home">Afleveret/returneret</Link>
-                </button>
-                <button>
-                  <Link to="Balance">Balance</Link>
-                </button>
+            <div className="table-top--buttons">
+              <div className="table-buttons">
+                <div className="emballage-buttons">
+                  <button className="button--active">
+                    <Link to="Home">Afleveret/returneret</Link>
+                  </button>
+                  <button>
+                    <Link to="Balance">Balance</Link>
+                  </button>
+                </div>
               </div>
 
-              <DropDown />
+              <div className="filter--wrapper">
+                <button class="dropdown--button">Filtrer</button>
+                <div class="dropdown--wrapper">
+                  {allColumns.map((column) => (
+                    <div class="dropdown" key={column.id}>
+                      <label>
+                        <input
+                          type="checkbox"
+                          {...column.getToggleHiddenProps()}
+                        />{" "}
+                        {column.id}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            <table>
-              <tr>
-                <th>
-                  <h4>#</h4>
-                </th>
-                <th>
-                  <h4>Accep. af AA</h4>
-                </th>
-                <th>
-                  <h4>Accep.</h4>
-                </th>
-                <th>
-                  <h4>Kvitterings nr.</h4>
-                </th>
-                <th>
-                  <h4>Tur nr.</h4>
-                </th>
-                <th>
-                  <h4>Dato</h4>
-                </th>
-                <Type FullName="T5 RFID CC" />
-                <Type FullName="HYLDER" />
-                <Type FullName="FORL." />
-                <Type FullName="RFID CC" />
-                <Type FullName="½ RFID CC" />
-                <Type FullName="½ hylde" />
-                <Type FullName="½ CC" />
-                <Type FullName="DS ½CC" />
-                <Type FullName="DS ½HYLDE" />
-                <Type FullName="EUPL" />
-                <Type FullName="½ PLL" />
-                <Type FullName="¼ PLL" />
-                <Type FullName="CC" />
-                <Type FullName="SØJLERØR" />
-                <th>
-                  <h4>Signeret</h4>
-                </th>
-                <th>
-                  <h4>Kommentar</h4>
-                </th>
-                <th>
-                  <h4>PDF</h4>
-                </th>
-              </tr>
-              <RowAfleveret
-                Id="1"
-                AccepAA="yes"
-                AccepKunde="yes"
-                Kvittering="123698"
-                Tur="90684"
-                Dato="10-11-2020"
-                T5RfidCCInn="12"
-                HylderInn="2"
-                ForlInn="4"
-                RFIDccInn="3"
-                halfRFIDccInn="45"
-                halfHyldeInn="4"
-                halfCCInn="11"
-                DSHalfCCInn="13"
-                DSHalfHyldeInn="1"
-                EuplInn="5"
-                HalfPllInn=""
-                quartPllInn="4"
-                CCInn="11"
-                SojleInn="32"
-                T5RfidCCOut="1"
-                HylderOut=" "
-                ForlOut="4"
-                RFIDccOut="3"
-                halfRFIDccOut="15"
-                halfHyldeOut=""
-                halfCCOut="4"
-                DSHalfCCOut="33"
-                DSHalfHyldeOut="1"
-                EuplOut="5"
-                HalfPllOut="3"
-                quartPllOut="1"
-                CCOut="1"
-                SojleOut=""
-                Signed="no"
-                Kommentar="Det her en kommentar"
-              />
-              <RowAfleveret
-                Id="1"
-                AccepAA="yes"
-                AccepKunde="yes"
-                Kvittering="123698"
-                Tur="90684"
-                Dato="10-11-2020"
-                T5RfidCCInn="12"
-                HylderInn="2"
-                ForlInn="4"
-                RFIDccInn="3"
-                halfRFIDccInn="45"
-                halfHyldeInn="4"
-                halfCCInn="11"
-                DSHalfCCInn="13"
-                DSHalfHyldeInn="1"
-                EuplInn="5"
-                HalfPllInn=""
-                quartPllInn="4"
-                CCInn="11"
-                SojleInn="32"
-                T5RfidCCOut="1"
-                HylderOut=" "
-                ForlOut="4"
-                RFIDccOut="3"
-                halfRFIDccOut="15"
-                halfHyldeOut=""
-                halfCCOut="4"
-                DSHalfCCOut="33"
-                DSHalfHyldeOut="1"
-                EuplOut="5"
-                HalfPllOut="3"
-                quartPllOut="1"
-                CCOut="1"
-                SojleOut=""
-                Signed="no"
-                Kommentar="Det her en kommentar"
-              />
-              <RowAfleveret
-                Id="1"
-                AccepAA="yes"
-                AccepKunde="yes"
-                Kvittering="123698"
-                Tur="90684"
-                Dato="10-11-2020"
-                T5RfidCCInn="12"
-                HylderInn="2"
-                ForlInn="4"
-                RFIDccInn="3"
-                halfRFIDccInn="45"
-                halfHyldeInn="4"
-                halfCCInn="11"
-                DSHalfCCInn="13"
-                DSHalfHyldeInn="1"
-                EuplInn="5"
-                HalfPllInn=""
-                quartPllInn="4"
-                CCInn="11"
-                SojleInn="32"
-                T5RfidCCOut="1"
-                HylderOut=" "
-                ForlOut="4"
-                RFIDccOut="3"
-                halfRFIDccOut="15"
-                halfHyldeOut=""
-                halfCCOut="4"
-                DSHalfCCOut="33"
-                DSHalfHyldeOut="1"
-                EuplOut="5"
-                HalfPllOut="3"
-                quartPllOut="1"
-                CCOut="1"
-                SojleOut=""
-                Signed="no"
-                Kommentar="Det her en kommentar"
-              />
+            <table className="emballage-table--afleveret" {...getTableProps()}>
+            <thead>
+                {headerGroups.map((headerGroup) => (
+                  <tr {...headerGroup.getHeaderGroupProps()}>
+                    {headerGroup.headers.map((column) => (
+                      <th {...column.getHeaderProps()}>
+                        <h4>{column.render("Header")}</h4>
+                      </th>
+                    ))}
+                  </tr>
+                ))}
+              </thead>
+              <tbody {...getTableBodyProps()}>
+                {page.map((row, i) => {
+                  prepareRow(row);
+                  const rowProps = row.getRowProps();
+                  return (
+                    // Use a React.Fragment here so the table markup is still valid
+                    <React.Fragment key={rowProps.key}>
+                      <tr class="table-row" {...rowProps}>
+                        {row.cells.map((cell) => {
+                          return (
+                            <td {...cell.getCellProps()}>
+                              <h4>{cell.render("Cell")}</h4>
+                            </td>
+                          );
+                        })}
+                      </tr>
+                      {
+                        (row.isExpanded =
+                          true &&
+                          renderRowSubComponent({
+                            row,
+                            rowProps,
+                            visibleColumns,
+                          }))
+                      }
+                    </React.Fragment>
+                  );
+                })}
+              </tbody>
             </table>
+
+            <div className="pagination">
+            <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+              {<i class="fas fa-chevron-left"></i>}
+            </button>
+
+            <span>
+              Side{" "}
+              <strong>
+                {pageIndex + 1} af {pageOptions.length}
+              </strong>{" "}
+            </span>
+
+            <button onClick={() => nextPage()} disabled={!canNextPage}>
+              {<i class="fas fa-chevron-right"></i>}
+            </button>
+          </div>
           </Route>
 
           <Route exact path="/Customer/Balance">
-            <Headline title="Emballageoversigt" />
-            <div className="emballage-date">
-              <p>Fra dato:</p> <input type="date" />
-            </div>
-            <div className="emballage-date">
-              <p>Til dato:</p> <input type="date" />
-            </div>
-
-            <div className="table-buttons">
-              <div className="emballage-buttons">
-                <button>
-                  <Link to="Home">Afleveret/returneret</Link>
-                </button>
-                <button className="button--active">
-                  <Link to="Balance">Balance</Link>
-                </button>
+            <div className="table-top--buttons">
+              <div className="table-buttons">
+                <div className="emballage-buttons">
+                  <button>
+                    <Link to="Home">Afleveret/returneret</Link>
+                  </button>
+                  <button className="button--active">
+                    <Link to="Balance">Balance</Link>
+                  </button>
+                </div>
               </div>
 
-              <DropDown />
+              <div className="filter--wrapper">
+                <button class="dropdown--button">Filtrer</button>
+                <div class="dropdown--wrapper">
+                  {allColumns.map((column) => (
+                    <div class="dropdown" key={column.id}>
+                      <label>
+                        <input
+                          type="checkbox"
+                          {...column.getToggleHiddenProps()}
+                        />{" "}
+                        {column.id}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-
-            <table>
-              <tr>
-                <th>
-                  <h4>#</h4>
-                </th>
-                <th>
-                  <h4>Accep. af AA</h4>
-                </th>
-                <th>
-                  <h4>Accep.</h4>
-                </th>
-                <th>
-                  <h4>Kvitterings nr.</h4>
-                </th>
-                <th>
-                  <h4>Tur nr.</h4>
-                </th>
-                <th>
-                  <h4>Dato</h4>
-                </th>
-                <Type FullName="T5 RFID CC" />
-                <Type FullName="HYLDER" />
-                <Type FullName="FORL." />
-                <Type FullName="RFID CC" />
-                <Type FullName="½ RFID CC" />
-                <Type FullName="½ hylde" />
-                <Type FullName="½ CC" />
-                <Type FullName="DS ½CC" />
-                <Type FullName="DS ½HYLDE" />
-                <Type FullName="EUPL" />
-                <Type FullName="½ PLL" />
-                <Type FullName="¼ PLL" />
-                <Type FullName="CC" />
-                <Type FullName="SØJLERØR" />
-                <th>
-                  <h4>Signeret</h4>
-                </th>
-                <th>
-                  <h4>Kommentar</h4>
-                </th>
-                <th>
-                  <h4>PDF</h4>
-                </th>
-              </tr>
-              <RowBalance
-                Id="1"
-                AccepAA="yes"
-                AccepKunde="yes"
-                Kvittering="123698"
-                Tur="90684"
-                Dato="10-11-2020"
-                T5RfidCC="1"
-                Hylder="2"
-                Forl="4"
-                RFIDcc="3"
-                halfRFIDcc="45"
-                halfHylde=""
-                halfCC="4"
-                DSHalfCC="13"
-                DSHalfHylde="1"
-                Eupl="5"
-                HalfPll=""
-                quartPll="1"
-                CC="1"
-                Sojle=""
-                signed="no"
-                Kommentar="Det her en kommentar"
-              />
-              <RowBalance
-                Id="1"
-                AccepAA="yes"
-                AccepKunde="yes"
-                Kvittering="123698"
-                Tur="90684"
-                Dato="10-11-2020"
-                T5RfidCC="1"
-                Hylder="2"
-                Forl="4"
-                RFIDcc="3"
-                halfRFIDcc="45"
-                halfHylde=""
-                halfCC="4"
-                DSHalfCC="13"
-                DSHalfHylde="1"
-                Eupl="5"
-                HalfPll=""
-                quartPll="1"
-                CC="1"
-                Sojle=""
-                signed="no"
-                Kommentar="Det her en kommentar"
-              />
-              <RowBalance
-                Id="1"
-                AccepAA="yes"
-                AccepKunde="yes"
-                Kvittering="123698"
-                Tur="90684"
-                Dato="10-11-2020"
-                T5RfidCC="1"
-                Hylder="2"
-                Forl="4"
-                RFIDcc="3"
-                halfRFIDcc="45"
-                halfHylde=""
-                halfCC="4"
-                DSHalfCC="13"
-                DSHalfHylde="1"
-                Eupl="5"
-                HalfPll=""
-                quartPll="1"
-                CC="1"
-                Sojle=""
-                signed="no"
-                Kommentar="Det her en kommentar"
-              />
+            <table className="emballage-table--balance" {...getTableProps()}>
+            <thead>
+                {headerGroups.map((headerGroup) => (
+                  <tr {...headerGroup.getHeaderGroupProps()}>
+                    {headerGroup.headers.map((column) => (
+                      <th {...column.getHeaderProps()}>
+                        <h4>{column.render("Header")}</h4>
+                      </th>
+                    ))}
+                  </tr>
+                ))}
+              </thead>
+              <tbody {...getTableBodyProps()}>
+                {page.map((row, i) => {
+                  prepareRow(row);
+                  const rowProps = row.getRowProps();
+                  return (
+                    // Use a React.Fragment here so the table markup is still valid
+                    <React.Fragment key={rowProps.key}>
+                      <tr {...rowProps}>
+                        {row.cells.map((cell) => {
+                          return (
+                            <td {...cell.getCellProps()}>
+                              <h4>{cell.render("Cell")}</h4>
+                            </td>
+                          );
+                        })}
+                      </tr>
+                      {
+                        (row.isExpanded =
+                          true &&
+                          renderRowSubComponent({
+                            row,
+                            rowProps,
+                            visibleColumns,
+                          }))
+                      }
+                    </React.Fragment>
+                  );
+                })}
+              </tbody>
             </table>
+
+            <div className="pagination">
+            <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+              {<i class="fas fa-chevron-left"></i>}
+            </button>
+
+            <span>
+              Side{" "}
+              <strong>
+                {pageIndex + 1} af {pageOptions.length}
+              </strong>{" "}
+            </span>
+
+            <button onClick={() => nextPage()} disabled={!canNextPage}>
+              {<i class="fas fa-chevron-right"></i>}
+            </button>
+          </div>
           </Route>
         </Switch>
       </Router>
@@ -340,334 +497,151 @@ function Emballage() {
   );
 }
 
-function Type({ FullName }) {
+//Her skabes kollonerne til tabellen
+function EmballageTable() {
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "#",
+        accessor: "id",
+        SubCell: () => null,
+      },
+      {
+        Header: "Accep. af AA",
+        accessor: "accepAA",
+        SubCell: () => null,
+      },
+      {
+        Header: "Accep.",
+        accessor: "accepKunde",
+        SubCell: () => null,
+      },
+      {
+        Header: "Kvittings nr. ",
+        accessor: "KvitteringNr",
+        SubCell: () => null,
+      },
+      {
+        Header: "Tur nr",
+        accessor: "turNr",
+        SubCell: () => null,
+      },
+      {
+        Header: "Dato",
+        accessor: "dato",
+        SubCell: () => null,
+      },
+      {
+        Header: "T5 RFID CC",
+        accessor: "t5RFIDcc",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
+      },
+      {
+        Header: "Hylder",
+        accessor: "hylder",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
+      },
+      {
+        Header: "Forlænger",
+        accessor: "forlaenger",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
+      },
+      {
+        Header: "RFID CC",
+        accessor: "RFIDcc",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
+      },
+      {
+        Header: "½ RFID CC",
+        accessor: "halvRFIDcc",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
+      },
+      {
+        Header: "½ Hylde",
+        accessor: "halvHylde",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
+      },
+      {
+        Header: "½ CC",
+        accessor: "halvCC",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
+      },
+      {
+        Header: "DS ½CC",
+        accessor: "dsHalvCC",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
+      },
+      {
+        Header: "DS ½ Hylde",
+        accessor: "dsHalvHylde",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
+      },
+      {
+        Header: "Europalle",
+        accessor: "europalle",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
+      },
+      {
+        Header: "½ Palle",
+        accessor: "halvPalle",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
+      },
+      {
+        Header: "1⁄4 Palle",
+        accessor: "kvartPalle",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
+      },
+      {
+        Header: "CC",
+        accessor: "cc",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
+      },
+      {
+        Header: "Søjlerør",
+        accessor: "soejleroer",
+        SubCell: (cellProps) => <> {cellProps.value}</>,
+      },
+      {
+        Header: "Signeret",
+        accessor: "signeret",
+        SubCell: () => null,
+      },
+      {
+        Header: "Kommentar",
+        accessor: "kommentar",
+        SubCell: () => null,
+      },
+      {
+        Header: "PDF",
+        accessor: "pdf",
+        SubCell: () => null,
+      },
+    ],
+    []
+  );
+
+  const data = React.useMemo(() => makeData(10000), []);
+
+  const renderRowSubComponent = React.useCallback(
+    ({ row, rowProps, visibleColumns }) => (
+      <SubRowAsync
+        row={row}
+        rowProps={rowProps}
+        visibleColumns={visibleColumns}
+      />
+    ),
+    []
+  );
+
   return (
-    <th>
-      <h4>{FullName}</h4>
-    </th>
+    <Styles>
+      <Table
+        columns={columns}
+        data={data}
+        renderRowSubComponent={renderRowSubComponent}
+      />
+    </Styles>
   );
 }
 
-function RowAfleveret({
-  Id,
-  AccepAA,
-  AccepKunde,
-  Kvittering,
-  Tur,
-  Dato,
-  T5RfidCCInn,
-  HylderInn,
-  ForlInn,
-  RFIDccInn,
-  halfRFIDccInn,
-  halfHyldeInn,
-  halfCCInn,
-  DSHalfCCInn,
-  DSHalfHyldeInn,
-  EuplInn,
-  HalfPllInn,
-  quartPllInn,
-  CCInn,
-  SojleInn,
-  T5RfidCCOut,
-  HylderOut,
-  ForlOut,
-  RFIDccOut,
-  halfRFIDccOut,
-  halfHyldeOut,
-  halfCCOut,
-  DSHalfCCOut,
-  DSHalfHyldeOut,
-  EuplOut,
-  HalfPllOut,
-  quartPllOut,
-  CCOut,
-  SojleOut,
-  Signed,
-  Kommentar,
-}) {
-  return (
-    <>
-      <tr>
-        <td>
-          <h4>{Id}</h4>
-        </td>
-        <td>
-          <h4>
-            <input type="checkbox" />
-          </h4>
-        </td>
-        <td>
-          <h4>
-            <input type="checkbox" />
-          </h4>
-        </td>
-        <td>
-          <h4>{Kvittering}</h4>
-        </td>
-        <td>
-          <h4>{Tur}</h4>
-        </td>
-        <td>
-          <h4>{Dato}</h4>
-        </td>
-        <td className="row--red">
-          <h4>{T5RfidCCInn}</h4>
-        </td>
-        <td className="row--red">
-          <h4>{HylderInn}</h4>
-        </td>
-        <td className="row--red">
-          <h4>{ForlInn}</h4>
-        </td>
-        <td className="row--red">
-          <h4>{RFIDccInn}</h4>
-        </td>
-        <td className="row--red">
-          <h4>{halfRFIDccInn}</h4>
-        </td>
-        <td className="row--red">
-          <h4>{halfHyldeInn}</h4>
-        </td>
-        <td className="row--red">
-          <h4>{halfCCInn}</h4>
-        </td>
-        <td className="row--red">
-          <h4>{DSHalfCCInn}</h4>
-        </td>
-        <td className="row--red">
-          <h4>{DSHalfHyldeInn}</h4>
-        </td>
-        <td className="row--red">
-          <h4>{EuplInn}</h4>
-        </td>
-        <td className="row--red">
-          <h4>{HalfPllInn}</h4>
-        </td>
-        <td className="row--red">
-          <h4>{quartPllInn}</h4>
-        </td>
-        <td className="row--red">
-          <h4>{CCInn}</h4>
-        </td>
-        <td className="row--red">
-          <h4>{SojleInn}</h4>
-        </td>
-        <td>
-          <h4>
-            <input type="checkbox" />
-          </h4>
-        </td>
-        <td className="comment--row">
-          <Comment />
-          {/* <button className="showComment">Indsæt</button> */}
-          {/* <Comment Kommentar={Kommentar} /> */}
-        </td>
-        <td>
-          <h4>♥</h4>
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td className="row--green">
-          <h4>{T5RfidCCOut}</h4>
-        </td>
-        <td className="row--green">
-          <h4>{HylderOut}</h4>
-        </td>
-        <td className="row--green">
-          <h4>{ForlOut}</h4>
-        </td>
-        <td className="row--green">
-          <h4>{RFIDccOut}</h4>
-        </td>
-        <td className="row--green">
-          <h4>{halfRFIDccOut}</h4>
-        </td>
-        <td className="row--green">
-          <h4>{halfHyldeOut}</h4>
-        </td>
-        <td className="row--green">
-          <h4>{halfCCOut}</h4>
-        </td>
-        <td className="row--green">
-          <h4>{DSHalfCCOut}</h4>
-        </td>
-        <td className="row--green">
-          <h4>{DSHalfHyldeOut}</h4>
-        </td>
-        <td className="row--green">
-          <h4>{EuplOut}</h4>
-        </td>
-        <td className="row--green">
-          <h4>{HalfPllOut}</h4>
-        </td>
-        <td className="row--green">
-          <h4>{quartPllOut}</h4>
-        </td>
-        <td className="row--green">
-          <h4>{CCOut}</h4>
-        </td>
-        <td className="row--green">
-          <h4>{SojleOut}</h4>
-        </td>
-        <td></td>
-        <td>
-          <h4>{Kommentar}</h4>
-        </td>
-        <td>
-          <h4 className="empty">.</h4>
-        </td>
-      </tr>
-    </>
-  );
-}
-
-function RowBalance({
-  Id,
-  AccepAA,
-  AccepKunde,
-  Kvittering,
-  Tur,
-  Dato,
-  T5RfidCC,
-  Hylder,
-  Forl,
-  RFIDcc,
-  halfRFIDcc,
-  halfHylde,
-  halfCC,
-  DSHalfCC,
-  DSHalfHylde,
-  Eupl,
-  HalfPll,
-  quartPll,
-  CC,
-  Sojle,
-  signed,
-  Kommentar,
-}) {
-  return (
-    <>
-      <tr>
-        <td>
-          <h4>{Id}</h4>
-        </td>
-        <td>
-          <h4>
-            <input type="checkbox" />
-          </h4>
-        </td>
-        <td>
-          <h4>
-            <input type="checkbox" />
-          </h4>
-        </td>
-        <td>
-          <h4>{Kvittering}</h4>
-        </td>
-        <td>
-          <h4>{Tur}</h4>
-        </td>
-        <td>
-          <h4>{Dato}</h4>
-        </td>
-        <td>
-          <h4>{T5RfidCC}</h4>
-        </td>
-        <td>
-          <h4>{Hylder}</h4>
-        </td>
-        <td>
-          <h4>{Forl}</h4>
-        </td>
-        <td>
-          <h4>{RFIDcc}</h4>
-        </td>
-        <td>
-          <h4>{halfRFIDcc}</h4>
-        </td>
-        <td>
-          <h4>{halfHylde}</h4>
-        </td>
-        <td>
-          <h4>{halfCC}</h4>
-        </td>
-        <td>
-          <h4>{DSHalfCC}</h4>
-        </td>
-        <td>
-          <h4>{DSHalfHylde}</h4>
-        </td>
-        <td>
-          <h4>{Eupl}</h4>
-        </td>
-        <td>
-          <h4>{HalfPll}</h4>
-        </td>
-        <td>
-          <h4>{quartPll}</h4>
-        </td>
-        <td>
-          <h4>{CC}</h4>
-        </td>
-        <td>
-          <h4>{Sojle}</h4>
-        </td>
-        <td>
-          <h4>
-            <input type="checkbox" />
-          </h4>
-        </td>
-        <td className="comment--row">
-          {/* <button>Indsæt</button> */}
-          <Comment Comment={Kommentar} />
-          {/* <Comment Comment={Kommentar} /> */}
-        </td>
-        <td>
-          <h4>♥</h4>
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>
-          <h4>{Kommentar}</h4>
-        </td>
-        <td>
-          <h4 className="empty">.</h4>
-        </td>
-      </tr>
-    </>
-  );
-}
-
-
-
-
-
-export default Emballage;
+export default EmballageTable;

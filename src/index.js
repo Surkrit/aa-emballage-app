@@ -11,7 +11,6 @@ import Button from './components/Button';
 import Emballage from './components/Emballage';
 import Headline from './components/Headline';
 import Message from './components/Message';
-import App from './components/Table';
 import Terms from './components/Terms';
 import Login from './pages/login';
 import Admin from './pages/admin';
@@ -39,9 +38,7 @@ ReactDOM.render(
             <Route exact path="/Customer/Home">
                <NavCustomer />
                <div className="content">
-                  <div id="table"></div>
-                  {/* <Emballage /> */}
-                  <App />npm
+                  <Emballage />
                </div>
             </Route>
 

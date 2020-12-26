@@ -15,7 +15,7 @@ function Login() {
       <div className="login--wrapper__content">
         <Headline title="Velkommen" />
         <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia tempor egestas. Nullam enim erat, consequat et nisi eget, pellentesque sodales justo. Etiam ut iaculis nibh. Suspendisse nulla libero, sagittis ut justo sit amet, volutpat venenatis elit. Donec fermentum posuere nisi tempor auctor.  </p>
-        <form className="login--form">
+        <form className="login--form" action="admin.html">
           <div className="login--form__wrapper">
             <label for="brugernavn">Brugernavn</label>
             <input className="login--form__input" type="email" id="brugernavn" />
@@ -25,6 +25,7 @@ function Login() {
             <input className="login--form__input" type="password" id="password" />
           </div>
           <Button buttonname="Login" />
+          <input type="submit" value="Login"/>
           <Link to="/">Glemt Password?</Link>
 
           <Link to="/Customer/Home">Customer</Link>
