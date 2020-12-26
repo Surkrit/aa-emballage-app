@@ -15,7 +15,6 @@ import MessageField from './components/MessageField';
 import App from './components/Table';
 import Terms from './components/Terms';
 import Login from './pages/login';
-import Admin from './pages/admin';
 import Prices from './components/Prices';
 import Tomgods from './components/Tomgods';
 import Svind from './components/Svind';
@@ -43,6 +42,30 @@ ReactDOM.render(
                   <div id="table"></div>
                   {/* <Emballage /> */}
                   <App />npm
+               </div>
+            </Route>
+
+            <Route exact path="/Customer/Profile">
+               <NavCustomer />
+               <div className="content">
+                  <Headline title="Profil" />
+                  <div className="profile.--wrapper">
+                     <div className="profile--wrapper__content">
+                        <h3>Butik</h3>
+                        <p>515254</p>
+                        <p>Bilka Odense - 1654</p>
+                        <p>Niels Bohrs Alle 150</p>
+                        <p>5230 Odense</p>
+                     </div>
+
+                     <div className="profile--wrapper__content">
+                        <h3>Kontaktperson</h3>
+                        <p>Lone Hansen</p>
+                        <p>+45 87 392 614</p>
+                        <p>Lonha@alex-andersen.dk</p>
+                     </div>
+                  </div>
+                  <Button buttonname="Rediger" />
                </div>
             </Route>
 

@@ -11,6 +11,7 @@ function NavCustomer() {
       <ul>
             <li>
                <Link to="/Customer/Home">Emballageoversigt</Link>
+               <Link to="/Customer/Profile">Profil</Link>
                <Link to="/Customer/Message">Beskeder</Link>
                <Link to="/Customer/Tomgods">Tomgods</Link>
                <Link to="/Customer/Svind">Svindopgørelse</Link>
