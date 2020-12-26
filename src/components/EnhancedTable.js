@@ -82,6 +82,14 @@ const EnhancedTable = ({
     {
       columns,
       data,
+      initialState: {
+        sortBy: [
+          {
+            id: 'date',
+            desc: true
+          }
+        ]
+      },
     //   defaultColumn,
       autoResetPage: !skipPageReset,
       // updateMyData isn't part of the API, but
