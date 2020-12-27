@@ -2,8 +2,8 @@
 @import '../mixins';
 
 .add-row {
-    margin-bottom: 40px;
-    
+    margin-bottom: 80px;
+
     .add-row__date {
         display: block;
         margin-bottom: 10px;
@@ -15,5 +15,9 @@
 
     table {
         @include table;
+    }
+
+    button {
+        float: right;
     }
 }

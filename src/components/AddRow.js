@@ -44,20 +44,20 @@ const AddRow = props => {
         <table>
           <thead>
             <tr>
-              <th>T5 Rfid CC</th>
-              <th>Hylder</th>
-              <th>Forl.</th>
-              <th>Rfid CC</th>
-              <th>½ Rfid CC</th>
-              <th>½ Hylde</th>
-              <th>½ CC</th>
-              <th>DS ½CC</th>
-              <th>DS ½Hylde</th>
-              <th>Eupl</th>
-              <th>½ Pll</th>
-              <th>¼ Pll</th>
-              <th>CC</th>
-              <th>Søjlerør</th>
+              <th><h4>T5 Rfid CC</h4></th>
+              <th><h4>Hylder</h4></th>
+              <th><h4>Forl.</h4></th>
+              <th><h4>Rfid CC</h4></th>
+              <th><h4>½ Rfid CC</h4></th>
+              <th><h4>½ Hylde</h4></th>
+              <th><h4>½ CC</h4></th>
+              <th><h4>DS ½CC</h4></th>
+              <th><h4>DS ½Hylde</h4></th>
+              <th><h4>Eupl</h4></th>
+              <th><h4>½ Pll</h4></th>
+              <th><h4>¼ Pll</h4></th>
+              <th><h4>CC</h4></th>
+              <th><h4>Søjlerør</h4></th>
               {/* <th>Kommentar</th> */}
             </tr>
           </thead>

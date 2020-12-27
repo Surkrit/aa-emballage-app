@@ -5,7 +5,14 @@
     @include table;
 }
 
+.enhanced-table__text {
+    margin-bottom: 15px;
+}
+
 .pagination {
+    display: flex;
+    justify-content: end;
+    margin-top: 5px;
     button {
         background: none;
         border: none;

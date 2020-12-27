@@ -129,12 +129,12 @@ const EnhancedTable = ({
   // Render the UI for your table
   return (
     <>
-      <div><p>{beforeAddRow}</p></div>
+      <div className="enhanced-table__text"><p>{beforeAddRow}</p></div>
       <AddRow
         addRowHandler={addRowHandler}
         buttonName={buttonName}
       />
-      <div><p>{beforeTable}</p></div>
+      <div className="enhanced-table__text"><p>{beforeTable}</p></div>
       <table className="enhanced-table" {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
@@ -144,7 +144,7 @@ const EnhancedTable = ({
                   {...(column.id === 'selection'
                     ? column.getHeaderProps()
                     : column.getHeaderProps(column.getSortByToggleProps()))}
-                >
+                > <h4>
                   {column.render('Header')}
                   {column.id !== 'selection' ? (
                     <TableSortLabel
@@ -152,7 +152,7 @@ const EnhancedTable = ({
                       // react-table has a unsorted state which is not treated here
                       direction={column.isSortedDesc ? 'desc' : 'asc'}
                     />
-                  ) : null}
+                  ) : null}</h4>
                 </th>
               ))}
             </tr>
@@ -183,9 +183,8 @@ const EnhancedTable = ({
 
             <span>
               Side{" "}
-              <strong>
                 {pageIndex + 1} af {pageOptions.length}
-              </strong>{" "}
+              {" "}
             </span>
 
             <button onClick={() => nextPage()} disabled={!canNextPage}>

@@ -3,6 +3,10 @@
 
 .prices {
 
+    form {
+        width: max-content;
+    }
+
     table {
         border: 0;
         max-width: 350px;
@@ -15,6 +19,7 @@
         }
         input {
             @include input-number;
+            margin: 5px;
             padding: 5px 10px;
         }
 
@@ -28,5 +33,9 @@
         input[type=number] {
             -moz-appearance: textfield;
         }
+    }
+
+    .button--green {
+        float: right;
     }
 }

@@ -1,9 +1,11 @@
+@import '../variables';
+
 .button--green {
     width: 150px;
     height: 40px;
     border: none;
     border-radius: 5px;
-    background: #00904A;
+    background: $primary-color;
     color: white;
     font-weight: 700;
     margin: 5px 0;
