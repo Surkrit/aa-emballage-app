@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import makeData from "./Utils";
 
 import Headline from "./Headline";
+import Filter from "./Filter";
 
 const Styles = styled.div`
   .emballage-date {
@@ -20,11 +21,11 @@ const Styles = styled.div`
     }
   }
 
-.table-wrapper{
-  width: 100%;
-  overflow-x: auto;
-  background: rgba(256,256,256,0.6);
-}
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    background: rgba(256, 256, 256, 0.6);
+  }
 
   .emballage-buttons {
     button {
@@ -54,12 +55,11 @@ const Styles = styled.div`
   }
 
   .emballage-table--afleveret {
-      th {
-        border: 1px solid #707070;
-        font-weight: 600;
-        padding: 5px;
-
-      }
+    th {
+      border: 1px solid #707070;
+      font-weight: 600;
+      padding: 5px;
+    }
     .extended-row {
       td {
         border: 1px solid #707070;
@@ -68,7 +68,7 @@ const Styles = styled.div`
         height: 2px;
         &:nth-child(-n + 6),
         &:nth-last-child(-n + 3) {
-          background: rgba(256,256,256,0);
+          background: rgba(256, 256, 256, 0);
           border-top: 0px;
         }
       }
@@ -80,7 +80,7 @@ const Styles = styled.div`
         background: #f8cdce;
         &:nth-child(-n + 6),
         &:nth-last-child(-n + 3) {
-          background: rgba(256,256,256,0);
+          background: rgba(256, 256, 256, 0);
           border-bottom: 0px;
         }
       }
@@ -102,8 +102,8 @@ const Styles = styled.div`
           height: 2px;
           border-top: 0px;
           visibility: hidden;
-          h4:after{
-            content:' '; 
+          h4:after {
+            content: " ";
             visibility: visible;
             display: block;
           }
@@ -116,8 +116,6 @@ const Styles = styled.div`
           border-bottom: 0px;
         }
       }
-
-
     }
   }
 
@@ -223,15 +221,19 @@ function SubRows({ row, rowProps, data }) {
     <>
       {data.map((x, i) => {
         return (
-          <tr className="extended-row" {...rowProps} key={`${rowProps.key}-expanded-${i}`}>
+          <tr
+            className="extended-row"
+            {...rowProps}
+            key={`${rowProps.key}-expanded-${i}`}
+          >
             {row.cells.map((cell) => {
               return (
                 <td {...cell.getCellProps()}>
                   <h4>
-                  {cell.render(cell.column.SubCell ? "SubCell" : "Cell", {
-                    value: cell.column.accessor && cell.column.accessor(x, i),
-                    row: { ...row, original: x },
-                  })}
+                    {cell.render(cell.column.SubCell ? "SubCell" : "Cell", {
+                      value: cell.column.accessor && cell.column.accessor(x, i),
+                      row: { ...row, original: x },
+                    })}
                   </h4>
                 </td>
               );
@@ -324,85 +326,89 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
                 </div>
               </div>
 
-              <div className="filter--wrapper">
-                <button className="dropdown--button">Filtrer</button>
-                <div className="dropdown--wrapper">
-                  {allColumns.map((column) => (
-                    <div className="dropdown" key={column.id}>
-                      <label>
-                        <input
-                          type="checkbox"
-                          {...column.getToggleHiddenProps()}
-                        />{" "}
-                        {column.id}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              {/* Filter komponentet går ind og kalder en funktion, hvori knappen til filteret vises og gør det muligt at vise og skjule dropdown, hvor i de forskellige filter elementer vises i */}
+              <Filter title="Filter +">
+                {allColumns.map((column) => (
+                  <div className="dropdown" key={column.id}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        {...column.getToggleHiddenProps()}
+                      />{" "}
+                      {column.id}
+                    </label>
+                  </div>
+                ))}
+              </Filter>
             </div>
 
-                    <div className="table-wrapper">
-            <table className="emballage-table--afleveret" {...getTableProps()}>
-            <thead>
-                {headerGroups.map((headerGroup) => (
-                  <tr {...headerGroup.getHeaderGroupProps()}>
-                    {headerGroup.headers.map((column) => (
-                      <th {...column.getHeaderProps()}>
-                        <h4>{column.render("Header")}</h4>
-                      </th>
-                    ))}
-                  </tr>
-                ))}
-              </thead>
-              <tbody {...getTableBodyProps()}>
-                {page.map((row, i) => {
-                  prepareRow(row);
-                  const rowProps = row.getRowProps();
-                  return (
-                    // Use a React.Fragment here so the table markup is still valid
-                    <React.Fragment key={rowProps.key}>
-                      <tr className="table-row" {...rowProps}>
-                        {row.cells.map((cell) => {
-                          return (
-                            <td {...cell.getCellProps()}>
-                              <h4>{cell.render("Cell")}</h4>
-                            </td>
-                          );
-                        })}
-                      </tr>
-                      {
-                        (row.isExpanded =
-                          true &&
-                          renderRowSubComponent({
-                            row,
-                            rowProps,
-                            visibleColumns,
-                          }))
-                      }
-                    </React.Fragment>
-                  );
-                })}
-              </tbody>
-            </table>
+            <div className="table-wrapper">
+              <table
+                className="emballage-table--afleveret"
+                {...getTableProps()}
+              >
+                <thead>
+                  {headerGroups.map((headerGroup) => (
+                    <tr {...headerGroup.getHeaderGroupProps()}>
+                      {headerGroup.headers.map((column) => (
+                        <th {...column.getHeaderProps()}>
+                          <h4>{column.render("Header")}</h4>
+                        </th>
+                      ))}
+                    </tr>
+                  ))}
+                </thead>
+                <tbody {...getTableBodyProps()}>
+                  {page.map((row, i) => {
+                    prepareRow(row);
+                    const rowProps = row.getRowProps();
+                    return (
+                      // Use a React.Fragment here so the table markup is still valid
+                      <React.Fragment key={rowProps.key}>
+                        <tr className="table-row" {...rowProps}>
+                          {row.cells.map((cell) => {
+                            return (
+                              <td {...cell.getCellProps()}>
+                                <h4>{cell.render("Cell")}</h4>
+                              </td>
+                            );
+                          })}
+                        </tr>
+                        {
+                          (row.isExpanded =
+                            true &&
+                            renderRowSubComponent({
+                              row,
+                              rowProps,
+                              visibleColumns,
+                            }))
+                        }
+                      </React.Fragment>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
 
             <div className="pagination">
-            <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-              {<i className="fas fa-chevron-left"></i>}
-            </button>
+              <button
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+              >
+                {<i className="fas fa-chevron-left"></i>}
+              </button>
 
-            <span>
-              Side{" "}
-              <strong>
-                {pageIndex + 1} af {pageOptions.length}
-              </strong>{" "}
-            </span>
+              <span>
+                Side{" "}
+                <strong>
+                  {pageIndex + 1} af {pageOptions.length}
+                </strong>{" "}
+              </span>
 
-            <button onClick={() => nextPage()} disabled={!canNextPage}>
-              {<i className="fas fa-chevron-right"></i>}
-            </button>
-          </div>
+              <button onClick={() => nextPage()} disabled={!canNextPage}>
+                {<i className="fas fa-chevron-right"></i>}
+              </button>
+            </div>
           </Route>
 
           <Route exact path="/Customer/Balance">
@@ -418,85 +424,86 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
                 </div>
               </div>
 
-              <div className="filter--wrapper">
-                <button className="dropdown--button">Filtrer</button>
-                <div className="dropdown--wrapper">
-                  {allColumns.map((column) => (
-                    <div className="dropdown" key={column.id}>
-                      <label>
-                        <input
-                          type="checkbox"
-                          {...column.getToggleHiddenProps()}
-                        />{" "}
-                        {column.id}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              {/* Filter komponentet går ind og kalder en funktion, hvori knappen til filteret vises og gør det muligt at vise og skjule dropdown, hvor i de forskellige filter elementer vises i */}
+              <Filter title="Filter +">
+                {allColumns.map((column) => (
+                  <div className="dropdown" key={column.id}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        {...column.getToggleHiddenProps()}
+                      />{" "}
+                      {column.id}
+                    </label>
+                  </div>
+                ))}
+              </Filter>
             </div>
 
             <div className="table-wrapper">
-            <table className="emballage-table--balance" {...getTableProps()}>
-            <thead>
-                {headerGroups.map((headerGroup) => (
-                  <tr {...headerGroup.getHeaderGroupProps()}>
-                    {headerGroup.headers.map((column) => (
-                      <th {...column.getHeaderProps()}>
-                        <h4>{column.render("Header")}</h4>
-                      </th>
-                    ))}
-                  </tr>
-                ))}
-              </thead>
-              <tbody {...getTableBodyProps()}>
-                {page.map((row, i) => {
-                  prepareRow(row);
-                  const rowProps = row.getRowProps();
-                  return (
-                    // Use a React.Fragment here so the table markup is still valid
-                    <React.Fragment key={rowProps.key}>
-                      <tr {...rowProps}>
-                        {row.cells.map((cell) => {
-                          return (
-                            <td {...cell.getCellProps()}>
-                              <h4>{cell.render("Cell")}</h4>
-                            </td>
-                          );
-                        })}
-                      </tr>
-                      {
-                        (row.isExpanded =
-                          true &&
-                          renderRowSubComponent({
-                            row,
-                            rowProps,
-                            visibleColumns,
-                          }))
-                      }
-                    </React.Fragment>
-                  );
-                })}
-              </tbody>
-            </table>
+              <table className="emballage-table--balance" {...getTableProps()}>
+                <thead>
+                  {headerGroups.map((headerGroup) => (
+                    <tr {...headerGroup.getHeaderGroupProps()}>
+                      {headerGroup.headers.map((column) => (
+                        <th {...column.getHeaderProps()}>
+                          <h4>{column.render("Header")}</h4>
+                        </th>
+                      ))}
+                    </tr>
+                  ))}
+                </thead>
+                <tbody {...getTableBodyProps()}>
+                  {page.map((row, i) => {
+                    prepareRow(row);
+                    const rowProps = row.getRowProps();
+                    return (
+                      // Use a React.Fragment here so the table markup is still valid
+                      <React.Fragment key={rowProps.key}>
+                        <tr {...rowProps}>
+                          {row.cells.map((cell) => {
+                            return (
+                              <td {...cell.getCellProps()}>
+                                <h4>{cell.render("Cell")}</h4>
+                              </td>
+                            );
+                          })}
+                        </tr>
+                        {
+                          (row.isExpanded =
+                            true &&
+                            renderRowSubComponent({
+                              row,
+                              rowProps,
+                              visibleColumns,
+                            }))
+                        }
+                      </React.Fragment>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
 
             <div className="pagination">
-            <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-              {<i className="fas fa-chevron-left"></i>}
-            </button>
+              <button
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+              >
+                {<i className="fas fa-chevron-left"></i>}
+              </button>
 
-            <span>
-              Side{" "}
-              <strong>
-                {pageIndex + 1} af {pageOptions.length}
-              </strong>{" "}
-            </span>
+              <span>
+                Side{" "}
+                <strong>
+                  {pageIndex + 1} af {pageOptions.length}
+                </strong>{" "}
+              </span>
 
-            <button onClick={() => nextPage()} disabled={!canNextPage}>
-              {<i className="fas fa-chevron-right"></i>}
-            </button>
-          </div>
+              <button onClick={() => nextPage()} disabled={!canNextPage}>
+                {<i className="fas fa-chevron-right"></i>}
+              </button>
+            </div>
           </Route>
         </Switch>
       </Router>
