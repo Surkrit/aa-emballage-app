@@ -171,7 +171,6 @@ const Styles = styled.div`
 
   .pagination {
     margin-top: 20px;
-    margin-bottom: 100px;
     justify-content: end;
     button {
       background: none;
@@ -289,7 +288,7 @@ function Table({ columns: userColumns, data, renderRowSubComponent }) {
     {
       columns: userColumns,
       data,
-      initialState: { pageIndex: 0, pageSize: 10 },
+      initialState: { pageIndex: 0, pageSize: 5 },
     },
     useExpanded,
     usePagination
@@ -628,7 +627,7 @@ function EmballageTable() {
     []
   );
 
-  const data = React.useMemo(() => makeData(10000), []);
+  const data = React.useMemo(() => makeData(100), []);
 
   const renderRowSubComponent = React.useCallback(
     ({ row, rowProps, visibleColumns }) => (

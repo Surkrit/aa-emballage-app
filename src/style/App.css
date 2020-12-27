@@ -31,7 +31,9 @@ body {
   line-height: 1;
   background-image: url("../images/map.png");
   background-size: auto;
-  background-color: #eeeee;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: 200px -850px;
 }
 
 ol, ul {
@@ -51,6 +53,10 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+a {
+  text-decoration: none;
 }
 
 body {
