@@ -40,7 +40,7 @@ const AddRow = props => {
 
   return (
     <div className="add-row">
-      <label className="add-row__date">Dato <input type="date" name="date" onChange={handleChange('date')}/></label>
+      <label className="add-row__date">Dato <input type="date" name="date" value={input.date} onChange={handleChange('date')}/></label>
         <table>
           <thead>
             <tr>
