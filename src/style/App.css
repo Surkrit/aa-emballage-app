@@ -245,7 +245,9 @@ footer .footer--links a {
   border-radius: 5px;
   margin: 0 5px;
   padding: 5px 0;
+  font-family: inherit;
   text-align: center;
+  background: none;
   margin: 5px;
   padding: 5px 10px;
 }
@@ -403,7 +405,9 @@ footer .footer--links a {
   border-radius: 5px;
   margin: 0 5px;
   padding: 5px 0;
+  font-family: inherit;
   text-align: center;
+  background: none;
 }
 
 .add-row table {
