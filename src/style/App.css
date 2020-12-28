@@ -131,6 +131,7 @@ p {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  background: rgba(255, 255, 255, 0.6);
 }
 
 .app-logo {
@@ -278,7 +279,6 @@ footer .footer--links a {
 
 .message--wrapper {
   border-bottom: solid 1px #cccccc;
-  margin: 10px 0;
 }
 
 .message--wrapper:nth-last-child(1) {
@@ -290,8 +290,16 @@ footer .footer--links a {
   display: -ms-flexbox;
   display: flex;
   place-content: space-between;
-  margin: 0;
+  margin: 10px 0;
   padding: 0;
+}
+
+.message--wrapper h3 {
+  font-weight: bold;
+}
+
+.message--wrapper p {
+  margin: 10px 0;
 }
 
 .button--green {
@@ -359,7 +367,7 @@ footer .footer--links a {
 }
 
 .login--wrapper .login--wrapper__content a {
-  margin: 20px;
+  margin: 20px 0;
   color: #00904A;
 }
 

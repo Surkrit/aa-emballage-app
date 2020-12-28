@@ -63,7 +63,7 @@ class Login extends React.Component {
                 />
               </div>
               <Button buttonname="Login" />
-              <Link to="/">Glemt Password?</Link>
+              <Link to="/ForgotPassword">Glemt Password?</Link>
             </form>
           </div>
         </div>

@@ -18,6 +18,7 @@ import Prices from './components/Prices';
 import Tomgods from './components/Tomgods';
 import Svind from './components/Svind';
 import Footer from './components/Footer';
+import logo from "./images/aa-logo-big.png"; // with import
 /* React Router */
 import {
    BrowserRouter as Router,
@@ -34,6 +35,19 @@ ReactDOM.render(
          <Switch>
             <Route exact path="/">
                <Login />
+            </Route>
+
+            <Route exact path="/ForgotPassword">
+               <div className="login--wrapper">
+                  <div className="login--wrapper__image"></div>
+                  <img src={logo} className="app-logo" alt="logo" />
+                  <div className="login--wrapper__content">
+                     <Link to="/">Tilbage</Link>
+                     <h2>Dette er en dummyside til Alex Andersens kommende emballageside</h2>
+                     <p>For at logge ind på "Kunde" siden, skal du skrive "Bruger" som Brugernavn og Password</p>
+                     <p>For at logge ind på "Admin" siden, skal du skrive "Admin" som Brugernavn og Password</p>
+                  </div>
+               </div>
             </Route>
             
             <Route exact path="/Customer/Home">
@@ -70,7 +84,6 @@ ReactDOM.render(
                         <p>Lonha@alex-andersen.dk</p>
                      </div>
                   </div>
-                  <Button buttonname="Rediger" />
                </div>
                </div>
                <Footer />
