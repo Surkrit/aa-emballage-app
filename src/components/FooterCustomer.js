@@ -15,8 +15,8 @@ function FooterCustomer() {
         </div>
 
         <div className="footer--links">
-            <Link to="/Admin/Terms">Vilkår</Link>
-            <Link to="/Admin/Prices">Prisliste</Link>
+            <Link to="/Customer/Terms">Vilkår</Link>
+            <Link to="/Customer/Prices">Prisliste</Link>
         </div>
     </footer>
   );

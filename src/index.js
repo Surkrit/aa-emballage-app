@@ -128,6 +128,30 @@ ReactDOM.render(
             <FooterCustomer />
             </Route>
 
+            <Route exact path="/Customer/Terms">
+               <div className="flex">
+               <div className="content--backround"></div>
+                  <NavCustomer />
+                  <div className="content">
+                   <Headline title="Vilkår" />
+                  </div>
+               </div>
+               <FooterCustomer />
+               
+            </Route>
+
+            <Route exact path="/Customer/Prices">
+               <div className="flex">
+               <div className="content--backround"></div>
+                  <NavCustomer />
+                  <div className="content">
+                     <Headline title="Prisliste" />
+                  </div>
+               </div>
+               <FooterCustomer />
+               
+            </Route>
+
 
             <Route exact path="/Admin/Home">
             <div className="flex">
