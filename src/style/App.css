@@ -29,8 +29,6 @@ footer, header, hgroup, menu, nav, section {
 
 body {
   line-height: 1;
-  background-image: url("../images/map.png");
-  background-size: auto;
   background-color: #fff;
   background-repeat: no-repeat;
   background-position: 200px -850px;
@@ -99,6 +97,18 @@ p {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  min-height: 85vh;
+}
+
+.content--backround {
+  background-image: url("../images/map.png");
+  background-size: auto;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-position: center;
+  z-index: -1000;
+  opacity: 0.3;
 }
 
 .main {

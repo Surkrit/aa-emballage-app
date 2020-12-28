@@ -33,4 +33,16 @@ p {
 
 .flex {
     display: flex;
+    min-height: 85vh;
+}
+
+.content--backround {
+    background-image: url('../images/map.png');
+    background-size: auto;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-position: center;
+    z-index: -1000;
+    opacity: 0.3;
 }

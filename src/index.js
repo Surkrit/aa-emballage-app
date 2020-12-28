@@ -38,6 +38,7 @@ ReactDOM.render(
             
             <Route exact path="/Customer/Home">
                <div className="flex">
+               <div className="content--backround"></div>
                   <NavCustomer />
                   <div className="content">
                      <Emballage />
@@ -49,6 +50,7 @@ ReactDOM.render(
 
             <Route exact path="/Customer/Profile">
             <div className="flex">
+            <div className="content--backround"></div>
                <NavCustomer />
                <div className="content">
                   <Headline title="Profil" />
@@ -76,6 +78,7 @@ ReactDOM.render(
 
             <Route exact path="/Customer/Message">
             <div className="flex">
+            <div className="content--backround"></div>
                <NavCustomer />
                <div className="content">
                   <Headline title="Beskeder" />
@@ -90,6 +93,7 @@ ReactDOM.render(
 
             <Route path="/Customer/Tomgods">
             <div className="flex">
+            <div className="content--backround"></div>
                <NavCustomer />
                   <div className="content">
                   <Tomgods />
@@ -100,6 +104,7 @@ ReactDOM.render(
             
             <Route path="/Customer/Svind">
             <div className="flex">
+            <div className="content--backround"></div>
                <NavCustomer />
                   <div className="content">
                   <Svind />
@@ -112,6 +117,7 @@ ReactDOM.render(
 
             <Route exact path="/Admin/Home">
             <div className="flex">
+            <div className="content--backround"></div>
              <NavAdmin />   
              <div className="content">
                   <Headline title="Beskeder" />
@@ -128,6 +134,7 @@ ReactDOM.render(
 
             <Route exact path="/Admin/Terms">
             <div className="flex">
+            <div className="content--backround"></div>
                <NavAdmin />
                <div className="content">
                   <Headline title="Vilkår" />
@@ -145,6 +152,7 @@ ReactDOM.render(
 
             <Route path="/Admin/Prices">
             <div className="flex">
+            <div className="content--backround"></div>
                <NavAdmin />
                <div className="content">
                   <Prices />
