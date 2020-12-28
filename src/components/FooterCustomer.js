@@ -4,7 +4,7 @@ import {
   Link
 } from "react-router-dom";
 
-function Footer() {
+function FooterCustomer() {
   return (
     <footer>
         <div className="footer--address">
@@ -23,4 +23,4 @@ function Footer() {
 }
 
 
-export default Footer;
+export default FooterCustomer;

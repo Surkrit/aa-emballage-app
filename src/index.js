@@ -17,7 +17,8 @@ import Login from './pages/login';
 import Prices from './components/Prices';
 import Tomgods from './components/Tomgods';
 import Svind from './components/Svind';
-import Footer from './components/Footer';
+import FooterCustomer from './components/FooterCustomer';
+import FooterAdmin from './components/FooterAdmin';
 import logo from "./images/aa-logo-big.png"; // with import
 /* React Router */
 import {
@@ -43,7 +44,7 @@ ReactDOM.render(
                   <img src={logo} className="app-logo" alt="logo" />
                   <div className="login--wrapper__content">
                      <Link to="/">Tilbage</Link>
-                     <h2>Dette er en dummyside til Alex Andersens kommende emballageside</h2>
+                     <h2>Dette er en dummyside til Alex Andersens kommende Emballageside</h2>
                      <p>For at logge ind på "Kunde" siden, skal du skrive "Bruger" som Brugernavn og Password</p>
                      <p>For at logge ind på "Admin" siden, skal du skrive "Admin" som Brugernavn og Password</p>
                   </div>
@@ -58,7 +59,7 @@ ReactDOM.render(
                      <Emballage />
                   </div>
                </div>
-               <Footer />
+               <FooterCustomer />
                
             </Route>
 
@@ -86,7 +87,7 @@ ReactDOM.render(
                   </div>
                </div>
                </div>
-               <Footer />
+               <FooterCustomer />
             </Route>
 
             <Route exact path="/Customer/Message">
@@ -101,7 +102,7 @@ ReactDOM.render(
                   <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
                </div>
             </div>
-            <Footer />
+            <FooterCustomer />
             </Route>
 
             <Route path="/Customer/Tomgods">
@@ -112,7 +113,7 @@ ReactDOM.render(
                   <Tomgods />
                   </div>
                   </div>
-                  <Footer />
+                  <FooterCustomer />
             </Route>
             
             <Route path="/Customer/Svind">
@@ -124,7 +125,7 @@ ReactDOM.render(
                   </div>
                   </div>
             
-            <Footer />
+            <FooterCustomer />
             </Route>
 
 
@@ -142,7 +143,7 @@ ReactDOM.render(
                   <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
                </div>
             </div>
-            <Footer />
+            <FooterAdmin />
             </Route>
 
             <Route exact path="/Admin/Terms">
@@ -160,7 +161,7 @@ ReactDOM.render(
                   </form>
                   </div>
             </div>
-            <Footer />
+            <FooterAdmin />
             </Route>
 
             <Route path="/Admin/Prices">
@@ -171,7 +172,7 @@ ReactDOM.render(
                   <Prices />
                </div>
             </div>
-            <Footer />
+            <FooterAdmin />
             </Route>
          </Switch>
          
