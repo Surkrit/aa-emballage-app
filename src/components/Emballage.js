@@ -59,6 +59,11 @@ const Styles = styled.div`
       border: 1px solid #707070;
       font-weight: 600;
       padding: 5px;
+      &:nth-last-child(2) {
+        h4{
+          width: 120px
+        }
+      }
     }
     .extended-row {
       td {
@@ -93,6 +98,11 @@ const Styles = styled.div`
         border: 1px solid #707070;
         font-weight: 600;
         padding: 5px;
+        &:nth-last-child(2) {
+          h4{
+            width: 120px
+          }
+        }
       }
 
       &:nth-child(even) {
@@ -188,9 +198,6 @@ const Styles = styled.div`
   }
 
   .comment-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
     .input-comment {
       border: 1px solid black;
       border-radius: 5px;
@@ -201,16 +208,18 @@ const Styles = styled.div`
       cursor: pointer;
     }
     .comment {
-      resize: none;
       padding: 10px;
-      border-radius: 5px 0px 5px 5px;
+      border-radius: 0px 0px 5px 5px;
       border: 1px solid black;
-      display: none;
-      position: absolute;
-      margin-top: 30px;
-      align-self: end;
+      display: block;
+      margin-top: 5px;
+      width: 80%;
     }
-    div {
+
+    .comment-div{
+      position: relative;
+    }
+    h4 {
       margin-top: 5px;
     }
   }
