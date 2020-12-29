@@ -1,19 +1,23 @@
 import "../style/App.css";
 import logo from '../images/aa-logo-big.png'; // with import
 import {
-  Link
+  NavLink
 } from "react-router-dom";
 
 function NavAdmin() {
   return (
     <div className="nav">
-      <Link to="/Admin/Home"><img src={logo} className="app-logo" alt="logo" /> </Link>
+      <NavLink to="/Admin/Home"><img src={logo} className="app-logo" alt="logo" /> </NavLink>
         <ul>
             <li>
-               <Link to="/Admin/Home">Beskeder</Link>
-               <Link to="/Admin/Terms">Vilkår</Link>
-               <Link to="/Admin/Prices">Prisliste</Link>
-               <Link to="/">Logout</Link>
+               <NavLink to="/Admin/Home" activeClassName="active">Beskeder</NavLink>
+               <NavLink to="/Admin/Terms" activeClassName="active">Vilkår</NavLink>
+               <NavLink to="/Admin/Prices" activeClassName="active">Prisliste</NavLink>
+               <NavLink to="/" activeStyle={{
+                textDecoration: "none",
+                color: "inherit",
+                fontWeight: "normal"
+              }}>Logout</NavLink>
             </li>
          </ul>
     </div>

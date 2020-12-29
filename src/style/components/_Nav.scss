@@ -16,25 +16,24 @@
   margin: 15px 10px;
   align-self: center;
 }
-
-.active {
-  color: #00904A;
-}
   
 .nav {
     width: 250px;
     display: flex;
     flex-direction: column;
     text-align: center;
-    ul, li {
+    ul {
+    li { 
       list-style-type: none;
       display: flex;
       flex-direction: column;
       margin: 0;
       padding: 0;
       width: 250px;
-    }
-    li {
+      .active {
+        color: $primary-color;
+        font-weight: bold;
+      }
       a {
         display: flex;
         padding: 10px 15px;
@@ -42,6 +41,7 @@
         border-bottom: solid 1px #cccccc;
         text-decoration: none;
         color: #1d1d1b;
+      
         &:nth-child(1) {
           border-top: solid 1px #cccccc;
         }
@@ -53,4 +53,5 @@
         }
       }
     }
+}  
 }
