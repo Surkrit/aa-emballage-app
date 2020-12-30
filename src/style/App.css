@@ -93,6 +93,10 @@ p {
   font-family: 'Asap', sans-serif;
 }
 
+h1, h4 {
+  font-weight: bold;
+}
+
 .flex {
   display: -webkit-box;
   display: -ms-flexbox;
