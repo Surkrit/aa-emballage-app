@@ -509,6 +509,11 @@ footer .footer--links a {
   color: #707070;
 }
 
+.table-data {
+  width: 100%;
+  overflow-x: auto;
+}
+
 .messagefield--wrapper {
   display: -webkit-box;
   display: -ms-flexbox;

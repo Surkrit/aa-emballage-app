@@ -41,6 +41,7 @@ const AddRow = props => {
   return (
     <div className="add-row">
       <label className="add-row__date">Dato <input type="date" name="date" value={input.date} onChange={handleChange('date')}/></label>
+        <div class="table-data">
         <table>
           <thead>
             <tr>
@@ -81,6 +82,7 @@ const AddRow = props => {
             </tr>
           </tbody>
         </table>
+        </div>
         <button onClick={handleAdd} className="button--green">
             {buttonName}
         </button>
