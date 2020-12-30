@@ -135,6 +135,7 @@ const EnhancedTable = ({
         buttonName={buttonName}
       />
       <div className="enhanced-table__text"><p>{beforeTable}</p></div>
+      <div className="table-data">
       <table className="enhanced-table" {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
@@ -175,6 +176,7 @@ const EnhancedTable = ({
           })}
         </tbody>
         </table>
+        </div>
 
           <div className="pagination">
             <button onClick={() => previousPage()} disabled={!canPreviousPage}>

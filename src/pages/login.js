@@ -37,11 +37,7 @@ class Login extends React.Component {
 
             <p>
               {" "}
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-              lacinia tempor egestas. Nullam enim erat, consequat et nisi eget,
-              pellentesque sodales justo. Etiam ut iaculis nibh. Suspendisse
-              nulla libero, sagittis ut justo sit amet, volutpat venenatis elit.
-              Donec fermentum posuere nisi tempor auctor.{" "}
+              Log in for at se dit emballage regnskab{" "}
             </p>
             {/* I stedet for action til at lave en redirection bliver der brugt onSubmit, som går ind og peger på mySubmitHandler funktionen */}
             <form className="login--form" onSubmit={this.mySubmitHandler}>
