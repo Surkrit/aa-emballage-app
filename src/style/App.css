@@ -93,7 +93,7 @@ p {
   font-family: 'Asap', sans-serif;
 }
 
-h1, h4 {
+h1 {
   font-weight: bold;
 }
 
@@ -483,6 +483,10 @@ footer .footer--links a {
 .enhanced-table input {
   min-width: 40px;
   width: calc(100% - 10px);
+}
+
+.enhanced-table h4 {
+  font-weight: bold;
 }
 
 .enhanced-table__text {

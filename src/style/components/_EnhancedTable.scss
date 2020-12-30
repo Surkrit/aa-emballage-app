@@ -3,6 +3,9 @@
 
 .enhanced-table {
     @include table;
+    h4 {
+        font-weight: bold;
+    }
 }
 
 .enhanced-table__text {
