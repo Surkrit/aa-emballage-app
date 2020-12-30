@@ -14,6 +14,7 @@ import Message from './components/Message';
 import MessageField from './components/MessageField';
 import Terms from './components/Terms';
 import Login from './pages/login';
+import PricesOpdate from './components/PricesOpdate';
 import Prices from './components/Prices';
 import Tomgods from './components/Tomgods';
 import Svind from './components/Svind';
@@ -145,7 +146,7 @@ ReactDOM.render(
                <div className="content--backround"></div>
                   <NavCustomer />
                   <div className="content">
-                     <Headline title="Prisliste" />
+                     <Prices />
                   </div>
                </div>
                <FooterCustomer />
@@ -193,7 +194,7 @@ ReactDOM.render(
             <div className="content--backround"></div>
                <NavAdmin />
                <div className="content">
-                  <Prices />
+                  <PricesOpdate />
                </div>
             </div>
             <FooterAdmin />

@@ -272,6 +272,10 @@ footer .footer--links a {
   -moz-appearance: textfield;
 }
 
+.prices table .prices__number {
+  padding: 5px 15px;
+}
+
 .prices .button--green {
   float: right;
 }

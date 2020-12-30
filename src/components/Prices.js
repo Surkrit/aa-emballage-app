@@ -1,65 +1,39 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Headline from './Headline';
-import Button from './Button'
 import '../style/App.css';
 
-const initialPrice = {
-  t5RfidCc: 3000,
-  hylder: 200,
-  forl: 20,
-  rfidCc: 1000,
-  halfRfidCc: 600,
-  halfHylde: 120,
-  halfCc: 1500,
-  dsHalfCc: 1200,
-  dsHalfHylde: 100,
-  eupl: 100,
-  halfPll: 70,
-  quartPll: 40,
-  cc: 2000,
-  sojleror: 50,
-}
-
-function EmbaRow({name, EmbaName, onChange, value}) {
+function EmbaRow({EmbaName, value}) {
   return (
     <tr>
         <td>{EmbaName}</td>
-        <td><input type="number" name={name} value={value} onChange={onChange}/></td>
+        <td className="prices__number">{value}</td>
         <td>kr pr. stk.</td>
     </tr>
   );
 }
 
 function Prices() {
-  const [input, setInput] = useState(initialPrice)
-
-  const handleChange = name => ({ target: { value } }) => {
-    setInput({ ...input, [name]: value })
-  }
   return (
     <div className="prices">
       <Headline title="Prisliste" />
-      <form>
         <table>
           <tbody>
-            <EmbaRow EmbaName="T5 Rfid CC" name="t5RfidCc" value={input.t5RfidCc} onChange={handleChange('t5RfidCc')}/>
-            <EmbaRow EmbaName="Hylder" name="hylder" value={input.hylder} onChange={handleChange('hylder')}/>
-            <EmbaRow EmbaName="Forl." name="forl" value={input.forl} onChange={handleChange('forl')}/>
-            <EmbaRow EmbaName="Rfid CC"name="rfidCc" value={input.rfidCc} onChange={handleChange('rfidCc')}/>
-            <EmbaRow EmbaName="½ Rfid CC" name="halfRfidCc" value={input.halfRfidCc} onChange={handleChange('halfRfidCc')}/>
-            <EmbaRow EmbaName="½ hylde" name="halfHylde" value={input.halfHylde} onChange={handleChange('halfHylde')}/>
-            <EmbaRow EmbaName="½ CC" name="halfCc" value={input.halfCc} onChange={handleChange('halfCc')}/>
-            <EmbaRow EmbaName="DS ½CC" name="dsHalfCc" value={input.dsHalfCc} onChange={handleChange('dsHalfCc')}/>
-            <EmbaRow EmbaName="DS ½Hylde" name="dsHalfHylde" value={input.dsHalfHylde} onChange={handleChange('dsHalfHylde')}/>
-            <EmbaRow EmbaName="Eupl" name="eupl" value={input.eupl} onChange={handleChange('eupl')}/>
-            <EmbaRow EmbaName="½ Pll" name="halfPll" value={input.halfPll} onChange={handleChange('halfPll')}/>
-            <EmbaRow EmbaName="¼ Pll" name="quartPll" value={input.quartPll} onChange={handleChange('quartPll')}/>
-            <EmbaRow EmbaName="CC" name="cc" value={input.cc} onChange={handleChange('cc')}/>
-            <EmbaRow EmbaName="Søjlerør" name="sojleror" value={input.sojleror} onChange={handleChange('sojleror')}/>
+            <EmbaRow EmbaName="T5 Rfid CC" name="t5RfidCc" value={3000}/>
+            <EmbaRow EmbaName="Hylder" name="hylder" value={200}/>
+            <EmbaRow EmbaName="Forl." name="forl" value={20}/>
+            <EmbaRow EmbaName="Rfid CC"name="rfidCc" value={1000}/>
+            <EmbaRow EmbaName="½ Rfid CC" name="halfRfidCc" value={600}/>
+            <EmbaRow EmbaName="½ hylde" name="halfHylde" value={120}/>
+            <EmbaRow EmbaName="½ CC" name="halfCc" value={1500}/>
+            <EmbaRow EmbaName="DS ½CC" name="dsHalfCc" value={1200}/>
+            <EmbaRow EmbaName="DS ½Hylde" name="dsHalfHylde" value={100}/>
+            <EmbaRow EmbaName="Eupl" name="eupl" value={100}/>
+            <EmbaRow EmbaName="½ Pll" name="halfPll" value={70}/>
+            <EmbaRow EmbaName="¼ Pll" name="quartPll" value={40}/>
+            <EmbaRow EmbaName="CC" name="cc" value={2000}/>
+            <EmbaRow EmbaName="Søjlerør" name="sojleror" value={50}/>
           </tbody>
         </table>
-        <Button buttonname="Opdater"/>
-      </form>
     </div>
   );
 }
