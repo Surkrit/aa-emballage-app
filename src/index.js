@@ -134,7 +134,11 @@ ReactDOM.render(
                <div className="content--backround"></div>
                   <NavCustomer />
                   <div className="content">
-                   <Headline title="Vilkår" />
+                     <Headline title="Vilkår" />
+                     <Message messagetitle="Levering" message="Vi leverer altid til tiden, hvis ikke får I besked om det."/>
+                     <Message messagetitle="Priser" message="Alle priser er i danske kroner og uden moms."/>
+                     <Message messagetitle="Retur" message="Al emballage skal leveres retur."/>
+                     <Message messagetitle="Ødelagt emballage" message="Emballage, der er blevet ødelagt, skal erstattes."/>
                   </div>
                </div>
                <FooterCustomer />
