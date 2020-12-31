@@ -162,6 +162,7 @@ ReactDOM.render(
                   <Headline title="Beskeder" />
                   <MessageField message=""/>
                   <div className="flex--end"><Button buttonname="Send" /></div>
+                  <div className="message--wrapper"><h4>Afsendte beskeder</h4></div>
                   <Message messagetitle="Glædelig jul og godt nytår" messagedate="24/12/2020" message="Vi ønsker jer allesammen en glædelig jul og er rigtigt godt nytår, vi glæder os til at forsætte med det gode samarbejde i det nye år."/>
                   <Message messagetitle="Problem løst" messagedate="18/11/2020" message="De driftsforstyrrelser, som vi tidligere sendte en besked om, er nu blevet løst. Emballageoversigten skulle igen fungere fejlfrit. Hvis I forsat oplever problemer, bedes I kontakte support hurtigst muligt."/>
                   <Message messagetitle="Driftsforstyrrelser" messagedate="18/11/2020" message="Der er driftsforstyrrelser på vores ny emballageoversigt. Vi arbejder på at løse problemet hurtigst muligt."/>

@@ -3,8 +3,8 @@ import "../style/App.css";
 function Terms() {
   return (
     <div className="terms--wrapper">
-        <input name="header" />
-        <textarea name="terms" rows="6" />
+        <input name="header" placeholder="Vilkår" />
+        <textarea name="terms" rows="6" placeholder="Vilkår tekst" />
     </div>
   );
 };

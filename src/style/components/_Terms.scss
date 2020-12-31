@@ -6,10 +6,15 @@
         width: 200px;
         border: solid 1px;
         border-radius: 5px;
+        border-radius: 5px 0px 5px 5px;
+        border: 1px solid black;
         margin: 5px 0;
+        padding: 10px;
     }
     textarea {
         width: 80%;
-        border-radius: 5px;
+        padding: 10px;
+        border-radius: 5px 0px 5px 5px;
+        border: 1px solid black;
     } 
 }

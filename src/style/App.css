@@ -282,6 +282,8 @@ footer .footer--links a {
 
 .message--wrapper {
   border-bottom: solid 1px #cccccc;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .message--wrapper:nth-last-child(1) {
@@ -558,12 +560,17 @@ footer .footer--links a {
   width: 200px;
   border: solid 1px;
   border-radius: 5px;
+  border-radius: 5px 0px 5px 5px;
+  border: 1px solid black;
   margin: 5px 0;
+  padding: 10px;
 }
 
 .terms--wrapper textarea {
   width: 80%;
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 5px 0px 5px 5px;
+  border: 1px solid black;
 }
 
 .profile--wrapper__content {

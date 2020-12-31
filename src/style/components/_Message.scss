@@ -1,5 +1,7 @@
 .message--wrapper {
     border-bottom: solid 1px #cccccc;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
     &:nth-last-child(1) {
         border-bottom: none;
     }
