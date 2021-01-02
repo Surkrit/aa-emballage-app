@@ -6,6 +6,7 @@ function EmbaRow({EmbaName, value}) {
   return (
     <tr>
         <td>{EmbaName}</td>
+        {/* Priserne bliver her vist for kunden */}
         <td className="prices__number">{value}</td>
         <td>kr pr. stk.</td>
     </tr>

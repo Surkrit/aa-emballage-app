@@ -33,6 +33,7 @@ const EnhancedTable = ({
       initialState: {
         sortBy: [
           {
+            //Sorterer tabellens indhold efter nyeste dato
             id: 'date',
             desc: true
           }
@@ -51,7 +52,7 @@ const EnhancedTable = ({
     usePagination,
     hooks => {
       hooks.allColumns.push(columns => [
-        // Let's make a column for selection
+        // Her bliver column med # lavet, da den ikke er et input. Til hver række bliver dens index+1 vist, da de altid begynder med 0
         {
           id: 'selection',
 

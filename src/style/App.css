@@ -489,6 +489,15 @@ footer .footer--links a {
   font-weight: bold;
 }
 
+.enhanced-table .MuiTableSortLabel-icon {
+  color: #1d1d1b !important;
+}
+
+.enhanced-table .MuiTableSortLabel-root:hover .MuiTableSortLabel-icon {
+  opacity: 1 !important;
+  color: #707070 !important;
+}
+
 .enhanced-table__text {
   margin-bottom: 15px;
 }

@@ -6,6 +6,13 @@
     h4 {
         font-weight: bold;
     }
+    .MuiTableSortLabel-icon {
+        color: $secondary-color--dark !important;
+    }
+    .MuiTableSortLabel-root:hover .MuiTableSortLabel-icon {
+        opacity: 1 !important;
+        color: $secondary-color !important;
+    }
 }
 
 .enhanced-table__text {
