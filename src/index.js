@@ -34,10 +34,12 @@ ReactDOM.render(
 
       <Router>
          <Switch>
+            {/* Login */} 
             <Route exact path="/">
                <Login />
             </Route>
 
+            {/* Glemt Password */} 
             <Route exact path="/ForgotPassword">
                <div className="login--wrapper">
                   <div className="login--wrapper__image"></div>
@@ -51,6 +53,8 @@ ReactDOM.render(
                </div>
             </Route>
             
+            {/* Kunder */} 
+            {/* Emballage */} 
             <Route exact path="/Customer/Home">
                <div className="flex">
                <div className="content--backround"></div>
@@ -63,6 +67,7 @@ ReactDOM.render(
                
             </Route>
 
+            {/* Profil */} 
             <Route exact path="/Customer/Profile">
             <div className="flex">
             <div className="content--backround"></div>
@@ -90,6 +95,7 @@ ReactDOM.render(
                <FooterCustomer />
             </Route>
 
+            {/* Beskeder */} 
             <Route exact path="/Customer/Message">
             <div className="flex">
             <div className="content--backround"></div>
@@ -105,6 +111,7 @@ ReactDOM.render(
             <FooterCustomer />
             </Route>
 
+            {/* Tomgods */} 
             <Route path="/Customer/Tomgods">
             <div className="flex">
             <div className="content--backround"></div>
@@ -113,9 +120,10 @@ ReactDOM.render(
                   <Tomgods />
                   </div>
                   </div>
-                  <FooterCustomer />
+               <FooterCustomer />
             </Route>
             
+            {/* Svindopgørelse */} 
             <Route path="/Customer/Svind">
             <div className="flex">
             <div className="content--backround"></div>
@@ -128,6 +136,7 @@ ReactDOM.render(
             <FooterCustomer />
             </Route>
 
+            {/* Vilkår */} 
             <Route exact path="/Customer/Terms">
                <div className="flex">
                <div className="content--backround"></div>
@@ -137,9 +146,9 @@ ReactDOM.render(
                   </div>
                </div>
                <FooterCustomer />
-               
             </Route>
 
+            {/* Prisliste */} 
             <Route exact path="/Customer/Prices">
                <div className="flex">
                <div className="content--backround"></div>
@@ -148,11 +157,11 @@ ReactDOM.render(
                      <Headline title="Prisliste" />
                   </div>
                </div>
-               <FooterCustomer />
-               
+               <FooterCustomer /> 
             </Route>
 
-
+            {/* Admin */} 
+            {/* Send Beskeder */} 
             <Route exact path="/Admin/Home">
             <div className="flex">
             <div className="content--backround"></div>
@@ -170,6 +179,7 @@ ReactDOM.render(
             <FooterAdmin />
             </Route>
 
+            {/* Opret Vilkår */} 
             <Route exact path="/Admin/Terms">
             <div className="flex">
             <div className="content--backround"></div>
@@ -188,6 +198,7 @@ ReactDOM.render(
             <FooterAdmin />
             </Route>
 
+            {/* Opret Prisliste */} 
             <Route path="/Admin/Prices">
             <div className="flex">
             <div className="content--backround"></div>
