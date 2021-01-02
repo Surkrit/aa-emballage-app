@@ -14,6 +14,7 @@ import Message from './components/Message';
 import MessageField from './components/MessageField';
 import Terms from './components/Terms';
 import Login from './pages/login';
+import PricesOpdate from './components/PricesOpdate';
 import Prices from './components/Prices';
 import Tomgods from './components/Tomgods';
 import Svind from './components/Svind';
@@ -102,10 +103,10 @@ ReactDOM.render(
                <NavCustomer />
                <div className="content">
                   <Headline title="Beskeder" />
-                  <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
-                  <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
-                  <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
-                  <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
+                  <Message messagetitle="Glædelig jul og godt nytår" messagedate="24/12/2020" message="Vi ønsker jer allesammen en glædelig jul og er rigtigt godt nytår, vi glæder os til at forsætte med det gode samarbejde i det nye år."/>
+                  <Message messagetitle="Problem løst" messagedate="18/11/2020" message="De driftsforstyrrelser, som vi tidligere sendte en besked om, er nu blevet løst. Emballageoversigten skulle igen fungere fejlfrit. Hvis I forsat oplever problemer, bedes I kontakte support hurtigst muligt."/>
+                  <Message messagetitle="Driftsforstyrrelser" messagedate="18/11/2020" message="Der er driftsforstyrrelser på vores ny emballageoversigt. Vi arbejder på at løse problemet hurtigst muligt."/>
+                  <Message messagetitle="Ny emballageoversigt" messagedate="16/11/2020" message="Der er nu blevet lanceret en ny emballageoversigt, som gør dit emballageregnskab meget mere overskueligt. Kontakt vores support, hvis I har spørgsmål angående denne."/>
                </div>
             </div>
             <FooterCustomer />
@@ -142,7 +143,11 @@ ReactDOM.render(
                <div className="content--backround"></div>
                   <NavCustomer />
                   <div className="content">
-                   <Headline title="Vilkår" />
+                     <Headline title="Vilkår" />
+                     <Message messagetitle="Levering" message="Vi leverer altid til tiden, hvis ikke får I besked om det."/>
+                     <Message messagetitle="Priser" message="Alle priser er i danske kroner og uden moms."/>
+                     <Message messagetitle="Retur" message="Al emballage skal leveres retur."/>
+                     <Message messagetitle="Ødelagt emballage" message="Emballage, der er blevet ødelagt, skal erstattes."/>
                   </div>
                </div>
                <FooterCustomer />
@@ -154,7 +159,7 @@ ReactDOM.render(
                <div className="content--backround"></div>
                   <NavCustomer />
                   <div className="content">
-                     <Headline title="Prisliste" />
+                     <Prices />
                   </div>
                </div>
                <FooterCustomer /> 
@@ -170,10 +175,11 @@ ReactDOM.render(
                   <Headline title="Beskeder" />
                   <MessageField message=""/>
                   <div className="flex--end"><Button buttonname="Send" /></div>
-                  <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
-                  <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
-                  <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
-                  <Message messagetitle="Overskrift" messagedate="16/11/2020" message="Nullam et porta erat. Nulla facilisi. Phasellus eleifend congue ligula quis laoreet. Quisque finibus in ligula quis lacinia. Duis non faucibus nunc, non viverra tellus. Suspendisse quam ex, blandit sed massa nec, varius molestie nisi. Aliquam urna quam, pellentesque vitae quam sed, rutrum vestibulum nulla. Sed id luctus lacus. Sed."/>
+                  <div className="message--wrapper"><h4>Afsendte beskeder</h4></div>
+                  <Message messagetitle="Glædelig jul og godt nytår" messagedate="24/12/2020" message="Vi ønsker jer allesammen en glædelig jul og er rigtigt godt nytår, vi glæder os til at forsætte med det gode samarbejde i det nye år."/>
+                  <Message messagetitle="Problem løst" messagedate="18/11/2020" message="De driftsforstyrrelser, som vi tidligere sendte en besked om, er nu blevet løst. Emballageoversigten skulle igen fungere fejlfrit. Hvis I forsat oplever problemer, bedes I kontakte support hurtigst muligt."/>
+                  <Message messagetitle="Driftsforstyrrelser" messagedate="18/11/2020" message="Der er driftsforstyrrelser på vores ny emballageoversigt. Vi arbejder på at løse problemet hurtigst muligt."/>
+                  <Message messagetitle="Ny emballageoversigt" messagedate="16/11/2020" message="Der er nu blevet lanceret en ny emballageoversigt, som gør dit emballageregnskab meget mere overskueligt. Kontakt vores support, hvis I har spørgsmål angående denne."/>
                </div>
             </div>
             <FooterAdmin />
@@ -204,7 +210,7 @@ ReactDOM.render(
             <div className="content--backround"></div>
                <NavAdmin />
                <div className="content">
-                  <Prices />
+                  <PricesOpdate />
                </div>
             </div>
             <FooterAdmin />

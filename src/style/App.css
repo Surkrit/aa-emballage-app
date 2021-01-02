@@ -65,6 +65,7 @@ body {
 
 h1 {
   font-size: 67px;
+  font-weight: bold;
   margin-top: 40px;
   margin-bottom: 20px;
 }
@@ -83,18 +84,11 @@ h4 {
 
 p {
   font-size: 16px;
+  font-family: 'Asap', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Raleway', sans-serif;
-}
-
-p {
-  font-family: 'Asap', sans-serif;
-}
-
-h1 {
-  font-weight: bold;
 }
 
 .flex {
@@ -278,12 +272,18 @@ footer .footer--links a {
   -moz-appearance: textfield;
 }
 
+.prices table .prices__number {
+  padding: 5px 15px;
+}
+
 .prices .button--green {
   float: right;
 }
 
 .message--wrapper {
   border-bottom: solid 1px #cccccc;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .message--wrapper:nth-last-child(1) {
@@ -560,12 +560,17 @@ footer .footer--links a {
   width: 200px;
   border: solid 1px;
   border-radius: 5px;
+  border-radius: 5px 0px 5px 5px;
+  border: 1px solid black;
   margin: 5px 0;
+  padding: 10px;
 }
 
 .terms--wrapper textarea {
   width: 80%;
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 5px 0px 5px 5px;
+  border: 1px solid black;
 }
 
 .profile--wrapper__content {
