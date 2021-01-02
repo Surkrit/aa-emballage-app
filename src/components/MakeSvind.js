@@ -1,5 +1,3 @@
-import namor from 'namor'
-
 const range = len => {
   const arr = []
   for (let i = 0; i < len; i++) {
@@ -31,20 +29,20 @@ const newPerson = () => {
       ? 'Afvist'
       : commentChance > 0.33
       ? 'Godkendt'
-      : 'Afhentet',
+      : 'Afventende',
   }
 }
 
-export default function makeData(...lens) {
-  const makeDataLevel = (depth = 0) => {
+export default function MakeSvind(...lens) {
+  const MakeSvindLevel = (depth = 0) => {
     const len = lens[depth]
     return range(len).map(d => {
       return {
         ...newPerson(),
-        subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined,
+        subRows: lens[depth + 1] ? MakeSvindLevel(depth + 1) : undefined,
       }
     })
   }
 
-  return makeDataLevel()
+  return MakeSvindLevel()
 }

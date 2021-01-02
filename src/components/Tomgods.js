@@ -1,7 +1,7 @@
 import React from 'react';
 import Headline from './Headline';
 import EnhancedTable from './EnhancedTable';
-import makeData from './makeData'
+import MakeGods from './MakeGods'
 import '../style/App.css';
 
 const Tomgods = () => {
@@ -67,15 +67,15 @@ const Tomgods = () => {
         Header: 'Søjlerør',
         accessor: 'sojleror',
       },
-      /* {
+      {
         Header: 'Kommentar',
         accessor: 'comment',
-      }, */
+      },
     ],
     []
   )
 
-  const [data, setData] = React.useState(React.useMemo(() => makeData(5), []))
+  const [data, setData] = React.useState(React.useMemo(() => MakeGods(5), []))
   const [skipPageReset, setSkipPageReset] = React.useState(false)
 
   // We need to keep the table from resetting the pageIndex when we

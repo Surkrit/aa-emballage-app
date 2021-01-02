@@ -1,7 +1,7 @@
 import React from 'react';
 import Headline from './Headline';
 import EnhancedTable from './EnhancedTable';
-import makeData from './makeData'
+import MakeSvind from './MakeSvind'
 import '../style/App.css';
 
 const Svind = () => {
@@ -75,7 +75,7 @@ const Svind = () => {
     []
   )
 
-  const [data, setData] = React.useState(React.useMemo(() => makeData(5), []))
+  const [data, setData] = React.useState(React.useMemo(() => MakeSvind(5), []))
   const [skipPageReset, setSkipPageReset] = React.useState(false)
 
   // We need to keep the table from resetting the pageIndex when we
