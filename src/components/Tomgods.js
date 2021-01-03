@@ -1,7 +1,7 @@
 import React from 'react';
 import Headline from './Headline';
 import EnhancedTable from './EnhancedTable';
-import MakeGods from './MakeGods'
+import MakeGods from './MakeData'
 import '../style/App.css';
 
 const Tomgods = () => {
@@ -69,7 +69,7 @@ const Tomgods = () => {
       },
       {
         Header: 'Kommentar',
-        accessor: 'comment',
+        accessor: 'commentGods',
       },
     ],
     []

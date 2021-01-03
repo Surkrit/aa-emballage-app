@@ -6,7 +6,7 @@ const range = len => {
   return arr
 }
 
-const newSvind = () => {
+const newData = () => {
   const commentChance = Math.random()
   return {
     date: '2020-' + Math.floor(Math.random() * (1, 12)+1) + '-' + Math.floor(Math.random() * (1, 30)+1),
@@ -24,7 +24,13 @@ const newSvind = () => {
     quartPll: Math.floor(Math.random() * 20),
     cc: Math.floor(Math.random() * 20),
     sojleror: Math.floor(Math.random() * 20),
-    comment:
+    commentGods:
+    commentChance > 0.66
+      ? 'Afvist'
+      : commentChance > 0.33
+      ? 'Godkendt'
+      : 'Afhentet',
+    commentSvind:
     commentChance > 0.66
       ? 'Afvist'
       : commentChance > 0.33
@@ -33,16 +39,16 @@ const newSvind = () => {
   }
 }
 
-export default function MakeSvind(...lens) {
-  const MakeSvindLevel = (depth = 0) => {
+export default function makeData(...lens) {
+  const makeDataLevel = (depth = 0) => {
     const len = lens[depth]
     return range(len).map(d => {
       return {
-        ...newSvind(),
-        subRows: lens[depth + 1] ? MakeSvindLevel(depth + 1) : undefined,
+        ...newData(),
+        subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined,
       }
     })
   }
 
-  return MakeSvindLevel()
+  return makeDataLevel()
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import Headline from './Headline';
 import EnhancedTable from './EnhancedTable';
-import MakeSvind from './MakeSvind'
+import MakeSvind from './MakeData'
 import '../style/App.css';
 
 const Svind = () => {
@@ -69,7 +69,7 @@ const Svind = () => {
       },
       {
         Header: 'Kommentar',
-        accessor: 'comment',
+        accessor: 'commentSvind',
       },
     ],
     []

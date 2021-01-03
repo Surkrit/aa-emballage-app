@@ -79,70 +79,73 @@ const EnhancedTable = ({
   // Render the UI for your table
   return (
     <>
+      {/* Teksten før AddRow */}
       <div className="enhanced-table__text"><p>{beforeAddRow}</p></div>
+      {/* Den importerede AddRow komponent med addRowHandler og buttonName */}
       <AddRow
         addRowHandler={addRowHandler}
         buttonName={buttonName}
       />
+      {/* Teksten før table */}
       <div className="enhanced-table__text"><p>{beforeTable}</p></div>
       <div className="table-data">
-      <table className="enhanced-table" {...getTableProps()}>
-        <thead>
-          {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                <th
-                  {...(column.id === 'selection'
-                    ? column.getHeaderProps()
-                    : column.getHeaderProps(column.getSortByToggleProps()))}
-                > <h4>
-                  {column.render('Header')}
-                  {column.id !== 'selection' ? (
-                    <TableSortLabel
-                      active={column.isSorted}
-                      // react-table has a unsorted state which is not treated here
-                      direction={column.isSortedDesc ? 'desc' : 'asc'}
-                    />
-                  ) : null}</h4>
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {page.map((row, i) => {
-            prepareRow(row)
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map(cell => {
-                  return (
-                    <td {...cell.getCellProps()}>
-                      {cell.render('Cell')}
-                    </td>
-                  )
-                })}
+        <table className="enhanced-table" {...getTableProps()}>
+          <thead>
+            {headerGroups.map(headerGroup => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map(column => (
+                  <th
+                    {...(column.id === 'selection'
+                      ? column.getHeaderProps()
+                      : column.getHeaderProps(column.getSortByToggleProps()))}
+                  > <h4>
+                    {column.render('Header')}
+                    {column.id !== 'selection' ? (
+                      <TableSortLabel
+                        active={column.isSorted}
+                        // react-table has a unsorted state which is not treated here
+                        direction={column.isSortedDesc ? 'desc' : 'asc'}
+                      />
+                    ) : null}</h4>
+                  </th>
+                ))}
               </tr>
-            )
-          })}
-        </tbody>
+            ))}
+          </thead>
+          <tbody>
+            {page.map((row, i) => {
+              prepareRow(row)
+              return (
+                <tr {...row.getRowProps()}>
+                  {row.cells.map(cell => {
+                    return (
+                      <td {...cell.getCellProps()}>
+                        {cell.render('Cell')}
+                      </td>
+                    )
+                  })}
+                </tr>
+              )
+            })}
+          </tbody>
         </table>
-        </div>
+      </div>
 
-          <div className="pagination">
-            <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-              {<i class="fas fa-chevron-left"></i>}
-            </button>
+      <div className="pagination">
+        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+          {<i class="fas fa-chevron-left"></i>}
+        </button>
 
-            <span>
-              Side{" "}
-                {pageIndex + 1} af {pageOptions.length}
-              {" "}
-            </span>
+        <span>
+          Side{" "}
+            {pageIndex + 1} af {pageOptions.length}
+          {" "}
+        </span>
 
-            <button onClick={() => nextPage()} disabled={!canNextPage}>
-              {<i class="fas fa-chevron-right"></i>}
-            </button>
-          </div>
+        <button onClick={() => nextPage()} disabled={!canNextPage}>
+          {<i class="fas fa-chevron-right"></i>}
+        </button>
+      </div>
     </>
   )
 }
