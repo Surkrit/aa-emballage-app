@@ -6,7 +6,7 @@ const range = len => {
   return arr
 }
 
-const newPerson = () => {
+const newSvind = () => {
   const commentChance = Math.random()
   return {
     date: '2020-' + Math.floor(Math.random() * (1, 12)+1) + '-' + Math.floor(Math.random() * (1, 30)+1),
@@ -38,7 +38,7 @@ export default function MakeSvind(...lens) {
     const len = lens[depth]
     return range(len).map(d => {
       return {
-        ...newPerson(),
+        ...newSvind(),
         subRows: lens[depth + 1] ? MakeSvindLevel(depth + 1) : undefined,
       }
     })

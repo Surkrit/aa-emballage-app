@@ -6,7 +6,7 @@ const range = len => {
   return arr
 }
 
-const newPerson = () => {
+const newGods = () => {
   const commentChance = Math.random()
   return {
     date: '2020-' + Math.floor(Math.random() * (1, 12)+1) + '-' + Math.floor(Math.random() * (1, 30)+1),
@@ -38,7 +38,7 @@ export default function MakeGods(...lens) {
     const len = lens[depth]
     return range(len).map(d => {
       return {
-        ...newPerson(),
+        ...newGods(),
         subRows: lens[depth + 1] ? MakeGodsLevel(depth + 1) : undefined,
       }
     })

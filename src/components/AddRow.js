@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import '../style/App.css';
 
+//Variabel med begynder værdien, som bliver kaldt i useState
 const initialRow = {
   id: '',
   date: '',
@@ -26,12 +27,12 @@ const AddRow = props => {
   const [input, setInput] = useState(initialRow)
   const { addRowHandler, buttonName } = props
 
-
+  //Button onClick
   const handleAdd = event => {
     addRowHandler(input)
     setInput(initialRow)
   }
-
+  //Input onChange
   const handleChange = name => ({ target: { value } }) => {
     setInput({ ...input, [name]: value })
   }
