@@ -75,6 +75,7 @@ const Tomgods = () => {
     []
   )
 
+  //Der bliver genereret 5 rows til table
   const [data, setData] = React.useState(React.useMemo(() => MakeGods(5), []))
   const [skipPageReset, setSkipPageReset] = React.useState(false)
 

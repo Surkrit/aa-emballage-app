@@ -3,6 +3,7 @@ import Headline from './Headline';
 import Button from './Button'
 import '../style/App.css';
 
+//Start prisen
 const initialPrice = {
   t5RfidCc: 3000,
   hylder: 200,
@@ -19,7 +20,7 @@ const initialPrice = {
   cc: 2000,
   sojleror: 50,
 }
-
+//Row med input, som skal opdatere prisen
 function EmbaRow({name, EmbaName, onChange, value}) {
   return (
     <tr>
@@ -58,6 +59,7 @@ function PricesOpdate() {
             <EmbaRow EmbaName="Søjlerør" name="sojleror" value={input.sojleror} onChange={handleChange('sojleror')}/>
           </tbody>
         </table>
+        {/* Button component, fungerer ikke som nu er, da den bare opdaterer siden og tilføjer alt input til URLen */}
         <Button buttonname="Opdater"/>
       </form>
     </div>

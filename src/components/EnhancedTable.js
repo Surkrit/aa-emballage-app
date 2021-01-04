@@ -45,6 +45,8 @@ const EnhancedTable = ({
       // automatically be available on the instance.
       // That way we can call this function from our
       // cell renderer!
+      //BLIVER IKKE BRUGT, DA DEN VAR EN DEL AF EN TIDLIGERE FUNKTION
+      //Men er ikke fjernet, da den bliver inporteret til Tomgods og Svind komponenterne
       updateMyData,
     },
     useSortBy,
